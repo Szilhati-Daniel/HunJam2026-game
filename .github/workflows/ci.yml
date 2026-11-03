@@ -15,14 +15,14 @@ jobs:
       - name: Checkout Source Code
         uses: actions/checkout@v4
 
-      # 1. Letöltjük a sziklaszilárd Godot 4.3 stabil verziót
+      # 1. Letöltjük a Godot 4.3 stabilt
       - name: Download Godot
         run: |
           wget https://tuxfamily.org
           unzip Godot_v4.3-stable_linux.x86_64.zip
           mv Godot_v4.3-stable_linux.x86_64 godot-headless
 
-      # 2. Letöltjük a hozzá tartozó hivatalos Webes sablonokat
+      # 2. Letöltjük a sablonokat
       - name: Download Export Templates
         run: |
           wget https://tuxfamily.org
@@ -30,16 +30,22 @@ jobs:
           unzip Godot_v4.3-stable_export_templates.tpz -d /tmp
           mv /tmp/templates/* ~/.local/share/godot/export_templates/4.3.stable/
 
-      # 3. Biztosítjuk a builds/web mappa létezését
+      # 3. Létrehozzuk a builds mappát
       - name: Create Build Directory
         run: mkdir -p builds/web
 
-      # 4. Kényszerítjük a parancssoros exportálást a te preseted nevével
+      # 4. EZ FIXÁLJA AZ EXIT CODE 9-ET: Kényszerített projekt-importálás
+      # Megnyitjuk a projektet headless editor módban, beimportálja az asseteket, majd azonnal kilép
+      - name: Import Assets and Warm Up Cache
+        run: |
+          ./godot-headless --headless --path . --editor --quit || true
+
+      # 5. Futtatjuk az exportálást (Most már lesz belső cache, így működni fog!)
       - name: Run Godot Export
         run: |
           ./godot-headless --headless --path . --export-release "Web (Runnable)" builds/web/index.html
 
-      # 5. Feltöltjük a kész ZIP-et GitHubra
+      # 6. Feltöltjük a kész ZIP-et GitHubra
       - name: Upload Web Build Artifacts
         uses: actions/upload-artifact@v4
         with:
