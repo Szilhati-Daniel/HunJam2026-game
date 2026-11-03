@@ -37,8 +37,7 @@ jobs:
       # 4. Közvetlenül parancssorból kiadjuk a Godot-nak az export parancsot
       - name: Run Godot Export
         run: |
-          ./godot-headless --headless --path . --export-release "Web" builds/web/index.html
-
+          ./godot-headless --headless --path . --export-release "Web (Runnable)" builds/web/index.html
       # 5. Feltöltjük a kész fájlokat GitHubra
       - name: Upload Web Build Artifacts
         uses: actions/upload-artifact@v4
