@@ -1,0 +1,30 @@
+name: "Godot Web CI Build"
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    name: Godot Web Export
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Godot Export (Web)
+        uses: chickenmesh/godot-export@v3
+        with:
+          godot-version: '4.3' # Ellenőrizd a Steam-es verziódat (pl. 4.3 vagy 4.4)!
+          export-preset: 'Web'
+          # A repón belüli relatív útvonal:
+          export-path: 'builds/web/index.html'
+
+      - name: Upload Web Build Artifacts
+        uses: actions/artifacts@v4
+        with:
+          name: web-build
+          # A teljes web mappát elmentjük (az index.html-t és a hozzá tartozó .wasm/.js fájlokat)
+          path: builds/web/
