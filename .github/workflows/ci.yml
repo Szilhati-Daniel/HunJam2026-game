@@ -2,7 +2,7 @@ name: "Godot Web CI Build"
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
 
 jobs:
