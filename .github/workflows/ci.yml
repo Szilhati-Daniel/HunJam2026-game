@@ -4,6 +4,7 @@ on:
     branches:
       - master
   pull_request:
+  workflow_dispatch:
 
 jobs:
   build:
@@ -15,16 +16,17 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Godot Export (Web)
-        uses: chickenmesh/godot-export@v3
+        uses: firebelley/godot-export@v5.3.0
         with:
-          godot-version: '4.3' # Ellenőrizd a Steam-es verziódat (pl. 4.3 vagy 4.4)!
-          export-preset: 'Web'
-          # A repón belüli relatív útvonal:
-          export-path: 'builds/web/index.html'
+          # A Godot 4-es verziód (pl. 4.3)
+          godot_version: '4.7.2'
+          # A Godot Export ablakában megadott pontos név
+          export_preset: 'Web'
+          # Ide menti a szerver a buildet ideiglenesen
+          export_output_directory: 'builds/web'
 
       - name: Upload Web Build Artifacts
-        uses: actions/artifacts@v4
+        uses: actions/upload-artifact@v4
         with:
           name: web-build
-          # A teljes web mappát elmentjük (az index.html-t és a hozzá tartozó .wasm/.js fájlokat)
           path: builds/web/
