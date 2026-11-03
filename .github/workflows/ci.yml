@@ -1,4 +1,6 @@
+
 name: "Godot Web CI Build"
+
 on:
   push:
     branches:
@@ -10,42 +12,73 @@ jobs:
   build:
     name: Godot Web Export
     runs-on: ubuntu-latest
-    
+
     steps:
+      # 1. Forráskód letöltése
       - name: Checkout Source Code
         uses: actions/checkout@v4
 
-      # 1. Letöltjük a Godot 4.3 stabilt
+      # 2. Godot 4.3 letöltése
       - name: Download Godot
         run: |
-          wget https://tuxfamily.org
-          unzip Godot_v4.3-stable_linux.x86_64.zip
+          wget -O godot.zip \
+            https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_linux.x86_64.zip
+
+          unzip -q godot.zip
+          chmod +x Godot_v4.3-stable_linux.x86_64
           mv Godot_v4.3-stable_linux.x86_64 godot-headless
 
-      # 2. Helyes mappába másoljuk a sablonokat (EZ JAVÍTJA KI AZ EXIT CODE 9-ET)
+      # 3. Export template-ek letöltése
       - name: Download Export Templates
         run: |
-          wget https://tuxfamily.org
+          wget -O templates.tpz \
+            https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_export_templates.tpz
+
           mkdir -p ~/.local/share/godot/export_templates/4.3.stable
-          unzip Godot_v4.3-stable_export_templates.tpz -d /tmp
-          # A tpz fájlon belül egy "templates" mappa van, annak a tartalmát mozgatjuk át:
-          cp -r /tmp/templates/* ~/.local/share/godot/export_templates/4.3.stable/
 
-      # 3. Létrehozzuk a builds mappát
-      - name: Create Build Directory
-        run: mkdir -p builds/web
+          mkdir -p /tmp/godot-templates
+          unzip -q templates.tpz -d /tmp/godot-templates
 
-      # 4. Bemelegítjük a projekt gyorsítótárát headless módban
+          cp -a /tmp/godot-templates/templates/. \
+            ~/.local/share/godot/export_templates/4.3.stable/
+
+      # 4. Presetek ellenőrzése
+      - name: Check Export Preset
+        run: |
+          if [ ! -f export_presets.cfg ]; then
+            echo "ERROR: export_presets.cfg not found!"
+            exit 1
+          fi
+
+          grep -n 'name=' export_presets.cfg
+
+      # 5. Projekt importálása
       - name: Import Assets
         run: |
-          ./godot-headless --headless --path . --editor --quit || true
+          ./godot-headless --headless --path . --editor --quit
 
-      # 5. Futtatjuk a tiszta exportálást
+      # 6. Web export
       - name: Run Godot Export
         run: |
-          ./godot-headless --headless --path . --export-release "Web (Runnable)" builds/web/index.html
+          mkdir -p builds/web
 
-      # 6. Feltöltjük a kész ZIP-et GitHubra
+          ./godot-headless \
+            --headless \
+            --path . \
+            --export-release "Web" \
+            builds/web/index.html
+
+      # 7. Build ellenőrzése
+      - name: Verify Build
+        run: |
+          if [ ! -f builds/web/index.html ]; then
+            echo "ERROR: Web export failed!"
+            exit 1
+          fi
+
+          ls -lah builds/web/
+
+      # 8. Artifact feltöltése
       - name: Upload Web Build Artifacts
         uses: actions/upload-artifact@v4
         with:
