@@ -7,45 +7,29 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  export_game:
     name: Godot Web Export
     runs-on: ubuntu-latest
     
     steps:
+      # 1. Kód letöltése
       - name: Checkout Source Code
         uses: actions/checkout@v4
 
-      # 1. Letöltjük a Godot 4.3 stabilt
-      - name: Download Godot
-        run: |
-          wget https://tuxfamily.org
-          unzip Godot_v4.3-stable_linux.x86_64.zip
-          mv Godot_v4.3-stable_linux.x86_64 godot-headless
+      # 2. A hivatalos Godot közösségi export action meghívása
+      # Ez magától kezeli a 4.3-as verziót, a gyorsítótárat és a sablonokat is!
+      - name: Godot Android/Web/Windows Export
+        uses: simonbrito/godot-export@v1
+        with:
+          godot-version: '4.3'
+          # Megadjuk a pontos preseted nevét
+          export-preset: 'Web (Runnable)'
+          # A te kisbetűs builds mappád a gyökérben
+          export-path: 'builds/web/index.html'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # 2. Letöltjük a sablonokat
-      - name: Download Export Templates
-        run: |
-          wget https://tuxfamily.org
-          mkdir -p ~/.local/share/godot/export_templates/4.3.stable
-          unzip Godot_v4.3-stable_export_templates.tpz -d /tmp
-          mv /tmp/templates/* ~/.local/share/godot/export_templates/4.3.stable/
-
-      # 3. Létrehozzuk a builds mappát
-      - name: Create Build Directory
-        run: mkdir -p builds/web
-
-      # 4. EZ FIXÁLJA AZ EXIT CODE 9-ET: Kényszerített projekt-importálás
-      # Megnyitjuk a projektet headless editor módban, beimportálja az asseteket, majd azonnal kilép
-      - name: Import Assets and Warm Up Cache
-        run: |
-          ./godot-headless --headless --path . --editor --quit || true
-
-      # 5. Futtatjuk az exportálást (Most már lesz belső cache, így működni fog!)
-      - name: Run Godot Export
-        run: |
-          ./godot-headless --headless --path . --export-release "Web (Runnable)" builds/web/index.html
-
-      # 6. Feltöltjük a kész ZIP-et GitHubra
+      # 3. Kész fájlok feltöltése
       - name: Upload Web Build Artifacts
         uses: actions/upload-artifact@v4
         with:
