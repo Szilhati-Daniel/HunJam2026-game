@@ -1,4 +1,3 @@
-
 name: "Godot Web CI Build"
 
 on:
@@ -14,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Forráskód letöltése
+      # 1. Projekt letöltése
       - name: Checkout Source Code
         uses: actions/checkout@v4
 
@@ -35,50 +34,92 @@ jobs:
             https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_export_templates.tpz
 
           mkdir -p ~/.local/share/godot/export_templates/4.3.stable
-
           mkdir -p /tmp/godot-templates
+
           unzip -q templates.tpz -d /tmp/godot-templates
 
           cp -a /tmp/godot-templates/templates/. \
             ~/.local/share/godot/export_templates/4.3.stable/
 
-      # 4. Presetek ellenőrzése
-      - name: Check Export Preset
+      # 4. Export preset javítása és ellenőrzése
+      - name: Fix Export Preset
         run: |
-          if [ ! -f export_presets.cfg ]; then
-            echo "ERROR: export_presets.cfg not found!"
-            exit 1
-          fi
+          python3 - <<'PY'
+          from pathlib import Path
 
-          grep -n 'name=' export_presets.cfg
+          path = Path("export_presets.cfg")
 
-      # 5. Projekt importálása
-      - name: Import Assets
+          if not path.exists():
+              raise SystemExit("ERROR: export_presets.cfg not found!")
+
+          content = path.read_text()
+
+          if '[preset.0]' not in content:
+              raise SystemExit("ERROR: preset.0 not found!")
+
+          if 'runnable=true' not in content:
+              content = content.replace(
+                  'platform="Web"',
+                  'platform="Web"\nrunnable=true',
+                  1
+              )
+
+          content = content.replace(
+              'export_path="../builds/web/index.html"',
+              'export_path="builds/web/index.html"'
+          )
+
+          path.write_text(content)
+
+          print("Export preset:")
+          print(content)
+          PY
+
+      # 5. Cache és könyvtárak előkészítése
+      - name: Prepare Environment
         run: |
-          ./godot-headless --headless --path . --editor --quit
+          rm -rf .godot
 
-      # 6. Web export
-      - name: Run Godot Export
-        run: |
+          mkdir -p .godot/editor
+          mkdir -p .godot/exported
           mkdir -p builds/web
 
+          chmod -R u+rwX .
+
+      # 6. Projekt importálása
+      - name: Import Assets
+        run: |
+          ./godot-headless \
+            --headless \
+            --editor \
+            --path . \
+            --verbose \
+            --quit
+
+      # 7. Web export
+      - name: Run Godot Export
+        run: |
           ./godot-headless \
             --headless \
             --path . \
+            --verbose \
             --export-release "Web" \
             builds/web/index.html
 
-      # 7. Build ellenőrzése
+      # 8. Build ellenőrzése
       - name: Verify Build
         run: |
-          if [ ! -f builds/web/index.html ]; then
-            echo "ERROR: Web export failed!"
+          echo "Checking Web build..."
+
+          test -f builds/web/index.html || {
+            echo "ERROR: index.html missing!"
             exit 1
-          fi
+          }
 
-          ls -lah builds/web/
+          echo "Build files:"
+          find builds/web -maxdepth 2 -type f -print
 
-      # 8. Artifact feltöltése
+      # 9. Build feltöltése
       - name: Upload Web Build Artifacts
         uses: actions/upload-artifact@v4
         with:
