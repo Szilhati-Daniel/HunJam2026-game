@@ -1,9 +1,9 @@
-extends MeshInstance3D
+extends CharacterBody3D
 
 @export_range(0.1, 5.0, 0.01)
 var movement_speed = 2.0
-
-var velocity = Vector3()
+@onready
+var character = $"Area3D"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -11,7 +11,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	velocity = Vector3()
+	var velocity = Vector3()
 	
 	if Input.is_key_pressed(KEY_A):
 		velocity.x -= 1.0
@@ -22,4 +22,10 @@ func _process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_S):
 		velocity.z += 1.0
 	
-	self.position += velocity.normalized() * movement_speed * delta
+	var delta_pos = velocity.normalized() * movement_speed * delta
+	move_and_collide(delta_pos)
+	#self.position += delta_pos
+
+func _on_area_3d_area_entered(area: Area3D) -> void:
+	if area.is_in_group("scene_geom"):
+		print("collision")
