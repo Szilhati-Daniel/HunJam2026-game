@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://collv4k2p7eml"]
+
+[ext_resource type="Script" path="res://animal.gd" id="1_fb3t6"]
+[ext_resource type="Script" path="res://animal_behaviour.gd" id="2_vd578"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" unique_id=630367358]
+script = ExtResource("1_fb3t6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1086384340]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1603345145]
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1655014917]
+
+[node name="Node" type="Node" parent="." unique_id=1135079017]
+script = ExtResource("2_vd578")
