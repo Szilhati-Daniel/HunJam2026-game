@@ -1,10 +1,12 @@
 [gd_scene format=3 uid="uid://d38oiseso0r5s"]
 
+[ext_resource type="Script" uid="uid://cxv6fusw0mkbd" path="res://scripts/player_controller.gd" id="1_5o2q7"]
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_g4v7s"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_yf5fn"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_g4v7s"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_g4v7s"]
 
 [node name="Node3D" type="Node3D" unique_id=399075566]
 
@@ -17,12 +19,15 @@ transform = Transform3D(6.7000003, 0, 0, 0, -4.371139e-08, -2.2, 0, 1, -9.616505
 mesh = SubResource("PlaneMesh_yf5fn")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=984022544]
-transform = Transform3D(1, 0, 0, 0, 0.9490424, 0.31514853, 0, -0.31514853, 0.9490424, 0, 3.8681126, 5.403002)
+transform = Transform3D(1, 0, 0, 0, 0.892978, 0.45010027, 0, -0.45010027, 0.892978, 0, 3.8247814, 3.4430852)
 projection = 1
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=974786429]
-transform = Transform3D(0.675, 0, 0, 0, 0.675, 0, 0, 0, 0.675, 0, 1.51126, -1.7135429)
-mesh = SubResource("SphereMesh_g4v7s")
+size = 10.346
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1715215167]
 transform = Transform3D(1, 0, 0, 0, 0.9256458, 0.37839106, 0, -0.37839106, 0.9256458, 0, 7.6081457, 8.594985)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=9463777]
+transform = Transform3D(0.405, 0, 0, 0, 0.405, 0, 0, 0, 0.405, 0, 0.4, -3.248)
+mesh = SubResource("CapsuleMesh_g4v7s")
+script = ExtResource("1_5o2q7")
+movement_speed = 5.0
