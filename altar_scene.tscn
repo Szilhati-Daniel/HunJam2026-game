@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://d38oiseso0r5s"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_g4v7s"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_yf5fn"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_g4v7s"]
+
+[node name="Node3D" type="Node3D" unique_id=399075566]
+
+[node name="Floor" type="MeshInstance3D" parent="." unique_id=1329936629]
+transform = Transform3D(6.71232, 0, 0, 0, 1, 0, 0, 0, 6.71232, 0, 0, 0)
+mesh = SubResource("PlaneMesh_g4v7s")
+
+[node name="Backwall" type="MeshInstance3D" parent="." unique_id=1636692986]
+transform = Transform3D(6.7000003, 0, 0, 0, -4.371139e-08, -2.2, 0, 1, -9.616505e-08, 0, 2, -5.112177)
+mesh = SubResource("PlaneMesh_yf5fn")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=984022544]
+transform = Transform3D(1, 0, 0, 0, 0.9490424, 0.31514853, 0, -0.31514853, 0.9490424, 0, 3.8681126, 5.403002)
+projection = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=974786429]
+transform = Transform3D(0.675, 0, 0, 0, 0.675, 0, 0, 0, 0.675, 0, 1.51126, -1.7135429)
+mesh = SubResource("SphereMesh_g4v7s")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1715215167]
+transform = Transform3D(1, 0, 0, 0, 0.9256458, 0.37839106, 0, -0.37839106, 0.9256458, 0, 7.6081457, 8.594985)
