@@ -1,4 +1,4 @@
-extends Node
+extends CharacterBody3D
 
 enum Behaviour {
 	COWARDLY,
@@ -17,12 +17,10 @@ enum Behaviour {
 var player : Node3D
 var can_attack : bool = true
 
-@onready var animal : CharacterBody3D = get_parent()
-
-@onready var face_towards: Sprite3D = get_parent().get_node("Facing_Towards")
-@onready var face_away: Sprite3D = get_parent().get_node("Facing_Away")
-@onready var face_left: Sprite3D = get_parent().get_node("Facing_Left")
-@onready var face_right: Sprite3D = get_parent().get_node("Facing_Right")
+@onready var face_towards: Sprite3D = get_node("Facing_Towards")
+@onready var face_away: Sprite3D = get_node("Facing_Away")
+@onready var face_left: Sprite3D = get_node("Facing_Left")
+@onready var face_right: Sprite3D = get_node("Facing_Right")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -31,9 +29,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	if animal == null:
-		return
-	var distance = animal.global_position.distance_to(
+	var distance = self.global_position.distance_to(
 		player.global_position
 	)
 	if distance > reaction_distance:
@@ -44,8 +40,8 @@ func _physics_process(delta: float) -> void:
 			cowardly()
 		Behaviour.AGGRESSIVE:
 			aggressive(distance)
-	animal.move_and_slide()
-			
+	move_and_slide()
+
 func find_player() -> void:
 	var main = get_tree().current_scene
 	player = main.get_node_or_null("Player") as Node3D
@@ -61,7 +57,7 @@ func aggressive(distance : float) -> void:
 		
 func cowardly() -> void:
 	var direction = (
-		animal.global_position - player.global_position
+		self.global_position - player.global_position
 	)
 	var velocity_x = direction.x * movement_speed
 	var velocity_z = direction.z * movement_speed
@@ -74,12 +70,12 @@ func cowardly() -> void:
 	if velocity_z < -movement_speed:
 		velocity_z = -movement_speed
 	
-	animal.velocity.x = velocity_x
-	animal.velocity.z = velocity_z
+	self.velocity.x = velocity_x
+	self.velocity.z = velocity_z
 	
 func move_towards_player() -> void:
 	var direction = (
-		player.global_position - animal.global_position
+		player.global_position - self.global_position
 	)
 	
 	var velocity_x = direction.x * movement_speed
@@ -93,12 +89,12 @@ func move_towards_player() -> void:
 	if velocity_z < -movement_speed:
 		velocity_z = -1.8 * movement_speed
 	
-	animal.velocity.x = velocity_x
-	animal.velocity.z = velocity_z
+	self.velocity.x = velocity_x
+	self.velocity.z = velocity_z
 	
 func stop_movement() -> void:
-	animal.velocity.x = 0.0
-	animal.velocity.z = 0.0
+	self.velocity.x = 0.0
+	self.velocity.z = 0.0
 	
 func attack_player() -> void:
 	if not can_attack:
