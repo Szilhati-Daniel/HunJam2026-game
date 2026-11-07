@@ -46,23 +46,20 @@ material_override = SubResource("StandardMaterial3D_57qmd")
 mesh = SubResource("BoxMesh_g4v7s")
 
 [node name="Facing_Towards" type="Sprite3D" parent="." unique_id=136471018]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.0068749785, 1.436089, 0.27581298)
-visible = false
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.007, 2, 0)
 material_override = SubResource("StandardMaterial3D_i3pqv")
 texture = ExtResource("3_i3pqv")
 
 [node name="Facing_Away" type="Sprite3D" parent="." unique_id=92259554]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.0068749785, 1.436089, 0.27581298)
-visible = false
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.007, 1.7, 0)
 texture = ExtResource("4_2hs0m")
 
 [node name="Facing_Left" type="Sprite3D" parent="." unique_id=1558183465]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.24326295, 1.4727483, 0.27581298)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.243, 1.7, 0)
 texture = ExtResource("5_1jxqw")
 
 [node name="Facing_Right" type="Sprite3D" parent="." unique_id=1300462177]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.21300209, 1.5332325, 0.27581298)
-visible = false
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.213, 1.7, 0)
 texture = ExtResource("6_dw050")
 
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
