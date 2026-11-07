@@ -8,10 +8,6 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i3pqv"]
-transparency = 1
-albedo_texture = ExtResource("3_i3pqv")
-
 [node name="Player" type="CharacterBody3D" unique_id=752145659 groups=["player"]]
 script = ExtResource("1_4flbx")
 
@@ -19,19 +15,18 @@ script = ExtResource("1_4flbx")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_g4v7s")
 
-[node name="Facing_Towards" type="Sprite3D" parent="." unique_id=136471018]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.0068749785, 1.7564695, 0.27581298)
+[node name="Facing_Towards" type="Sprite3D" parent="." unique_id=1068323190]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.007, 1.756, 0.276)
 visible = false
-material_override = SubResource("StandardMaterial3D_i3pqv")
 texture = ExtResource("3_i3pqv")
 
 [node name="Facing_Away" type="Sprite3D" parent="." unique_id=92259554]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.0068749785, 1.7564695, 0.27581298)
-visible = false
 texture = ExtResource("4_2hs0m")
 
 [node name="Facing_Left" type="Sprite3D" parent="." unique_id=1558183465]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.24326295, 1.7931287, 0.27581298)
+visible = false
 texture = ExtResource("5_1jxqw")
 
 [node name="Facing_Right" type="Sprite3D" parent="." unique_id=1300462177]

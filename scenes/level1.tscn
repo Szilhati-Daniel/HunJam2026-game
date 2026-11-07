@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://c51q22cjsxu42"]
 
+[ext_resource type="Script" uid="uid://bt7omhhaytxky" path="res://scripts/render_manager.gd" id="1_bbk5w"]
 [ext_resource type="PackedScene" uid="uid://vwfn42666ns4" path="res://prefabs/scene_geometry.tscn" id="1_m7ahb"]
 [ext_resource type="PackedScene" uid="uid://cvfk2js6u40yc" path="res://prefabs/camera.tscn" id="2_dwgg1"]
 [ext_resource type="PackedScene" uid="uid://ciwtxush3fuib" path="res://prefabs/player.tscn" id="3_ru4tf"]
@@ -18,6 +19,7 @@ shader_parameter/darkColour = Vector4(0.165, 0.11, 0.055, 1)
 shader_parameter/treshold = 0.67
 
 [node name="Level1" type="Node3D" unique_id=1308682315]
+script = ExtResource("1_bbk5w")
 
 [node name="Camera" parent="." unique_id=1052899663 node_paths=PackedStringArray("player") instance=ExtResource("2_dwgg1")]
 player = NodePath("../Player")

@@ -1,8 +1,8 @@
 shader_type canvas_item;
 
-uniform vec4 brightColour = vec4(1.0, 1.0, 1.0, 1.0);
-uniform vec4 darkColour = vec4(0.0, 0.0, 0.0, 1.0);
-uniform float treshold = 0.5;
+uniform vec4 brightColour = vec4(1.0, 0.9843137255, 0.8313725490, 1.0);
+uniform vec4 darkColour = vec4(0.1647058824, 0.1098039216, 0.0549019608, 1.0);
+uniform float treshold = 0.67;
 
 // If you intend to read from mipmaps with `textureLod()` LOD values greater than `0.0`,
 // use `filter_nearest_mipmap` instead. This shader doesn't require it.
