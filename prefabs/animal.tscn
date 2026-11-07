@@ -13,13 +13,6 @@ height = 1.5059204
 
 [node name="Animal" type="CharacterBody3D" unique_id=630367358]
 script = ExtResource("1_fb3t6")
-behaviour = null
-reaction_distance = null
-attack_distance = null
-movement_speed = null
-damage = null
-attack_cooldown = null
-health = null
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1086384340]
 visible = false
