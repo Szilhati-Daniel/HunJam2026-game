@@ -6,17 +6,21 @@
 [ext_resource type="PackedScene" uid="uid://c7tjk38uwtkay" path="res://prefabs/orbiting_staff_default.tscn" id="2_6ep0u"]
 [ext_resource type="PackedScene" uid="uid://cvfk2js6u40yc" path="res://prefabs/camera.tscn" id="2_alqfr"]
 [ext_resource type="PackedScene" uid="uid://d37dkjjugakgj" path="res://prefabs/postprocessing.tscn" id="3_yqkch"]
-[ext_resource type="Shader" uid="uid://yj5dns15m5u0" path="res://shaders/postprocessing.gdshader" id="4_alqfr"]
+[ext_resource type="Shader" uid="uid://u8wxdxjtqp2p" path="res://shaders/postprocessing_cave.gdshader" id="6_hrcei"]
 [ext_resource type="PackedScene" uid="uid://ewd4a2hdbtk7" path="res://prefabs/oak_tree.tscn" id="6_yqkch"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yqkch"]
-shader = ExtResource("4_alqfr")
+shader = ExtResource("6_hrcei")
 shader_parameter/brightColour = Vector4(1, 0.9843137, 0.83137256, 1)
 shader_parameter/darkColour = Vector4(0.16470589, 0.10980392, 0.05490196, 1)
 shader_parameter/treshold = 0.67
+shader_parameter/lightCentre = Vector2(0, 0)
+shader_parameter/lightRadius = 0.25
+shader_parameter/lightSmoothing = 0.0
 
-[node name="Node3D" type="Node3D" unique_id=488317995]
+[node name="Node3D" type="Node3D" unique_id=488317995 node_paths=PackedStringArray("light_source")]
 script = ExtResource("1_hrcei")
+light_source = NodePath("Player/Staff")
 
 [node name="Player" parent="." unique_id=752145659 instance=ExtResource("1_2k3dv")]
 
