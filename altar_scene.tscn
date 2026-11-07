@@ -4,6 +4,15 @@
 [ext_resource type="PackedScene" uid="uid://vwfn42666ns4" path="res://prefabs/scene_geometry.tscn" id="1_skw32"]
 [ext_resource type="PackedScene" uid="uid://collv4k2p7eml" path="res://prefabs/animal.tscn" id="2_e8g2b"]
 [ext_resource type="Script" uid="uid://bwbvwje7ofcpb" path="res://scripts/camera.gd" id="2_vr562"]
+[ext_resource type="PackedScene" uid="uid://b4cejqpifqcui" path="res://prefabs/scenery.tscn" id="5_hbham"]
+[ext_resource type="Texture2D" uid="uid://bl4uw37f0jg4a" path="res://assets/graphics/testSprites/bush/bush.png" id="6_tb2pl"]
+[ext_resource type="Shader" uid="uid://yj5dns15m5u0" path="res://shaders/postprocessing.gdshader" id="7_tb2pl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g4v7s"]
+shader = ExtResource("7_tb2pl")
+shader_parameter/brightColour = Vector4(1, 0.984, 0.831, 1)
+shader_parameter/darkColour = Vector4(0.165, 0.11, 0.055, 1)
+shader_parameter/treshold = 0.755
 
 [node name="Node3D" type="Node3D" unique_id=399075566]
 
@@ -23,10 +32,28 @@ player = NodePath("../Player")
 offset = Vector3(0, 4, 5)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1715215167]
-transform = Transform3D(1, 0, 0, 0, 0.9256458, 0.37839106, 0, -0.37839106, 0.9256458, 0, 7.6081457, 8.594985)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.906595, 16.28323)
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=1205606058]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 14.907, 16.283)
 
 [node name="Player" parent="." unique_id=752145659 instance=ExtResource("1_5o2q7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.342, 0)
 
 [node name="Animal" parent="." unique_id=630367358 instance=ExtResource("2_e8g2b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.783378, 1, 3.5477443)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.630831, 1, 4.3661246)
+
+[node name="Scenery" type="Node" parent="." unique_id=562526141]
+
+[node name="Sprite3D" parent="Scenery" unique_id=1919570451 instance=ExtResource("5_hbham")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.52, 1.5, -5.016)
+texture = ExtResource("6_tb2pl")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1929866762]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=647245687]
+material = SubResource("ShaderMaterial_g4v7s")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

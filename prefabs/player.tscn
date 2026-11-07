@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cxv6fusw0mkbd" path="res://scripts/player_controller.gd" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://ulmev3k243y3" path="res://assets/graphics/testSprites/player/idle/down_sketch/player_idle_down.png" id="3_i3pqv"]
-[ext_resource type="Texture2D" uid="uid://d1i4gnya8j6w2" path="res://assets/graphics/testSprites/player/idle/down_sketch - Copy/player_idle_up.png" id="4_2hs0m"]
+[ext_resource type="Texture2D" uid="uid://d1i4gnya8j6w2" path="res://assets/graphics/testSprites/player/idle/up_sketch/player_idle_up.png" id="4_2hs0m"]
 [ext_resource type="Texture2D" uid="uid://dmdmy7qycyfap" path="res://assets/graphics/testSprites/player/idle/left_sketch/player_idle_left.png" id="5_1jxqw"]
 [ext_resource type="Texture2D" uid="uid://bl0i572k45xr6" path="res://assets/graphics/testSprites/player/idle/right_sketch/player_idle_right.png" id="6_dw050"]
 
@@ -20,21 +20,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_g4v7s")
 
 [node name="Facing_Towards" type="Sprite3D" parent="." unique_id=136471018]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.0068749785, 1.436089, 0.27581298)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.0068749785, 1.7564695, 0.27581298)
 visible = false
 material_override = SubResource("StandardMaterial3D_i3pqv")
 texture = ExtResource("3_i3pqv")
 
 [node name="Facing_Away" type="Sprite3D" parent="." unique_id=92259554]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.0068749785, 1.436089, 0.27581298)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.0068749785, 1.7564695, 0.27581298)
 visible = false
 texture = ExtResource("4_2hs0m")
 
 [node name="Facing_Left" type="Sprite3D" parent="." unique_id=1558183465]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.24326295, 1.4727483, 0.27581298)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.24326295, 1.7931287, 0.27581298)
 texture = ExtResource("5_1jxqw")
 
 [node name="Facing_Right" type="Sprite3D" parent="." unique_id=1300462177]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.21300209, 1.5332325, 0.27581298)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.21300209, 1.8536129, 0.27581298)
 visible = false
 texture = ExtResource("6_dw050")
