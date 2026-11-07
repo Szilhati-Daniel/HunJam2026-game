@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bi3wpswkxqp2"
-path="res://.godot/imported/cave_rope.png-360995f21199846318533b3e0d59a575.ctex"
+path="res://.godot/imported/cave_rope.png-f96ff9dfdea6d05faa60cbaabe1633bf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/testSprites/items/paint/cave_rope.png"
-dest_files=["res://.godot/imported/cave_rope.png-360995f21199846318533b3e0d59a575.ctex"]
+source_file="res://assets/graphics/testSprites/cave/cave_rope.png"
+dest_files=["res://.godot/imported/cave_rope.png-f96ff9dfdea6d05faa60cbaabe1633bf.ctex"]
 
 [params]
 
