@@ -35,11 +35,13 @@ func _physics_process(delta: float) -> void:
 	if distance > reaction_distance:
 		stop_movement()
 		return
+	
 	match behaviour:
 		Behaviour.COWARDLY:
 			cowardly()
 		Behaviour.AGGRESSIVE:
 			aggressive(distance)
+	velocity = velocity.normalized() * movement_speed
 	move_and_slide()
 
 func find_player() -> void:
@@ -53,49 +55,27 @@ func aggressive(distance : float) -> void:
 		attack_player()
 	else:
 		move_towards_player()
-		
-		
+
 func cowardly() -> void:
 	var direction = (
 		self.global_position - player.global_position
 	)
-	var velocity_x = direction.x * movement_speed
-	var velocity_z = direction.z * movement_speed
-	if velocity_x > movement_speed:
-		velocity_x = movement_speed
-	if velocity_x < -movement_speed:
-		velocity_x = -movement_speed
-	if velocity_z > movement_speed:
-		velocity_z = movement_speed
-	if velocity_z < -movement_speed:
-		velocity_z = -movement_speed
 	
-	self.velocity.x = velocity_x
-	self.velocity.z = velocity_z
-	
+	self.velocity.x = direction.x
+	self.velocity.z = direction.z
+
 func move_towards_player() -> void:
 	var direction = (
 		player.global_position - self.global_position
 	)
 	
-	var velocity_x = direction.x * movement_speed
-	var velocity_z = direction.z * movement_speed
-	if velocity_x > movement_speed:
-		velocity_x = 1.8 * movement_speed
-	if velocity_x < movement_speed:
-		velocity_x = -1.8 * movement_speed
-	if velocity_z > movement_speed:
-		velocity_z = 1.8 * movement_speed
-	if velocity_z < -movement_speed:
-		velocity_z = -1.8 * movement_speed
-	
-	self.velocity.x = velocity_x
-	self.velocity.z = velocity_z
-	
+	self.velocity.x = direction.x
+	self.velocity.z = direction.z
+
 func stop_movement() -> void:
 	self.velocity.x = 0.0
 	self.velocity.z = 0.0
-	
+
 func attack_player() -> void:
 	if not can_attack:
 		return
@@ -103,7 +83,7 @@ func attack_player() -> void:
 	player.take_damage(damage)
 	await get_tree().create_timer(attack_cooldown).timeout
 	can_attack = true
-	
+
 func damaged_by_player(damage : float) -> void:
 	health -= damage
 	if health > 0:
