@@ -33,11 +33,6 @@ func _process(delta: float) -> void:
 	change_sprite(velocity)
 	
 	move_and_collide(delta_pos)
-	#self.position += delta_pos
-
-func _on_area_3d_area_entered(area: Area3D) -> void:
-	if area.is_in_group("scene_geom"):
-		print("collision")
 
 func change_sprite(direction : Vector3) -> void:
 	face_towards.visible = false
@@ -65,8 +60,7 @@ func take_damage(damage : float) -> void:
 	print("\t current health: ", health)
 	if health <= 0:
 		death()
-	else:
-		return
+
 func death() -> void:
 	#TODO kill, i mean implement
 	return
