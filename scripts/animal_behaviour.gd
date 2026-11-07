@@ -13,17 +13,20 @@ enum Behaviour {
 @export var damage : float = 10.0
 @export var attack_cooldown : float = 1.0
 @export var health : float = 100.0
+var last_direction = Vector3(0,0,0) # so its facing down when it spawns
 
 var player : Node3D
 var can_attack : bool = true
 
-@onready var face_towards: Sprite3D = get_node("Facing_Towards")
-@onready var face_away: Sprite3D = get_node("Facing_Away")
-@onready var face_left: Sprite3D = get_node("Facing_Left")
-@onready var face_right: Sprite3D = get_node("Facing_Right")
+@onready var face_towards: Sprite3D = $"Facing_Towards"
+@onready var face_away: Sprite3D = $"Facing_Away"
+@onready var face_left: Sprite3D = $"Facing_Left"
+@onready var face_right: Sprite3D = $"Facing_Right"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	print("Animal path: ", get_path())
+	print("Children: ", get_children())
 	find_player()
 
 
@@ -42,6 +45,7 @@ func _physics_process(delta: float) -> void:
 		Behaviour.AGGRESSIVE:
 			aggressive(distance)
 	velocity = velocity.normalized() * movement_speed
+	change_sprite(velocity)
 	move_and_slide()
 
 func find_player() -> void:
@@ -55,6 +59,28 @@ func aggressive(distance : float) -> void:
 		attack_player()
 	else:
 		move_towards_player()
+
+func change_sprite(direction : Vector3) -> void:
+	if direction != Vector3.ZERO:
+		last_direction = direction
+		
+	face_towards.visible = false
+	face_away.visible = false
+	face_left.visible = false
+	face_right.visible = false
+	
+	var movement_angle = Vector2(last_direction.x, last_direction.z).angle()
+	var movement_angle_degrees = rad_to_deg(movement_angle)
+	
+	if movement_angle_degrees >= -45 && movement_angle_degrees < 45:
+		face_right.visible = true
+
+	elif movement_angle_degrees >= 45 && movement_angle_degrees < 135:
+		face_towards.visible = true
+	elif movement_angle_degrees >= 135 || movement_angle_degrees < -135:
+		face_left.visible = true
+	else:
+		face_away.visible = true
 
 func cowardly() -> void:
 	var direction = (
