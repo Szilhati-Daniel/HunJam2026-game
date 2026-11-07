@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://d37dkjjugakgj"]
+
+[ext_resource type="Script" uid="uid://072u5getn0pp" path="res://prefabs/postprocessing.gd" id="1_a8hbr"]
+[ext_resource type="Shader" uid="uid://yj5dns15m5u0" path="res://shaders/postprocessing.gdshader" id="1_r51f7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g4v7s"]
+shader = ExtResource("1_r51f7")
+shader_parameter/brightColour = Vector4(1, 1, 1, 1)
+shader_parameter/darkColour = Vector4(0, 0, 0, 1)
+shader_parameter/treshold = 0.5
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=830739654]
+script = ExtResource("1_a8hbr")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1810065379]
+material = SubResource("ShaderMaterial_g4v7s")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

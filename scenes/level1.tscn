@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://c51q22cjsxu42"]
+
+[ext_resource type="PackedScene" uid="uid://vwfn42666ns4" path="res://prefabs/scene_geometry.tscn" id="1_m7ahb"]
+[ext_resource type="PackedScene" uid="uid://cvfk2js6u40yc" path="res://prefabs/camera.tscn" id="2_dwgg1"]
+[ext_resource type="PackedScene" uid="uid://ciwtxush3fuib" path="res://prefabs/player.tscn" id="3_ru4tf"]
+[ext_resource type="PackedScene" uid="uid://bqrvaceax4pov" path="res://prefabs/fence.tscn" id="4_dwgg1"]
+[ext_resource type="PackedScene" uid="uid://bo37okb6sqbok" path="res://prefabs/tree.tscn" id="4_ejswk"]
+[ext_resource type="PackedScene" uid="uid://d37dkjjugakgj" path="res://prefabs/postprocessing.tscn" id="5_ru4tf"]
+[ext_resource type="Shader" uid="uid://yj5dns15m5u0" path="res://shaders/postprocessing.gdshader" id="6_6sh32"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(1, 2.890625, 14.49025)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ejswk"]
+shader = ExtResource("6_6sh32")
+shader_parameter/brightColour = Vector4(1, 0.984, 0.831, 1)
+shader_parameter/darkColour = Vector4(0.165, 0.11, 0.055, 1)
+shader_parameter/treshold = 0.67
+
+[node name="Level1" type="Node3D" unique_id=1308682315]
+
+[node name="Camera" parent="." unique_id=1052899663 node_paths=PackedStringArray("player") instance=ExtResource("2_dwgg1")]
+player = NodePath("../Player")
+
+[node name="CharacterBody3D" parent="." unique_id=258324324 instance=ExtResource("1_m7ahb")]
+transform = Transform3D(27.58102, 0, 0, 0, 10, 0, 0, 0, 41.861763, 0, 0, 0)
+
+[node name="Player" parent="." unique_id=752145659 instance=ExtResource("3_ru4tf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.007088, 0, 6.9553547)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1835771992]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
+
+[node name="perimeter" type="Node3D" parent="." unique_id=1653596271]
+
+[node name="Fence10" parent="perimeter" unique_id=1573263111 instance=ExtResource("4_dwgg1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.585336, 0, -10.298305)
+
+[node name="Fence9" parent="perimeter" unique_id=1606840152 instance=ExtResource("4_dwgg1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.176561, 0, -10.266626)
+
+[node name="Fence8" parent="perimeter" unique_id=679081788 instance=ExtResource("4_dwgg1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7761183, 0, -10.240089)
+
+[node name="Fence7" parent="perimeter" unique_id=1539881389 instance=ExtResource("4_dwgg1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3588157, 0, -10.171028)
+
+[node name="Tree6" parent="perimeter" unique_id=1385436313 instance=ExtResource("4_ejswk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1216335, 0, -8.3856125)
+
+[node name="Fence6" parent="perimeter" unique_id=2115768431 instance=ExtResource("4_dwgg1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.069836)
+
+[node name="Tree5" parent="perimeter" unique_id=579745693 instance=ExtResource("4_ejswk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.010311, 0, -6.822132)
+
+[node name="Tree4" parent="perimeter" unique_id=1031804753 instance=ExtResource("4_ejswk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.304802, 0, 1.1510191)
+
+[node name="Tree3" parent="perimeter" unique_id=979611329 instance=ExtResource("4_ejswk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.643703, 0, -1.5232515)
+
+[node name="Tree2" parent="perimeter" unique_id=58513205 instance=ExtResource("4_ejswk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.832139, 0, -4.1263447)
+
+[node name="Tree" parent="perimeter" unique_id=70700389 instance=ExtResource("4_ejswk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.0332274)
+
+[node name="Fence" parent="perimeter" unique_id=1720828281 instance=ExtResource("4_dwgg1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.812722, -4.7683716e-07, 4.4520345)
+
+[node name="Fence2" parent="perimeter" unique_id=1553990078 instance=ExtResource("4_dwgg1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.482, 0, 4.451881)
+
+[node name="Fence3" parent="perimeter" unique_id=39530177 instance=ExtResource("4_dwgg1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.139, 0, 4.451881)
+
+[node name="Fence4" parent="perimeter" unique_id=2004965225 instance=ExtResource("4_dwgg1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5799892, 0, 4.452)
+
+[node name="Fence5" parent="perimeter" unique_id=875755493 instance=ExtResource("4_dwgg1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8, 0, 4.452)
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="perimeter" unique_id=1272780982]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="perimeter/CharacterBody3D" unique_id=1618306901]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.418253, 0.9453125, -2.6943173)
+shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="CanvasLayer" parent="." unique_id=830739654 instance=ExtResource("5_ru4tf")]
+shader = SubResource("ShaderMaterial_ejswk")

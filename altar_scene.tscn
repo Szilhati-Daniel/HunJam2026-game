@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://d38oiseso0r5s"]
 
 [ext_resource type="PackedScene" uid="uid://ciwtxush3fuib" path="res://prefabs/player.tscn" id="1_5o2q7"]
+[ext_resource type="PackedScene" uid="uid://cvfk2js6u40yc" path="res://prefabs/camera.tscn" id="1_hsd18"]
 [ext_resource type="PackedScene" uid="uid://vwfn42666ns4" path="res://prefabs/scene_geometry.tscn" id="1_skw32"]
 [ext_resource type="PackedScene" uid="uid://collv4k2p7eml" path="res://prefabs/animal.tscn" id="2_e8g2b"]
-[ext_resource type="Script" uid="uid://bwbvwje7ofcpb" path="res://scripts/camera.gd" id="2_vr562"]
 [ext_resource type="PackedScene" uid="uid://b4cejqpifqcui" path="res://prefabs/scenery.tscn" id="5_hbham"]
+[ext_resource type="Texture2D" uid="uid://vk36al1wjl0v" path="res://assets/graphics/testSprites/rock/rock.png" id="6_hsd18"]
 [ext_resource type="Texture2D" uid="uid://bl4uw37f0jg4a" path="res://assets/graphics/testSprites/bush/bush.png" id="6_tb2pl"]
 [ext_resource type="Shader" uid="uid://yj5dns15m5u0" path="res://shaders/postprocessing.gdshader" id="7_tb2pl"]
 
@@ -16,20 +17,14 @@ shader_parameter/treshold = 0.67
 
 [node name="Node3D" type="Node3D" unique_id=399075566]
 
+[node name="Camera" parent="." unique_id=1052899663 node_paths=PackedStringArray("player") instance=ExtResource("1_hsd18")]
+player = NodePath("../Player")
+
 [node name="Floor" parent="." unique_id=258324324 instance=ExtResource("1_skw32")]
 transform = Transform3D(47.41733, 0, 0, 0, 1, 0, 0, 0, 17.504354, 0, 0, 0)
 
 [node name="Backwall" parent="." unique_id=355151813 instance=ExtResource("1_skw32")]
 transform = Transform3D(47.86597, 0, 0, 0, -4.3711392e-08, -5.0276875, 0, 1.0000001, -2.1976719e-07, 0, 3.7757277, -17.335768)
-
-[node name="Camera3D" type="Camera3D" parent="." unique_id=984022544 node_paths=PackedStringArray("player")]
-transform = Transform3D(1, 0, 0, 0, 0.892978, 0.45010027, 0, -0.45010027, 0.892978, 0.16155052, 4.173086, 4.7487764)
-projection = 1
-size = 10.346
-near = 0.001
-script = ExtResource("2_vr562")
-player = NodePath("../Player")
-offset = Vector3(0, 4, 5)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1715215167]
 transform = Transform3D(1, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, 0, 14.906595, 16.28323)
@@ -49,7 +44,19 @@ health = 100.0
 
 [node name="Scenery" type="Node" parent="." unique_id=562526141]
 
-[node name="Sprite3D" parent="Scenery" unique_id=1919570451 instance=ExtResource("5_hbham")]
+[node name="Scenery2" parent="Scenery" unique_id=195264165 instance=ExtResource("5_hbham")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.788894, 1.8305659, -4.620556)
+texture = ExtResource("6_tb2pl")
+
+[node name="Scenery" parent="Scenery" unique_id=2144286084 instance=ExtResource("5_hbham")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.57, 1.4, -13.427)
+texture = ExtResource("6_tb2pl")
+
+[node name="Sprite3D" parent="Scenery" unique_id=279644329 instance=ExtResource("5_hbham")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3771744, 0.8278718, -4.914212)
+texture = ExtResource("6_hsd18")
+
+[node name="Bush" parent="Scenery" unique_id=1919570451 instance=ExtResource("5_hbham")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.52, 1.5, -5.016)
 texture = ExtResource("6_tb2pl")
 
