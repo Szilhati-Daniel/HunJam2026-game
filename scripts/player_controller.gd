@@ -3,6 +3,7 @@ extends CharacterBody3D
 @export_range(0.1, 5.0, 0.01)
 var movement_speed = 2.0
 var health = 100.0
+var last_direction = Vector3(0,0,1) # so that it starts out facing camera
 
 @onready var face_towards: Sprite3D = $"Facing_Towards"
 @onready var face_away: Sprite3D = $"Facing_Away"
@@ -33,24 +34,24 @@ func _process(delta: float) -> void:
 	move_and_collide(delta_pos)
 
 func change_sprite(direction : Vector3) -> void:
+	if direction != Vector3.ZERO:
+		last_direction = direction
+		
 	face_towards.visible = false
 	face_away.visible = false
 	face_left.visible = false
 	face_right.visible = false
 	
-	if direction == Vector3(0,0,0):
-		face_towards.visible = true
-	else:
-		if abs(direction.x):
-			if direction.x > 0:
-				face_right.visible = true
-			else:
-				face_left.visible = true
+	if abs(last_direction.x) > 0:
+		if last_direction.x > 0:
+			face_right.visible = true
 		else:
-			if direction.z > 0:
-				face_towards.visible = true
-			else:
-				face_away.visible = true	
+			face_left.visible = true
+	else:
+		if last_direction.z > 0:
+			face_towards.visible = true
+		else:
+			face_away.visible = true	
 
 func take_damage(damage : float) -> void:
 	print("Oh no im dying :(")
