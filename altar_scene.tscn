@@ -44,13 +44,10 @@ base_height = 1.9
 
 [node name="Animal" parent="." unique_id=630367358 instance=ExtResource("2_e8g2b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12231195, 0)
-behaviour = 1
-reaction_distance = 6.0
-attack_distance = 1.5
-movement_speed = 1.0
-damage = 10.0
-attack_cooldown = 1.0
-health = 100.0
+
+[node name="Animal2" parent="." unique_id=1319965231 instance=ExtResource("2_e8g2b")]
+
+[node name="Animal3" parent="." unique_id=428249581 instance=ExtResource("2_e8g2b")]
 
 [node name="Scenery" type="Node" parent="." unique_id=562526141]
 

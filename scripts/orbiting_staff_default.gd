@@ -53,11 +53,9 @@ func end_attack() -> void:
 	can_damage = false
 
 func _on_body_entered(body: Node3D) -> void:
-	print(body.name)
 	if ! can_damage:
 		return
 	else:
-		print("else")
 		if body.has_method("damaged_by_player"):
 			end_attack()
 			print("what")

@@ -60,9 +60,9 @@ func change_sprite(direction : Vector3) -> void:
 			face_away.visible = true	
 
 func take_damage(damage : float) -> void:
-	print("Oh no im dying :(")
+	#print("Oh no im dying :(")
 	health -= damage
-	print("\t current health: ", health)
+	#print("\t current health: ", health)
 	if health <= 0:
 		death()
 
