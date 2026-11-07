@@ -3,19 +3,23 @@
 [ext_resource type="PackedScene" uid="uid://ciwtxush3fuib" path="res://prefabs/player.tscn" id="1_5o2q7"]
 [ext_resource type="PackedScene" uid="uid://vwfn42666ns4" path="res://prefabs/scene_geometry.tscn" id="1_skw32"]
 [ext_resource type="PackedScene" uid="uid://collv4k2p7eml" path="res://prefabs/animal.tscn" id="2_e8g2b"]
+[ext_resource type="Script" uid="uid://bwbvwje7ofcpb" path="res://scripts/camera.gd" id="2_vr562"]
 
 [node name="Node3D" type="Node3D" unique_id=399075566]
 
 [node name="Floor" parent="." unique_id=258324324 instance=ExtResource("1_skw32")]
-transform = Transform3D(6.82589, 0, 0, 0, 1, 0, 0, 0, 5.499854, 0, 0, 0)
+transform = Transform3D(47.41733, 0, 0, 0, 1, 0, 0, 0, 17.504354, 0, 0, 0)
 
 [node name="Backwall" parent="." unique_id=355151813 instance=ExtResource("1_skw32")]
-transform = Transform3D(6.7610917, 0, 0, 0, -4.3711392e-08, -5.0276875, 0, 1.0000001, -2.1976719e-07, 0, 3.7757277, -5)
+transform = Transform3D(47.86597, 0, 0, 0, -4.3711392e-08, -5.0276875, 0, 1.0000001, -2.1976719e-07, 0, 3.7757277, -17.335768)
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=984022544]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=984022544 node_paths=PackedStringArray("player")]
 transform = Transform3D(1, 0, 0, 0, 0.892978, 0.45010027, 0, -0.45010027, 0.892978, 0.16155052, 4.173086, 4.7487764)
 projection = 1
 size = 10.346
+script = ExtResource("2_vr562")
+player = NodePath("../Player")
+offset = Vector3(0, 4, 5)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1715215167]
 transform = Transform3D(1, 0, 0, 0, 0.9256458, 0.37839106, 0, -0.37839106, 0.9256458, 0, 7.6081457, 8.594985)
