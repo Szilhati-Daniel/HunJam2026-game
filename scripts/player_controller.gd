@@ -3,13 +3,11 @@ extends CharacterBody3D
 @export_range(0.1, 5.0, 0.01)
 var movement_speed = 2.0
 var health = 100.0
-@onready
-var character = $"Area3D"
 
-@onready var face_towards: Sprite3D = get_node("Facing_Towards")
-@onready var face_away: Sprite3D = get_node("Facing_Away")
-@onready var face_left: Sprite3D = get_node("Facing_Left")
-@onready var face_right: Sprite3D = get_node("Facing_Right")
+@onready var face_towards: Sprite3D = $"Facing_Towards"
+@onready var face_away: Sprite3D = $"Facing_Away"
+@onready var face_left: Sprite3D = $"Facing_Left"
+@onready var face_right: Sprite3D = $"Facing_Right"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
