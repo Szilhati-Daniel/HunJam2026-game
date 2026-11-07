@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://d3yyi6d5mwe2m"]
+
+[ext_resource type="PackedScene" uid="uid://d37dkjjugakgj" path="res://prefabs/postprocessing.tscn" id="1_ekxnf"]
+[ext_resource type="FontFile" uid="uid://glsupqbtxqbw" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="1_l6cm7"]
+[ext_resource type="Script" uid="uid://7ent0j7dxjjp" path="res://scenes/main_menu_controller.gd" id="1_wu84c"]
+[ext_resource type="Shader" uid="uid://yj5dns15m5u0" path="res://shaders/postprocessing.gdshader" id="2_bqqt6"]
+[ext_resource type="StyleBox" uid="uid://bd17yc7r6bfqv" path="res://assets/styles/button_style_normal.tres" id="3_8ln24"]
+[ext_resource type="StyleBox" uid="uid://xaph3sevb8be" path="res://assets/styles/button_style_hover.tres" id="4_rtw2f"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g4v7s"]
+font = ExtResource("1_l6cm7")
+font_size = 100
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wu84c"]
+shader = ExtResource("2_bqqt6")
+shader_parameter/brightColour = Vector4(1, 0.9843137, 0.83137256, 1)
+shader_parameter/darkColour = Vector4(0.16470589, 0.10980392, 0.05490196, 1)
+shader_parameter/treshold = 0.67
+
+[node name="MainMenu" type="Control" unique_id=1107487279]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wu84c")
+
+[node name="Label" type="Label" parent="." unique_id=302904911]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 119.0
+offset_bottom = 183.0
+grow_horizontal = 2
+text = "Shift"
+label_settings = SubResource("LabelSettings_g4v7s")
+horizontal_alignment = 1
+
+[node name="PlayButton" type="Button" parent="." unique_id=448091763]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -122.25
+offset_top = 305.0
+offset_right = 122.25
+offset_bottom = 376.0
+grow_horizontal = 2
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_l6cm7")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("3_8ln24")
+theme_override_styles/pressed = ExtResource("4_rtw2f")
+theme_override_styles/hover = ExtResource("4_rtw2f")
+theme_override_styles/focus = ExtResource("4_rtw2f")
+text = "Play"
+
+[node name="ExitButton" type="Button" parent="." unique_id=184784565]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -122.25
+offset_top = 395.0
+offset_right = 122.25
+offset_bottom = 466.0
+grow_horizontal = 2
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_l6cm7")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("3_8ln24")
+theme_override_styles/pressed = ExtResource("4_rtw2f")
+theme_override_styles/hover = ExtResource("4_rtw2f")
+theme_override_styles/focus = ExtResource("4_rtw2f")
+text = "Exit"
+
+[node name="CanvasLayer" parent="." unique_id=830739654 instance=ExtResource("1_ekxnf")]
+shader = SubResource("ShaderMaterial_wu84c")
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]

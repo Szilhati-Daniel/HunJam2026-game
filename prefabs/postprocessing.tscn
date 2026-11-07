@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d37dkjjugakgj"]
 
-[ext_resource type="Script" uid="uid://072u5getn0pp" path="res://prefabs/postprocessing.gd" id="1_a8hbr"]
+[ext_resource type="Script" uid="uid://072u5getn0pp" path="res://scripts/postprocessing.gd" id="1_a8hbr"]
 [ext_resource type="Shader" uid="uid://yj5dns15m5u0" path="res://shaders/postprocessing.gdshader" id="1_r51f7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g4v7s"]
@@ -19,3 +19,5 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
