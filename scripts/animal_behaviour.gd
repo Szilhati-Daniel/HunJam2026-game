@@ -32,13 +32,15 @@ var last_direction = Vector3(0,0,0) # so its facing down when it spawns
 var player : Node3D
 var can_attack : bool = true
 
-@onready var face_towards: Sprite3D = $"Facing_Towards"
-@onready var face_away: Sprite3D = $"Facing_Away"
-@onready var face_left: Sprite3D = $"Facing_Left"
-@onready var face_right: Sprite3D = $"Facing_Right"
+@onready var face_towards: Sprite3D = $Sprites/Facing_Towards
+@onready var face_away: Sprite3D = $Sprites/Facing_Away
+@onready var face_left: Sprite3D = $Sprites/Facing_Left
+@onready var face_right: Sprite3D = $Sprites/Facing_Right
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$AnimationPlayer.play("init")
+	
 	print("Animal path: ", get_path())
 	print("Children: ", get_children())
 	find_player()
@@ -168,6 +170,9 @@ func damaged_by_player(damage : float) -> void:
 		return
 	else:
 		death()
+		
+func get_boinked():
+	$AnimationPlayer.play("boink")
 
 func death() -> void:
 	#TODO: idk exactly but something needs to be done

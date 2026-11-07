@@ -5,14 +5,16 @@ var movement_speed = 2.0
 var health = 100.0
 var last_direction = Vector3(0,0,1) # so that it starts out facing camera
 
-@onready var face_towards: Sprite3D = $"Facing_Towards"
-@onready var face_away: Sprite3D = $"Facing_Away"
-@onready var face_left: Sprite3D = $"Facing_Left"
-@onready var face_right: Sprite3D = $"Facing_Right"
+@onready var face_towards: Sprite3D = $Sprites/Facing_Towards
+@onready var face_away: Sprite3D = $Sprites/Facing_Away
+@onready var face_left: Sprite3D = $Sprites/Facing_Left
+@onready var face_right: Sprite3D = $Sprites/Facing_Right
+
+@onready var damage: int = 25 # TODO
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	$AnimationPlayer.play("init")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -27,11 +29,13 @@ func _process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_S):
 		velocity.z += 1.0
 	
-	var delta_pos = velocity.normalized() * movement_speed * delta
+	var delta_pos_x = Vector3(velocity.normalized().x, 0, 0) * movement_speed * delta
+	var delta_pos_z = Vector3(0, 0, velocity.normalized().z) * movement_speed * delta
 	
 	change_sprite(velocity)
 	
-	move_and_collide(delta_pos)
+	move_and_collide(delta_pos_x)
+	move_and_collide(delta_pos_z)
 
 func change_sprite(direction : Vector3) -> void:
 	if direction != Vector3.ZERO:
@@ -59,6 +63,10 @@ func take_damage(damage : float) -> void:
 	print("\t current health: ", health)
 	if health <= 0:
 		death()
+		
+func get_boinked():
+	$AnimationPlayer.plan("boink")
+	take_damage(damage)
 
 func death() -> void:
 	#TODO kill, i mean implement
