@@ -25,18 +25,12 @@ func _process(delta: float) -> void:
 	
 	var delta_pos = velocity.normalized() * movement_speed * delta
 	move_and_collide(delta_pos)
-	#self.position += delta_pos
-
-func _on_area_3d_area_entered(area: Area3D) -> void:
-	if area.is_in_group("scene_geom"):
-		print("collision")
 
 func take_damage(damage : float) -> void:
 	health -= damage
 	if health <= 0:
 		death()
-	else:
-		return
+
 func death() -> void:
 	#TODO kill, i mean implement
 	return
