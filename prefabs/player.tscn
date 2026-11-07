@@ -8,9 +8,60 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i3pqv"]
-transparency = 1
-albedo_texture = ExtResource("3_i3pqv")
+[sub_resource type="Animation" id="Animation_ht1c8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_u51tk"]
+resource_name = "boink"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 0.3),
+"update": 0,
+"values": [Vector3(1, 0.8, 1), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_g2jcq"]
+resource_name = "init"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u51tk"]
+_data = {
+&"RESET": SubResource("Animation_ht1c8"),
+&"boink": SubResource("Animation_u51tk"),
+&"init": SubResource("Animation_g2jcq")
+}
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_57qmd"]
 
 [node name="Player" type="CharacterBody3D" unique_id=752145659 groups=["player"]]
 script = ExtResource("1_4flbx")
@@ -19,22 +70,34 @@ script = ExtResource("1_4flbx")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_g4v7s")
 
-[node name="Facing_Towards" type="Sprite3D" parent="." unique_id=136471018]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.0068749785, 1.7564695, 0.27581298)
+[node name="Sprites" type="Node3D" parent="." unique_id=1601479087]
+
+[node name="Facing_Towards" type="Sprite3D" parent="Sprites" unique_id=1068323190]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.007, 1.756, 0.276)
 visible = false
-material_override = SubResource("StandardMaterial3D_i3pqv")
 texture = ExtResource("3_i3pqv")
 
-[node name="Facing_Away" type="Sprite3D" parent="." unique_id=92259554]
+[node name="Facing_Away" type="Sprite3D" parent="Sprites" unique_id=92259554]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.0068749785, 1.7564695, 0.27581298)
-visible = false
 texture = ExtResource("4_2hs0m")
 
-[node name="Facing_Left" type="Sprite3D" parent="." unique_id=1558183465]
+[node name="Facing_Left" type="Sprite3D" parent="Sprites" unique_id=1558183465]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.24326295, 1.7931287, 0.27581298)
+visible = false
 texture = ExtResource("5_1jxqw")
 
-[node name="Facing_Right" type="Sprite3D" parent="." unique_id=1300462177]
+[node name="Facing_Right" type="Sprite3D" parent="Sprites" unique_id=1300462177]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.21300209, 1.8536129, 0.27581298)
 visible = false
 texture = ExtResource("6_dw050")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=943754442]
+libraries/ = SubResource("AnimationLibrary_u51tk")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1379186085]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1406767555]
+shape = SubResource("CapsuleShape3D_57qmd")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

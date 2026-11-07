@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bo37okb6sqbok"]
+
+[ext_resource type="Texture2D" uid="uid://byvfdyquuot0v" path="res://assets/graphics/testSprites/tree/tree.png" id="1_odf6j"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
+height = 3.217041
+
+[node name="Tree" type="CharacterBody3D" unique_id=1385436313]
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=883912393]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.510998, 0)
+texture = ExtResource("1_odf6j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1247964478]
+transform = Transform3D(0.74655974, 0.6653184, 0, -0.6653184, 0.74655974, 0, 0, 0, 1, -0.13538645, 1.0752109, 0)
+shape = SubResource("CapsuleShape3D_g4v7s")
