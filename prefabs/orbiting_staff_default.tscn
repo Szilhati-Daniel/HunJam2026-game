@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://c7tjk38uwtkay"]
+
+[ext_resource type="Script" uid="uid://c5feq5mvdws6m" path="res://scripts/orbiting_staff_default.gd" id="1_5geoc"]
+[ext_resource type="Texture2D" uid="uid://h7nqg7mo8tkm" path="res://assets/graphics/testSprites/stick/stick.png" id="2_boi1j"]
+
+[node name="Staff" type="Node3D" unique_id=727086820]
+script = ExtResource("1_5geoc")
+orbit_radius = null
+orbit_speed = null
+height_min = null
+height_max = null
+height_change_time_min = null
+height_change_time_max = null
+height_smoothing = null
+base_height = null
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=182847686]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+texture = ExtResource("2_boi1j")
