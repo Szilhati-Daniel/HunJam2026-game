@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ciwtxush3fuib" path="res://prefabs/player.tscn" id="1_5o2q7"]
 [ext_resource type="PackedScene" uid="uid://vwfn42666ns4" path="res://prefabs/scene_geometry.tscn" id="1_skw32"]
-[ext_resource type="PackedScene" uid="uid://collv4k2p7eml" path="res://prefabs/animal.tscn" id="2_e8g2b"]
+[ext_resource type="PackedScene" uid="uid://kbnbdj6gf0fa" path="res://character_body_3d.tscn" id="4_vr562"]
 
 [node name="Node3D" type="Node3D" unique_id=399075566]
 
@@ -23,5 +23,11 @@ transform = Transform3D(1, 0, 0, 0, 0.9256458, 0.37839106, 0, -0.37839106, 0.925
 [node name="Player" parent="." unique_id=752145659 instance=ExtResource("1_5o2q7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.342, 0)
 
-[node name="Animal" parent="." unique_id=630367358 instance=ExtResource("2_e8g2b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.783378, 1, 3.5477443)
+[node name="Animal" parent="." unique_id=630367358 instance=ExtResource("4_vr562")]
+behaviour = 1
+reaction_distance = 6.0
+attack_distance = 1.5
+movement_speed = 1.0
+damage = 10.0
+attack_cooldown = 1.0
+health = 100.0
