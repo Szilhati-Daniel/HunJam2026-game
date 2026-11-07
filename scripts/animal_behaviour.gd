@@ -21,11 +21,18 @@ var can_attack : bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	find_player()
+	print("Script is running!")
+	print("Parent: ", get_parent())
+	print("Animal: ", animal)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	if animal == null:
+		return
+	print("Animal: ", animal)
+	print("Player: ", player)
 	var distance = animal.global_position.distance_to(
 		player.global_position
 	)
@@ -40,10 +47,9 @@ func _physics_process(delta: float) -> void:
 			
 			
 func find_player() -> void:
-	var players = get_tree().get_nodes_in_group("player")
-	
-	if players.size() > 0:
-		player = players[0]
+	var main = get_tree().current_scene
+	player = main.get_node_or_null("Player") as Node3D
+	print("Found player: ", player)
 		
 func aggressive(distance : float) -> void:
 	if distance <= attack_distance:
@@ -88,4 +94,5 @@ func damaged_by_player(damage : float) -> void:
 
 func death() -> void:
 	#TODO: idk exactly but something needs to be done
+	queue_free()
 	return
