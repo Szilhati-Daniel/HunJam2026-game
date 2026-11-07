@@ -10,9 +10,11 @@ enum Behaviour {
 @export var reaction_distance : float = 6.0
 @export var attack_distance : float = 1.5
 @export var movement_speed : float = 1.0
+@export var idle_movement_speed : float = 2.0
 @export var damage : float = 10.0
 @export var attack_cooldown : float = 1.0
 @export var health : float = 100.0
+var idle_direction
 var last_direction = Vector3(0,0,0) # so its facing down when it spawns
 
 var player : Node3D
@@ -36,14 +38,13 @@ func _physics_process(delta: float) -> void:
 		player.global_position
 	)
 	if distance > reaction_distance:
-		stop_movement()
-		return
-	
-	match behaviour:
-		Behaviour.COWARDLY:
-			cowardly()
-		Behaviour.AGGRESSIVE:
-			aggressive(distance)
+		idle_movement()	
+	else:
+		match behaviour:
+			Behaviour.COWARDLY:
+				cowardly()
+			Behaviour.AGGRESSIVE:
+				aggressive(distance)
 	velocity = velocity.normalized() * movement_speed
 	change_sprite(velocity)
 	move_and_slide()
@@ -103,7 +104,15 @@ func stop_movement() -> void:
 	self.velocity.z = 0.0
 
 func idle_movement() -> void:
-	return
+	var angle = randf_range(0.0, TAU)
+	idle_direction = Vector3(
+		cos(angle),
+		0,
+		sin(angle)
+	)
+	self.velocity.x = idle_direction.x * idle_movement_speed
+	self.velocity.z = idle_direction.z * idle_movement_speed
+
 	
 func attack_player() -> void:
 	if not can_attack:

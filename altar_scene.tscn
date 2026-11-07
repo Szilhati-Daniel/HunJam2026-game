@@ -35,8 +35,17 @@ offset = Vector3(0, 4, 5)
 transform = Transform3D(1, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, 0, 14.906595, 16.28323)
 
 [node name="Player" parent="." unique_id=752145659 instance=ExtResource("1_5o2q7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.031551123, 0)
 
-[node name="Animal2" parent="." unique_id=630367358 instance=ExtResource("2_e8g2b")]
+[node name="Animal" parent="." unique_id=630367358 instance=ExtResource("2_e8g2b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12231195, 0)
+behaviour = 1
+reaction_distance = 6.0
+attack_distance = 1.5
+movement_speed = 1.0
+damage = 10.0
+attack_cooldown = 1.0
+health = 100.0
 
 [node name="Scenery" type="Node" parent="." unique_id=562526141]
 
