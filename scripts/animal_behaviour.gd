@@ -7,9 +7,9 @@ enum Behaviour {
 
 @export var behaviour : Behaviour = Behaviour.AGGRESSIVE
 
-@export var reaction_distance : float = 10.0
-@export var attack_distance : float = 2.0
-@export var movement_speed : float = 3.0
+@export var reaction_distance : float = 6.0
+@export var attack_distance : float = 1.5
+@export var movement_speed : float = 1.0
 @export var damage : float = 10.0
 @export var attack_cooldown : float = 1.0
 @export var health : float = 100.0
@@ -31,8 +31,6 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if animal == null:
 		return
-	print("Animal: ", animal)
-	print("Player: ", player)
 	var distance = animal.global_position.distance_to(
 		player.global_position
 	)
@@ -62,17 +60,38 @@ func cowardly() -> void:
 	var direction = (
 		animal.global_position - player.global_position
 	)
+	var velocity_x = direction.x * movement_speed
+	var velocity_z = direction.z * movement_speed
+	if velocity_x > movement_speed:
+		velocity_x = movement_speed
+	if velocity_x < -movement_speed:
+		velocity_x = -movement_speed
+	if velocity_z > movement_speed:
+		velocity_z = movement_speed
+	if velocity_z < -movement_speed:
+		velocity_z = -movement_speed
 	
-	animal.velocity.x = direction.x * movement_speed
-	animal.velocity.z = direction.z * movement_speed
+	animal.velocity.x = velocity_x
+	animal.velocity.z = velocity_z
 	
 func move_towards_player() -> void:
 	var direction = (
 		player.global_position - animal.global_position
 	)
 	
-	animal.velocity.x = direction.x * movement_speed
-	animal.velocity.z = direction.z * movement_speed
+	var velocity_x = direction.x * movement_speed
+	var velocity_z = direction.z * movement_speed
+	if velocity_x > movement_speed:
+		velocity_x = 1.8 * movement_speed
+	if velocity_x < movement_speed:
+		velocity_x = -1.8 * movement_speed
+	if velocity_z > movement_speed:
+		velocity_z = 1.8 * movement_speed
+	if velocity_z < -movement_speed:
+		velocity_z = -1.8 * movement_speed
+	
+	animal.velocity.x = velocity_x
+	animal.velocity.z = velocity_z
 	
 func stop_movement() -> void:
 	animal.velocity.x = 0.0
@@ -81,6 +100,7 @@ func stop_movement() -> void:
 func attack_player() -> void:
 	if not can_attack:
 		return
+	can_attack = false
 	player.take_damage(damage)
 	await get_tree().create_timer(attack_cooldown).timeout
 	can_attack = true

@@ -32,7 +32,9 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 		print("collision")
 
 func take_damage(damage : float) -> void:
+	print("Oh no im dying :(")
 	health -= damage
+	print("\t current health: ", health)
 	if health <= 0:
 		death()
 	else:
