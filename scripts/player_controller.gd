@@ -1,19 +1,23 @@
 extends CharacterBody3D
 
 @export_range(0.1, 5.0, 0.01)
-var movement_speed = 2.0
+var movement_speed = 4.0
 var health = 100.0
 var last_direction = Vector3(0,0,1) # so that it starts out facing camera
 
-@onready var face_towards: Sprite3D = $"Facing_Towards"
-@onready var face_away: Sprite3D = $"Facing_Away"
-@onready var face_left: Sprite3D = $"Facing_Left"
-@onready var face_right: Sprite3D = $"Facing_Right"
+@export
+var target_scenes: Dictionary[Node3D, PackedScene]
+
+@onready var face_towards: Sprite3D = $Sprites/Facing_Towards
+@onready var face_away: Sprite3D = $Sprites/Facing_Away
+@onready var face_left: Sprite3D = $Sprites/Facing_Left
+@onready var face_right: Sprite3D = $Sprites/Facing_Right
 
 @onready var staff : Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$AnimationPlayer.play("init")
 	staff = get_node_or_null("Staff") as Node3D
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -33,11 +37,13 @@ func _process(delta: float) -> void:
 		staff.boink(last_direction)
 		
 	
-	var delta_pos = velocity.normalized() * movement_speed * delta
+	var delta_pos_x = Vector3(velocity.normalized().x, 0, 0) * movement_speed * delta
+	var delta_pos_z = Vector3(0, 0, velocity.normalized().z) * movement_speed * delta
 	
 	change_sprite(velocity)
 	
-	move_and_collide(delta_pos)
+	move_and_collide(delta_pos_x)
+	move_and_collide(delta_pos_z)
 
 func change_sprite(direction : Vector3) -> void:
 	if direction != Vector3.ZERO:
@@ -65,7 +71,26 @@ func take_damage(damage : float) -> void:
 	#print("\t current health: ", health)
 	if health <= 0:
 		death()
+		
+func get_boinked():
+	$AnimationPlayer.play("boink")
 
 func death() -> void:
 	#TODO kill, i mean implement
 	return
+
+func _on_area_3d_area_entered(area: Area3D) -> void:
+	if not area.is_in_group("trigger"):
+		pass
+	
+	print("trigger")
+	var trigger = area.get_parent_node_3d()
+	print(trigger)
+	print(target_scenes)
+	
+	if target_scenes.has(trigger):
+		print("found it")
+		var new_scene = target_scenes.get(trigger).instantiate()
+		print(new_scene)
+		await get_tree().change_scene_to_node(new_scene)
+	

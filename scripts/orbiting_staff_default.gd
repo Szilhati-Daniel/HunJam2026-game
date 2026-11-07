@@ -3,8 +3,8 @@ extends Node3D
 @export var orbit_radius : float = 0.6
 @export var orbit_speed : float = 1.5
 @export var base_height : float = 1.5
-@export var attack_cooldown : float = 1.0
-@export var damage : float = 25
+@export var attack_cooldown : float = 0
+@export var damage : float = 0
 
 var angle : float = 0.0
 var target_rotation : float = 0.0
@@ -58,5 +58,9 @@ func _on_body_entered(body: Node3D) -> void:
 	else:
 		if body.has_method("damaged_by_player"):
 			end_attack()
-			print("what")
 			body.damaged_by_player(damage)
+		if body.has_method("take_damage"):
+			end_attack()
+			body.take_damage(damage)
+		if body.has_method("get_boinked"):
+			body.get_boinked()

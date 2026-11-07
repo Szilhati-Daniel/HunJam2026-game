@@ -9,7 +9,61 @@
 [sub_resource type="CylinderMesh" id="CylinderMesh_g4v7s"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_iwpo4"]
-height = 1.5059204
+height = 1.4508686
+radius = 0.7705078
+
+[sub_resource type="Animation" id="Animation_5dwmj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_x7ohf"]
+resource_name = "boink"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 0.3),
+"update": 0,
+"values": [Vector3(1, 0.8, 1), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_lryi0"]
+resource_name = "init"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x7ohf"]
+_data = {
+&"RESET": SubResource("Animation_5dwmj"),
+&"boink": SubResource("Animation_x7ohf"),
+&"init": SubResource("Animation_lryi0")
+}
 
 [node name="Animal" type="CharacterBody3D" unique_id=630367358]
 script = ExtResource("1_fb3t6")
@@ -19,23 +73,31 @@ visible = false
 mesh = SubResource("CylinderMesh_g4v7s")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1603345145]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8786926, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8511667, 0)
 shape = SubResource("CylinderShape3D_iwpo4")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1655014917]
 
-[node name="Facing_Towards" type="Sprite3D" parent="." unique_id=88175338]
+[node name="Sprites" type="Node3D" parent="." unique_id=506228614]
+
+[node name="Facing_Towards" type="Sprite3D" parent="Sprites" unique_id=88175338]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.035, 0.476, 0)
+visible = false
 texture = ExtResource("2_fb3t6")
 
-[node name="Facing_Away" type="Sprite3D" parent="." unique_id=389771193]
+[node name="Facing_Away" type="Sprite3D" parent="Sprites" unique_id=389771193]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.035, 0.841, 0)
+visible = false
 texture = ExtResource("3_vd578")
 
-[node name="Facing_Right" type="Sprite3D" parent="." unique_id=2056815498]
+[node name="Facing_Right" type="Sprite3D" parent="Sprites" unique_id=2056815498]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.136, 0.726, 0.023)
+visible = false
 texture = ExtResource("4_nl27k")
 
-[node name="Facing_Left" type="Sprite3D" parent="." unique_id=823429312]
+[node name="Facing_Left" type="Sprite3D" parent="Sprites" unique_id=823429312]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -0.09, 0.726, 0.023)
 texture = ExtResource("5_obynr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1767770837]
+libraries/ = SubResource("AnimationLibrary_x7ohf")

@@ -8,7 +8,7 @@ enum Behaviour {
 @export var behaviour : Behaviour = Behaviour.AGGRESSIVE
 
 @export var reaction_distance : float = 6.0
-@export var attack_distance : float = 1.5
+@export var attack_distance : float = 2
 @export var movement_speed : float = 1.0
 @export var idle_movement_speed : float = 2.0
 @export var damage : float = 10.0
@@ -32,15 +32,15 @@ var last_direction = Vector3(0,0,0) # so its facing down when it spawns
 var player : Node3D
 var can_attack : bool = true
 
-@onready var face_towards: Sprite3D = $"Facing_Towards"
-@onready var face_away: Sprite3D = $"Facing_Away"
-@onready var face_left: Sprite3D = $"Facing_Left"
-@onready var face_right: Sprite3D = $"Facing_Right"
+@onready var face_towards: Sprite3D = $Sprites/Facing_Towards
+@onready var face_away: Sprite3D = $Sprites/Facing_Away
+@onready var face_left: Sprite3D = $Sprites/Facing_Left
+@onready var face_right: Sprite3D = $Sprites/Facing_Right
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print("Animal path: ", get_path())
-	print("Children: ", get_children())
+	$AnimationPlayer.play("init")
+	
 	find_player()
 
 
@@ -49,6 +49,12 @@ func _physics_process(delta: float) -> void:
 	var distance = self.global_position.distance_to(
 		player.global_position
 	)
+	
+	if distance < attack_distance - 0.1:
+		behaviour = Behaviour.COWARDLY
+	elif distance > attack_distance + 0.1:
+		behaviour = Behaviour.AGGRESSIVE
+	
 	if distance > reaction_distance:
 		if ! has_idle_point:
 			idle_center_point = Vector3(
@@ -74,8 +80,7 @@ func _physics_process(delta: float) -> void:
 func find_player() -> void:
 	var main = get_tree().current_scene
 	player = main.get_node_or_null("Player") as Node3D
-	print("Found player: ", player)
-		
+	
 func aggressive(distance : float) -> void:
 	if distance <= attack_distance:
 		stop_movement()
@@ -169,6 +174,9 @@ func damaged_by_player(damage : float) -> void:
 		return
 	else:
 		death()
+		
+func get_boinked():
+	$AnimationPlayer.play("boink")
 
 func death() -> void:
 	#TODO: idk exactly but something needs to be done
