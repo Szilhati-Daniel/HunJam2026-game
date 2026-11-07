@@ -12,7 +12,7 @@
 shader = ExtResource("7_tb2pl")
 shader_parameter/brightColour = Vector4(1, 0.984, 0.831, 1)
 shader_parameter/darkColour = Vector4(0.165, 0.11, 0.055, 1)
-shader_parameter/treshold = 0.755
+shader_parameter/treshold = 0.67
 
 [node name="Node3D" type="Node3D" unique_id=399075566]
 
@@ -32,10 +32,7 @@ player = NodePath("../Player")
 offset = Vector3(0, 4, 5)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1715215167]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.906595, 16.28323)
-
-[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=1205606058]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 14.907, 16.283)
+transform = Transform3D(1, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, 0, 14.906595, 16.28323)
 
 [node name="Player" parent="." unique_id=752145659 instance=ExtResource("1_5o2q7")]
 
