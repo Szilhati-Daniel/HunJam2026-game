@@ -26,10 +26,7 @@ script = ExtResource("1_af0aq")
 player = NodePath("../Player")
 
 [node name="Floor" parent="." unique_id=258324324 instance=ExtResource("3_ru16j")]
-transform = Transform3D(47.41733, 0, 0, 0, 1, 0, 0, 0, 17.504354, 0, 0, 0)
-
-[node name="Backwall" parent="." unique_id=355151813 instance=ExtResource("3_ru16j")]
-transform = Transform3D(47.86597, 0, 0, 0, -4.3711392e-08, -5.0276875, 0, 1.0000001, -2.1976719e-07, 0, 3.7757277, -17.335768)
+transform = Transform3D(94.179214, 0, 0, 0, 1.986177, 0, 0, 0, 93.19406, 0, 0, -24.522484)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1715215167]
 transform = Transform3D(1, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, 0, 14.906595, 16.28323)
