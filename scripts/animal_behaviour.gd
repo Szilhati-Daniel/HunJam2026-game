@@ -166,6 +166,7 @@ func attack_player() -> void:
 
 func damaged_by_player(damage : float) -> void:
 	health -= damage
+	print("Bunny damaged, health: ",health)
 	if health > 0:
 		return
 	else:

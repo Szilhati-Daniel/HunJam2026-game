@@ -15,9 +15,12 @@ var target_scenes: Dictionary[Node3D, PackedScene]
 
 @onready var damage: int = 25 # TODO
 
+@onready var staff : Node3D
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$AnimationPlayer.play("init")
+	staff = get_node_or_null("Staff") as Node3D
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -31,6 +34,10 @@ func _process(delta: float) -> void:
 		velocity.z -= 1.0
 	if Input.is_key_pressed(KEY_S):
 		velocity.z += 1.0
+		
+	if Input.is_key_pressed(KEY_SPACE):
+		staff.boink(last_direction)
+		
 	
 	var delta_pos_x = Vector3(velocity.normalized().x, 0, 0) * movement_speed * delta
 	var delta_pos_z = Vector3(0, 0, velocity.normalized().z) * movement_speed * delta
