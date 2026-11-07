@@ -1,16 +1,16 @@
 [gd_scene format=3 uid="uid://d38oiseso0r5s"]
 
-<<<<<<< Updated upstream
-=======
 [ext_resource type="PackedScene" uid="uid://ciwtxush3fuib" path="res://player.tscn" id="1_5o2q7"]
-[ext_resource type="PackedScene" uid="uid://collv4k2p7eml" path="res://character_body_3d.tscn" id="2_e8g2b"]
 
->>>>>>> Stashed changes
 [sub_resource type="PlaneMesh" id="PlaneMesh_g4v7s"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yf5fn"]
+size = Vector3(2.0855103, 0.4413452, 1.9833374)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_yf5fn"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_g4v7s"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_57qmd"]
+size = Vector3(1.9633789, 1, 1.9904785)
 
 [node name="Node3D" type="Node3D" unique_id=399075566]
 
@@ -18,24 +18,28 @@
 transform = Transform3D(6.71232, 0, 0, 0, 1, 0, 0, 0, 6.71232, 0, 0, 0)
 mesh = SubResource("PlaneMesh_g4v7s")
 
+[node name="Area3D" type="Area3D" parent="Floor" unique_id=1493726067 groups=["scene_geom"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Area3D" unique_id=194765502]
+transform = Transform3D(0.99999976, 0, 0, 0, 1, 0, 0, 0, 0.99999976, 0.031585686, -0.2793274, 0.007232632)
+shape = SubResource("BoxShape3D_yf5fn")
+
 [node name="Backwall" type="MeshInstance3D" parent="." unique_id=1636692986]
 transform = Transform3D(6.7000003, 0, 0, 0, -4.371139e-08, -2.2, 0, 1, -9.616505e-08, 0, 2, -5.112177)
 mesh = SubResource("PlaneMesh_yf5fn")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=984022544]
-transform = Transform3D(1, 0, 0, 0, 0.9490424, 0.31514853, 0, -0.31514853, 0.9490424, 0, 3.8681126, 5.403002)
-projection = 1
+[node name="Area3D" type="Area3D" parent="Backwall" unique_id=874435656 groups=["scene_geom"]]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=974786429]
-transform = Transform3D(0.675, 0, 0, 0, 0.675, 0, 0, 0, 0.675, 0, 1.51126, -1.7135429)
-mesh = SubResource("SphereMesh_g4v7s")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Backwall/Area3D" unique_id=1949123179]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 3.5527137e-15, 1, 0.006591811, 0, -0.014038086)
+shape = SubResource("BoxShape3D_57qmd")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=984022544]
+transform = Transform3D(1, 0, 0, 0, 0.892978, 0.45010027, 0, -0.45010027, 0.892978, 0, 3.8247814, 3.4430852)
+projection = 1
+size = 10.346
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1715215167]
 transform = Transform3D(1, 0, 0, 0, 0.9256458, 0.37839106, 0, -0.37839106, 0.9256458, 0, 7.6081457, 8.594985)
-<<<<<<< Updated upstream
-=======
 
 [node name="Player" parent="." unique_id=752145659 instance=ExtResource("1_5o2q7")]
-
-[node name="CharacterBody3D" parent="." unique_id=630367358 instance=ExtResource("2_e8g2b")]
->>>>>>> Stashed changes

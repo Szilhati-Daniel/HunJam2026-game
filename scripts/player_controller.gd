@@ -2,7 +2,6 @@ extends CharacterBody3D
 
 @export_range(0.1, 5.0, 0.01)
 var movement_speed = 2.0
-var health = 100.0
 @onready
 var character = $"Area3D"
 
@@ -30,12 +29,3 @@ func _process(delta: float) -> void:
 func _on_area_3d_area_entered(area: Area3D) -> void:
 	if area.is_in_group("scene_geom"):
 		print("collision")
-func take_damage(damage : float) -> void:
-	health -= damage
-	if health <= 0:
-		death()
-	else:
-		return
-func death() -> void:
-	#TODO: implement hehehaw
-	return
