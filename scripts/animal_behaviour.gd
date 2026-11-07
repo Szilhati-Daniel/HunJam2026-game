@@ -14,7 +14,15 @@ enum Behaviour {
 @export var damage : float = 10.0
 @export var attack_cooldown : float = 1.0
 @export var health : float = 100.0
-var idle_direction
+@export var idle_min_time : float = 1.0
+@export var idle_max_time : float = 3.0
+@export var idle_wait_min : float = 1.0
+@export var idle_wait_max : float = 4.0
+
+var idle_timer : float = 0.0
+var is_idle_waiting : bool = true
+
+var idle_direction : Vector3 = Vector3.ZERO
 var last_direction = Vector3(0,0,0) # so its facing down when it spawns
 
 var player : Node3D
@@ -38,14 +46,16 @@ func _physics_process(delta: float) -> void:
 		player.global_position
 	)
 	if distance > reaction_distance:
-		idle_movement()	
+		idle_movement(delta)
+		velocity = velocity.normalized() * idle_movement_speed
+
 	else:
 		match behaviour:
 			Behaviour.COWARDLY:
 				cowardly()
 			Behaviour.AGGRESSIVE:
 				aggressive(distance)
-	velocity = velocity.normalized() * movement_speed
+		velocity = velocity.normalized() * movement_speed
 	change_sprite(velocity)
 	move_and_slide()
 
@@ -103,16 +113,25 @@ func stop_movement() -> void:
 	self.velocity.x = 0.0
 	self.velocity.z = 0.0
 
-func idle_movement() -> void:
-	var angle = randf_range(0.0, TAU)
-	idle_direction = Vector3(
-		cos(angle),
-		0,
-		sin(angle)
-	)
+func idle_movement(delta : float) -> void:
+	idle_timer -= delta
+	if idle_timer <= 0:
+		if is_idle_waiting:
+			var angle = randf_range(0.0, TAU)
+			idle_direction = Vector3(
+				cos(angle),
+				0,
+				sin(angle)
+			)
+			is_idle_waiting = false
+			idle_timer = randf_range(idle_min_time, idle_max_time)
+		else:
+			idle_direction = Vector3.ZERO
+			is_idle_waiting = true
+			idle_timer = randf_range(idle_wait_min, idle_wait_max)
+
 	self.velocity.x = idle_direction.x * idle_movement_speed
 	self.velocity.z = idle_direction.z * idle_movement_speed
-
 	
 func attack_player() -> void:
 	if not can_attack:
