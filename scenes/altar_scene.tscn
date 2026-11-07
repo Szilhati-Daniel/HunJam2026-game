@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://d38oiseso0r5s"]
+
+[ext_resource type="Script" uid="uid://bt7omhhaytxky" path="res://scripts/render_manager.gd" id="1_af0aq"]
+[ext_resource type="PackedScene" uid="uid://cvfk2js6u40yc" path="res://prefabs/camera.tscn" id="2_gje6g"]
+[ext_resource type="PackedScene" uid="uid://vwfn42666ns4" path="res://prefabs/scene_geometry.tscn" id="3_ru16j"]
+[ext_resource type="PackedScene" uid="uid://ciwtxush3fuib" path="res://prefabs/player.tscn" id="4_v35yo"]
+[ext_resource type="PackedScene" uid="uid://c51q22cjsxu42" path="res://scenes/level1.tscn" id="5_b42ur"]
+[ext_resource type="PackedScene" uid="uid://c7tjk38uwtkay" path="res://prefabs/orbiting_staff_default.tscn" id="6_cjwkg"]
+[ext_resource type="PackedScene" uid="uid://d37dkjjugakgj" path="res://prefabs/postprocessing.tscn" id="7_8olkb"]
+[ext_resource type="Shader" uid="uid://yj5dns15m5u0" path="res://shaders/postprocessing.gdshader" id="8_5h1p3"]
+[ext_resource type="Texture2D" uid="uid://b6alwxys2dbiq" path="res://assets/graphics/testSprites/cave/cave.png" id="9_786bs"]
+[ext_resource type="Texture2D" uid="uid://vk36al1wjl0v" path="res://assets/graphics/testSprites/rock/rock.png" id="10_a840s"]
+[ext_resource type="Texture2D" uid="uid://bl4uw37f0jg4a" path="res://assets/graphics/testSprites/bush/bush.png" id="11_b8cub"]
+[ext_resource type="Texture2D" uid="uid://cuyv7vtjek285" path="res://assets/graphics/testSprites/fence/fence.png" id="12_rlco6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fs4dc"]
+shader = ExtResource("8_5h1p3")
+shader_parameter/brightColour = Vector4(1, 0.9843137, 0.83137256, 1)
+shader_parameter/darkColour = Vector4(0.16470589, 0.10980392, 0.05490196, 1)
+shader_parameter/treshold = 0.67
+
+[node name="Node3D" type="Node3D" unique_id=399075566]
+script = ExtResource("1_af0aq")
+
+[node name="Camera" parent="." unique_id=1052899663 node_paths=PackedStringArray("player") instance=ExtResource("2_gje6g")]
+player = NodePath("../Player")
+
+[node name="Floor" parent="." unique_id=258324324 instance=ExtResource("3_ru16j")]
+transform = Transform3D(47.41733, 0, 0, 0, 1, 0, 0, 0, 17.504354, 0, 0, 0)
+
+[node name="Backwall" parent="." unique_id=355151813 instance=ExtResource("3_ru16j")]
+transform = Transform3D(47.86597, 0, 0, 0, -4.3711392e-08, -5.0276875, 0, 1.0000001, -2.1976719e-07, 0, 3.7757277, -17.335768)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1715215167]
+transform = Transform3D(1, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, 0, 14.906595, 16.28323)
+
+[node name="Player" parent="." unique_id=752145659 node_paths=PackedStringArray("target_scenes") instance=ExtResource("4_v35yo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.031551123, 0)
+target_scenes = {
+null: ExtResource("5_b42ur")
+}
+
+[node name="Staff" parent="Player" unique_id=727086820 instance=ExtResource("6_cjwkg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.85480857, 1, 0)
+base_height = 1.9
+
+[node name="CanvasLayer" parent="." unique_id=830739654 instance=ExtResource("7_8olkb")]
+shader = SubResource("ShaderMaterial_fs4dc")
+
+[node name="Scenery" type="Node3D" parent="." unique_id=1295124109]
+
+[node name="Cave" type="Sprite3D" parent="Scenery" unique_id=1490182735]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.55692, -4.5626564)
+texture = ExtResource("9_786bs")
+
+[node name="rock" type="Sprite3D" parent="Scenery" unique_id=202205773]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.918356, 0.9635048, -4.226183)
+texture = ExtResource("10_a840s")
+
+[node name="bush" type="Sprite3D" parent="Scenery" unique_id=1632721527]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.019477, 1.3601422, -4.434863)
+texture = ExtResource("11_b8cub")
+
+[node name="fence" type="Sprite3D" parent="Scenery" unique_id=293546019]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.509, 2, -10)
+texture = ExtResource("12_rlco6")
+
+[node name="fence2" type="Sprite3D" parent="Scenery" unique_id=2115247291]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.709, 2, -10.4)
+texture = ExtResource("12_rlco6")
+
+[node name="fence3" type="Sprite3D" parent="Scenery" unique_id=2052341912]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.384712, 2, -10.2)
+texture = ExtResource("12_rlco6")
+
+[node name="fence4" type="Sprite3D" parent="Scenery" unique_id=1077000214]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.21756, 2, -10.3)
+texture = ExtResource("12_rlco6")
