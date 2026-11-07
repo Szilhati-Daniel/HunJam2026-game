@@ -36,7 +36,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 3.5527137e-15, 1, 0.006591811, 0, -
 shape = SubResource("BoxShape3D_57qmd")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=984022544]
-transform = Transform3D(1, 0, 0, 0, 0.892978, 0.45010027, 0, -0.45010027, 0.892978, 0, 3.8247814, 3.4430852)
+transform = Transform3D(1, 0, 0, 0, 0.892978, 0.45010027, 0, -0.45010027, 0.892978, 0.16155052, 4.173086, 4.7487764)
 projection = 1
 size = 10.346
 

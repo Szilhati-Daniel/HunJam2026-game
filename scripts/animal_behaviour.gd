@@ -19,12 +19,14 @@ var can_attack : bool = true
 
 @onready var animal : CharacterBody3D = get_parent()
 
+@onready var face_towards: Sprite3D = get_parent().get_node("Facing_Towards")
+@onready var face_away: Sprite3D = get_parent().get_node("Facing_Away")
+@onready var face_left: Sprite3D = get_parent().get_node("Facing_Left")
+@onready var face_right: Sprite3D = get_parent().get_node("Facing_Right")
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	find_player()
-	print("Script is running!")
-	print("Parent: ", get_parent())
-	print("Animal: ", animal)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -55,6 +57,7 @@ func aggressive(distance : float) -> void:
 		attack_player()
 	else:
 		move_towards_player()
+		
 		
 func cowardly() -> void:
 	var direction = (
