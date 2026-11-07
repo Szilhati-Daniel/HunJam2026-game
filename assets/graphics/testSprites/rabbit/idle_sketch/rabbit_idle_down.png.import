@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7b4vi7c8fjd1"
-valid=false
+uid="uid://bjf54yfbg214d"
+path="res://.godot/imported/rabbit_idle_down.png-035bdf677e2f244dfb49742ae95e882f.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://cruelsun.png"
+source_file="res://assets/graphics/testSprites/rabbit/idle_sketch/rabbit_idle_down.png"
+dest_files=["res://.godot/imported/rabbit_idle_down.png-035bdf677e2f244dfb49742ae95e882f.ctex"]
 
 [params]
 
