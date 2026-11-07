@@ -5,6 +5,9 @@ var movement_speed = 2.0
 var health = 100.0
 var last_direction = Vector3(0,0,1) # so that it starts out facing camera
 
+@export
+var target_scenes: Dictionary[Node3D, PackedScene]
+
 @onready var face_towards: Sprite3D = $Sprites/Facing_Towards
 @onready var face_away: Sprite3D = $Sprites/Facing_Away
 @onready var face_left: Sprite3D = $Sprites/Facing_Left
@@ -71,3 +74,19 @@ func get_boinked():
 func death() -> void:
 	#TODO kill, i mean implement
 	return
+
+func _on_area_3d_area_entered(area: Area3D) -> void:
+	if not area.is_in_group("trigger"):
+		pass
+	
+	print("trigger")
+	var trigger = area.get_parent_node_3d()
+	print(trigger)
+	print(target_scenes)
+	
+	if target_scenes.has(trigger):
+		print("found it")
+		var new_scene = target_scenes.get(trigger).instantiate()
+		print(new_scene)
+		await get_tree().change_scene_to_node(new_scene)
+	

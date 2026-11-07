@@ -25,7 +25,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_u51tk"]
 resource_name = "boink"
-length = 0.19999999999999998
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -61,6 +61,8 @@ _data = {
 &"init": SubResource("Animation_g2jcq")
 }
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_57qmd"]
+
 [node name="Player" type="CharacterBody3D" unique_id=752145659 groups=["player"]]
 script = ExtResource("1_4flbx")
 
@@ -91,3 +93,11 @@ texture = ExtResource("6_dw050")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=943754442]
 libraries/ = SubResource("AnimationLibrary_u51tk")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1379186085]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1406767555]
+shape = SubResource("CapsuleShape3D_57qmd")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
