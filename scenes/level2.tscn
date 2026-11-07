@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://c2lnoc3im5i6t"]
+
+[ext_resource type="PackedScene" uid="uid://ciwtxush3fuib" path="res://prefabs/player.tscn" id="1_2k3dv"]
+[ext_resource type="PackedScene" uid="uid://vwfn42666ns4" path="res://prefabs/scene_geometry.tscn" id="1_d6fun"]
+[ext_resource type="Script" uid="uid://bt7omhhaytxky" path="res://scripts/render_manager.gd" id="1_hrcei"]
+[ext_resource type="PackedScene" uid="uid://c7tjk38uwtkay" path="res://prefabs/orbiting_staff_default.tscn" id="2_6ep0u"]
+[ext_resource type="PackedScene" uid="uid://cvfk2js6u40yc" path="res://prefabs/camera.tscn" id="2_alqfr"]
+[ext_resource type="PackedScene" uid="uid://d37dkjjugakgj" path="res://prefabs/postprocessing.tscn" id="3_yqkch"]
+[ext_resource type="Shader" uid="uid://yj5dns15m5u0" path="res://shaders/postprocessing.gdshader" id="4_alqfr"]
+[ext_resource type="PackedScene" uid="uid://ewd4a2hdbtk7" path="res://prefabs/oak_tree.tscn" id="6_yqkch"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yqkch"]
+shader = ExtResource("4_alqfr")
+shader_parameter/brightColour = Vector4(1, 0.9843137, 0.83137256, 1)
+shader_parameter/darkColour = Vector4(0.16470589, 0.10980392, 0.05490196, 1)
+shader_parameter/treshold = 0.67
+
+[node name="Node3D" type="Node3D" unique_id=488317995]
+script = ExtResource("1_hrcei")
+
+[node name="Player" parent="." unique_id=752145659 instance=ExtResource("1_2k3dv")]
+
+[node name="Staff" parent="Player" unique_id=219690096 instance=ExtResource("2_6ep0u")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1606381182]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
+
+[node name="Camera" parent="." unique_id=1052899663 node_paths=PackedStringArray("player") instance=ExtResource("2_alqfr")]
+player = NodePath("../Player")
+
+[node name="CanvasLayer" parent="." unique_id=830739654 instance=ExtResource("3_yqkch")]
+shader = SubResource("ShaderMaterial_yqkch")
+
+[node name="CharacterBody3D" parent="." unique_id=258324324 instance=ExtResource("1_d6fun")]
+transform = Transform3D(6, 0, 0, 0, 1, 0, 0, 0, 6, 0, 0, 0)
+
+[node name="Oak tree" parent="." unique_id=166263153 instance=ExtResource("6_yqkch")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6403272, 0.7090759, -2.6924715)

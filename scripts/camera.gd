@@ -17,6 +17,9 @@ var center_target: Vector3
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if !player:
+		pass
+	
 	center_target = player.position + center_offset
 	var diff = (center_target - current_center)
 	var factor = delta * smoothing_agility

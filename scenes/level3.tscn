@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://osi4phvvsy6v"]
+
+[ext_resource type="PackedScene" uid="uid://d37dkjjugakgj" path="res://prefabs/postprocessing.tscn" id="1_7uttt"]
+[ext_resource type="Shader" uid="uid://yj5dns15m5u0" path="res://shaders/postprocessing.gdshader" id="2_6lxtr"]
+[ext_resource type="PackedScene" uid="uid://cvfk2js6u40yc" path="res://prefabs/camera.tscn" id="3_b72m1"]
+[ext_resource type="PackedScene" uid="uid://ciwtxush3fuib" path="res://prefabs/player.tscn" id="4_5mhml"]
+[ext_resource type="PackedScene" uid="uid://c7tjk38uwtkay" path="res://prefabs/orbiting_staff_default.tscn" id="5_b72m1"]
+[ext_resource type="PackedScene" uid="uid://vwfn42666ns4" path="res://prefabs/scene_geometry.tscn" id="5_rupth"]
+[ext_resource type="PackedScene" uid="uid://bqrvaceax4pov" path="res://prefabs/fence.tscn" id="6_6lxtr"]
+[ext_resource type="Script" uid="uid://bt7omhhaytxky" path="res://scripts/render_manager.gd" id="8_5mhml"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6qt4k"]
+shader = ExtResource("2_6lxtr")
+shader_parameter/brightColour = Vector4(1, 0.9843137, 0.83137256, 1)
+shader_parameter/darkColour = Vector4(0.16470589, 0.10980392, 0.05490196, 1)
+shader_parameter/treshold = 0.67
+
+[node name="Node3D" type="Node3D" unique_id=944084263]
+
+[node name="CanvasLayer" parent="." unique_id=830739654 instance=ExtResource("1_7uttt")]
+shader = SubResource("ShaderMaterial_6qt4k")
+
+[node name="Camera" parent="." unique_id=1052899663 node_paths=PackedStringArray("player") instance=ExtResource("3_b72m1")]
+player = NodePath("../Player")
+
+[node name="Player" parent="." unique_id=752145659 instance=ExtResource("4_5mhml")]
+
+[node name="Staff" parent="Player" unique_id=219690096 instance=ExtResource("5_b72m1")]
+
+[node name="CharacterBody3D" parent="." unique_id=258324324 instance=ExtResource("5_rupth")]
+transform = Transform3D(7.3, 0, 0, 0, 1, 0, 0, 0, 7.3, 0, 0, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=172561023]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
+
+[node name="Fence" parent="." unique_id=1573263111 instance=ExtResource("6_6lxtr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27304506, 0.28183103, -3.8704786)
+script = ExtResource("8_5mhml")

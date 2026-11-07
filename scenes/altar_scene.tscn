@@ -5,13 +5,20 @@
 [ext_resource type="PackedScene" uid="uid://vwfn42666ns4" path="res://prefabs/scene_geometry.tscn" id="3_ru16j"]
 [ext_resource type="PackedScene" uid="uid://ciwtxush3fuib" path="res://prefabs/player.tscn" id="4_v35yo"]
 [ext_resource type="PackedScene" uid="uid://c51q22cjsxu42" path="res://scenes/level1.tscn" id="5_b42ur"]
+[ext_resource type="PackedScene" uid="uid://c2lnoc3im5i6t" path="res://scenes/level2.tscn" id="6_8olkb"]
 [ext_resource type="PackedScene" uid="uid://c7tjk38uwtkay" path="res://prefabs/orbiting_staff_default.tscn" id="6_cjwkg"]
+[ext_resource type="PackedScene" uid="uid://osi4phvvsy6v" path="res://scenes/level3.tscn" id="7_5h1p3"]
 [ext_resource type="PackedScene" uid="uid://d37dkjjugakgj" path="res://prefabs/postprocessing.tscn" id="7_8olkb"]
 [ext_resource type="Shader" uid="uid://yj5dns15m5u0" path="res://shaders/postprocessing.gdshader" id="8_5h1p3"]
 [ext_resource type="Texture2D" uid="uid://b6alwxys2dbiq" path="res://assets/graphics/testSprites/cave/cave.png" id="9_786bs"]
 [ext_resource type="Texture2D" uid="uid://vk36al1wjl0v" path="res://assets/graphics/testSprites/rock/rock.png" id="10_a840s"]
 [ext_resource type="Texture2D" uid="uid://bl4uw37f0jg4a" path="res://assets/graphics/testSprites/bush/bush.png" id="11_b8cub"]
 [ext_resource type="Texture2D" uid="uid://cuyv7vtjek285" path="res://assets/graphics/testSprites/fence/fence.png" id="12_rlco6"]
+[ext_resource type="PackedScene" uid="uid://b4cejqpifqcui" path="res://prefabs/scenery.tscn" id="13_ru16j"]
+[ext_resource type="Texture2D" uid="uid://dwefe45nfwkpg" path="res://assets/graphics/testSprites/mushroom/mushroom.png" id="14_v35yo"]
+[ext_resource type="PackedScene" uid="uid://ifncu6d54gsp" path="res://prefabs/trigger.tscn" id="15_v35yo"]
+[ext_resource type="Texture2D" uid="uid://cbimu51ak0may" path="res://assets/graphics/testSprites/mushroom/mushrooms.png" id="16_b42ur"]
+[ext_resource type="Texture2D" uid="uid://bbey4fmcomfo8" path="res://assets/graphics/testSprites/pedestal/pedestal.png" id="18_8olkb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fs4dc"]
 shader = ExtResource("8_5h1p3")
@@ -34,7 +41,9 @@ transform = Transform3D(1, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.70710
 [node name="Player" parent="." unique_id=752145659 node_paths=PackedStringArray("target_scenes") instance=ExtResource("4_v35yo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.031551123, 0)
 target_scenes = {
-null: ExtResource("5_b42ur")
+NodePath("../Go to level 1/Trigger"): ExtResource("5_b42ur"),
+NodePath("../Scenery2/Trigger"): ExtResource("6_8olkb"),
+NodePath("../Scenery3/Trigger"): ExtResource("7_5h1p3")
 }
 
 [node name="Staff" parent="Player" unique_id=727086820 instance=ExtResource("6_cjwkg")]
@@ -73,3 +82,24 @@ texture = ExtResource("12_rlco6")
 [node name="fence4" type="Sprite3D" parent="Scenery" unique_id=1077000214]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.21756, 2, -10.3)
 texture = ExtResource("12_rlco6")
+
+[node name="Go to level 1" parent="." unique_id=195264165 instance=ExtResource("13_ru16j")]
+transform = Transform3D(1.9950302, 0, 0, 0, 1.9950302, 0, 0, 0, 1, -27.908512, 3.9986656, 0.05462742)
+texture = ExtResource("14_v35yo")
+
+[node name="Trigger" parent="Go to level 1" unique_id=2018339637 instance=ExtResource("15_v35yo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16769916, -2.0024903, -0.5696955)
+
+[node name="Scenery2" parent="." unique_id=594064578 instance=ExtResource("13_ru16j")]
+transform = Transform3D(1.6492987, 0, 0, 0, 1.6492987, 0, 0, 0, 1, 0, 2.714064, 21.696)
+texture = ExtResource("16_b42ur")
+
+[node name="Trigger" parent="Scenery2" unique_id=1697370496 instance=ExtResource("15_v35yo")]
+transform = Transform3D(0.60631835, 0, 0, 0, 0.60631835, 0, 0, 0, 1, 0.020043194, -1.6094061, -0.06847954)
+
+[node name="Scenery3" parent="." unique_id=414601140 instance=ExtResource("13_ru16j")]
+transform = Transform3D(1.8953145, 0, 0, 0, 1.8953145, 0, 0, 0, 1, 29.072231, 1.2724309, 1.473629)
+texture = ExtResource("18_8olkb")
+
+[node name="Trigger" parent="Scenery3" unique_id=1503636012 instance=ExtResource("15_v35yo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.59413105, 0)
