@@ -6,11 +6,31 @@
 [ext_resource type="PackedScene" uid="uid://ciwtxush3fuib" path="res://prefabs/player.tscn" id="3_ru4tf"]
 [ext_resource type="PackedScene" uid="uid://bqrvaceax4pov" path="res://prefabs/fence.tscn" id="4_dwgg1"]
 [ext_resource type="PackedScene" uid="uid://bo37okb6sqbok" path="res://prefabs/tree.tscn" id="4_ejswk"]
+[ext_resource type="PackedScene" uid="uid://c7tjk38uwtkay" path="res://prefabs/orbiting_staff_default.tscn" id="5_conm7"]
 [ext_resource type="PackedScene" uid="uid://d37dkjjugakgj" path="res://prefabs/postprocessing.tscn" id="5_ru4tf"]
 [ext_resource type="Shader" uid="uid://yj5dns15m5u0" path="res://shaders/postprocessing.gdshader" id="6_6sh32"]
+[ext_resource type="PackedScene" uid="uid://ewd4a2hdbtk7" path="res://prefabs/oak_tree.tscn" id="10_d3jkd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
 size = Vector3(1, 2.890625, 14.49025)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yf5fn"]
+size = Vector3(1, 1, 21.457169)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_57qmd"]
+size = Vector3(23.68573, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d0u6y"]
+size = Vector3(1, 1, 38.135742)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3gngh"]
+size = Vector3(44.52527, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fcnqv"]
+size = Vector3(16.351868, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7numd"]
+size = Vector3(1, 1, 16.729492)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ejswk"]
 shader = ExtResource("6_6sh32")
@@ -29,6 +49,8 @@ transform = Transform3D(27.58102, 0, 0, 0, 10, 0, 0, 0, 41.861763, 0, 0, 0)
 
 [node name="Player" parent="." unique_id=752145659 instance=ExtResource("3_ru4tf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.007088, 0, 6.9553547)
+
+[node name="Staff" parent="Player" unique_id=219690096 instance=ExtResource("5_conm7")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1835771992]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
@@ -89,5 +111,98 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8, 0, 4.452)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.418253, 0.9453125, -2.6943173)
 shape = SubResource("BoxShape3D_g4v7s")
 
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="perimeter/CharacterBody3D" unique_id=481557545]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.505076, 0.43999243, 0.29398155)
+shape = SubResource("BoxShape3D_yf5fn")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="perimeter/CharacterBody3D" unique_id=1652461292]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4874172, 0.47373748, 10.672)
+shape = SubResource("BoxShape3D_57qmd")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="perimeter/CharacterBody3D" unique_id=1662631108]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.468008, 4.7683716e-07, -8.284794)
+shape = SubResource("BoxShape3D_d0u6y")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="perimeter/CharacterBody3D" unique_id=859354710]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.421204, 0, -26.092035)
+shape = SubResource("BoxShape3D_3gngh")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="perimeter/CharacterBody3D" unique_id=171121765]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.513386, 0.53746367, -10.726107)
+shape = SubResource("BoxShape3D_fcnqv")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="perimeter/CharacterBody3D" unique_id=1169710990]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.138863, 0.32275343, -18.607044)
+shape = SubResource("BoxShape3D_7numd")
+
 [node name="CanvasLayer" parent="." unique_id=830739654 instance=ExtResource("5_ru4tf")]
 shader = SubResource("ShaderMaterial_ejswk")
+
+[node name="Oak tree" parent="." unique_id=166263153 instance=ExtResource("10_d3jkd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.140774, 0, -6.434944)
+
+[node name="Oak tree2" parent="." unique_id=1470673561 instance=ExtResource("10_d3jkd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.898441, 1.2072449, -15.313032)
+
+[node name="Oak tree3" parent="." unique_id=292408805 instance=ExtResource("10_d3jkd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.224356, 1.2072449, 1.6080923)
+
+[node name="Oak tree4" parent="." unique_id=685102972 instance=ExtResource("10_d3jkd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.235688, 0.7255535, 9.071611)
+
+[node name="Oak tree5" parent="." unique_id=1608223631 instance=ExtResource("10_d3jkd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.359746, 1.2072449, -27.91805)
+
+[node name="Tree" parent="." unique_id=587194786 instance=ExtResource("4_ejswk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.600014, 1.1090021, -28.861044)
+
+[node name="Oak tree6" parent="." unique_id=791948603 instance=ExtResource("10_d3jkd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1645036, 0.7255535, -26.679472)
+
+[node name="Oak tree7" parent="." unique_id=38541898 instance=ExtResource("10_d3jkd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3268337, 1.2072468, -28.632618)
+
+[node name="Tree2" parent="." unique_id=1911323412 instance=ExtResource("4_ejswk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.235635, 0.62731266, -27.309813)
+
+[node name="Tree3" parent="." unique_id=250062542 instance=ExtResource("4_ejswk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.198088, 1.1090002, -26.170704)
+
+[node name="Oak tree8" parent="." unique_id=156793825 instance=ExtResource("10_d3jkd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.866839, 0.7255573, -28.460356)
+
+[node name="Oak tree9" parent="." unique_id=801462707 instance=ExtResource("10_d3jkd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.932007, 0.18602943, -25.592035)
+
+[node name="Fence" parent="." unique_id=189927234 instance=ExtResource("4_dwgg1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9648285, 0.3372364, -25.6)
+
+[node name="Fence2" parent="." unique_id=654079211 instance=ExtResource("4_dwgg1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.34371, 0.29831052, -25.6)
+
+[node name="Fence3" parent="." unique_id=1317349198 instance=ExtResource("4_dwgg1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8399854, 0.22563744, -25.6)
+
+[node name="Fence4" parent="." unique_id=482112796 instance=ExtResource("4_dwgg1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2424397, 0.29831243, -25.6)
+
+[node name="Fence5" parent="." unique_id=84424739 instance=ExtResource("4_dwgg1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75322104, 0.3546543, -25.6)
+
+[node name="Fence6" parent="." unique_id=2102749186 instance=ExtResource("4_dwgg1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8789878, 0.29831243, -25.6)
+
+[node name="Fence7" parent="." unique_id=1052317645 instance=ExtResource("4_dwgg1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3888607, 0.49184608, -25.6)
+
+[node name="Fence8" parent="." unique_id=1486258228 instance=ExtResource("4_dwgg1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.948792, 0.07724953, -25.6)
+
+[node name="Fence9" parent="." unique_id=510381030 instance=ExtResource("4_dwgg1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.47234, 0.29831052, -25.6)
+
+[node name="Fence10" parent="." unique_id=2026224687 instance=ExtResource("4_dwgg1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.039862, 0.29831052, -25.6)
+
+[node name="Fence11" parent="." unique_id=1480973982 instance=ExtResource("4_dwgg1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.579573, 0.16740417, -25.6)

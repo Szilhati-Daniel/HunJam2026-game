@@ -3,7 +3,7 @@ extends Node3D
 @export
 var player: CharacterBody3D
 @export
-var center_offset: Vector3
+var center_offset: Vector3 = Vector3(0, 3, 0)
 @export
 var offset: Vector3
 
