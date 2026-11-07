@@ -17,6 +17,7 @@ transform = Transform3D(47.86597, 0, 0, 0, -4.3711392e-08, -5.0276875, 0, 1.0000
 transform = Transform3D(1, 0, 0, 0, 0.892978, 0.45010027, 0, -0.45010027, 0.892978, 0.16155052, 4.173086, 4.7487764)
 projection = 1
 size = 10.346
+near = 0.001
 script = ExtResource("2_vr562")
 player = NodePath("../Player")
 offset = Vector3(0, 4, 5)
