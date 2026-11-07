@@ -2,9 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://be7vs43iua0l5" path="res://assets/graphics/testSprites/tree/oak_tree.png" id="1_yb8af"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
-radius = 1.0532227
-height = 4.3256836
+[sub_resource type="BoxShape3D" id="BoxShape3D_5mhml"]
+size = Vector3(1.6218262, 3.1828613, 0.18103027)
 
 [node name="Oak tree" type="CharacterBody3D" unique_id=166263153]
 
@@ -13,5 +12,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.412755, 0)
 texture = ExtResource("1_yb8af")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=787194020]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1418531, 2.0674748, 0)
-shape = SubResource("CapsuleShape3D_g4v7s")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.106574774, 1.7843938, -0.01151669)
+shape = SubResource("BoxShape3D_5mhml")

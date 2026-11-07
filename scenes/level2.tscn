@@ -35,4 +35,4 @@ shader = SubResource("ShaderMaterial_yqkch")
 transform = Transform3D(6, 0, 0, 0, 1, 0, 0, 0, 6, 0, 0, 0)
 
 [node name="Oak tree" parent="." unique_id=166263153 instance=ExtResource("6_yqkch")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6403272, 0.7090759, -2.6924715)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.64, 0, -2.692)
