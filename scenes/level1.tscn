@@ -124,7 +124,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.468008, 4.7683716e-07, -8
 shape = SubResource("BoxShape3D_d0u6y")
 
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="perimeter/CharacterBody3D" unique_id=859354710]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.421204, 0, -26.092035)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.421204, 0, -20.628807)
 shape = SubResource("BoxShape3D_3gngh")
 
 [node name="CollisionShape3D6" type="CollisionShape3D" parent="perimeter/CharacterBody3D" unique_id=171121765]
@@ -142,7 +142,7 @@ shader = SubResource("ShaderMaterial_ejswk")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.140774, 0, -6.434944)
 
 [node name="Oak tree2" parent="." unique_id=1470673561 instance=ExtResource("10_d3jkd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.898441, 1.2072449, -15.313032)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.898441, 1.2072449, -13.486996)
 
 [node name="Oak tree3" parent="." unique_id=292408805 instance=ExtResource("10_d3jkd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.224356, 1.2072449, 1.6080923)
@@ -151,58 +151,58 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.224356, 1.2072449, 1.6080
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.235688, 0.7255535, 9.071611)
 
 [node name="Oak tree5" parent="." unique_id=1608223631 instance=ExtResource("10_d3jkd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.359746, 1.2072449, -27.91805)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.359746, 1.2072449, -22.454823)
 
 [node name="Tree" parent="." unique_id=587194786 instance=ExtResource("4_ejswk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.600014, 1.1090021, -28.861044)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.600014, 1.1090021, -23.397816)
 
 [node name="Oak tree6" parent="." unique_id=791948603 instance=ExtResource("10_d3jkd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1645036, 0.7255535, -26.679472)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1645036, 0.7255535, -21.216244)
 
 [node name="Oak tree7" parent="." unique_id=38541898 instance=ExtResource("10_d3jkd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3268337, 1.2072468, -28.632618)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3268337, 1.2072468, -23.16939)
 
 [node name="Tree2" parent="." unique_id=1911323412 instance=ExtResource("4_ejswk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.235635, 0.62731266, -27.309813)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.235635, 0.62731266, -21.846584)
 
 [node name="Tree3" parent="." unique_id=250062542 instance=ExtResource("4_ejswk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.198088, 1.1090002, -26.170704)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.198088, 1.1090002, -20.707476)
 
 [node name="Oak tree8" parent="." unique_id=156793825 instance=ExtResource("10_d3jkd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.866839, 0.7255573, -28.460356)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.866839, 0.7255573, -22.997128)
 
 [node name="Oak tree9" parent="." unique_id=801462707 instance=ExtResource("10_d3jkd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.932007, 0.18602943, -25.592035)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.932007, 0.18602943, -20.128807)
 
 [node name="Fence" parent="." unique_id=189927234 instance=ExtResource("4_dwgg1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9648285, 0.3372364, -25.6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9648285, 0.3372364, -20.136772)
 
 [node name="Fence2" parent="." unique_id=654079211 instance=ExtResource("4_dwgg1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.34371, 0.29831052, -25.6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.34371, 0.29831052, -20.136772)
 
 [node name="Fence3" parent="." unique_id=1317349198 instance=ExtResource("4_dwgg1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8399854, 0.22563744, -25.6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8399854, 0.22563744, -20.136772)
 
 [node name="Fence4" parent="." unique_id=482112796 instance=ExtResource("4_dwgg1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2424397, 0.29831243, -25.6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2424397, 0.29831243, -20.136772)
 
 [node name="Fence5" parent="." unique_id=84424739 instance=ExtResource("4_dwgg1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75322104, 0.3546543, -25.6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75322104, 0.3546543, -20.136772)
 
 [node name="Fence6" parent="." unique_id=2102749186 instance=ExtResource("4_dwgg1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8789878, 0.29831243, -25.6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8789878, 0.29831243, -20.136772)
 
 [node name="Fence7" parent="." unique_id=1052317645 instance=ExtResource("4_dwgg1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3888607, 0.49184608, -25.6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3888607, 0.49184608, -20.136772)
 
 [node name="Fence8" parent="." unique_id=1486258228 instance=ExtResource("4_dwgg1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.948792, 0.07724953, -25.6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.948792, 0.07724953, -20.136772)
 
 [node name="Fence9" parent="." unique_id=510381030 instance=ExtResource("4_dwgg1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.47234, 0.29831052, -25.6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.47234, 0.29831052, -20.136772)
 
 [node name="Fence10" parent="." unique_id=2026224687 instance=ExtResource("4_dwgg1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.039862, 0.29831052, -25.6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.039862, 0.29831052, -20.136772)
 
 [node name="Fence11" parent="." unique_id=1480973982 instance=ExtResource("4_dwgg1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.579573, 0.16740417, -25.6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.579573, 0.16740417, -20.136772)
