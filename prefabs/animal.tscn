@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://kbnbdj6gf0fa"]
+[gd_scene format=3 uid="uid://collv4k2p7eml"]
 
 [ext_resource type="Script" uid="uid://ctrhvpory0di1" path="res://scripts/animal_behaviour.gd" id="1_fb3t6"]
 [ext_resource type="Texture2D" uid="uid://bjf54yfbg214d" path="res://assets/graphics/testSprites/rabbit/idle_sketch/rabbit_idle_down.png" id="2_fb3t6"]
@@ -25,20 +25,17 @@ shape = SubResource("CylinderShape3D_iwpo4")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1655014917]
 
 [node name="Facing_Towards" type="Sprite3D" parent="." unique_id=88175338]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.03470686, 1.1683502, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.035, 0.476, 0)
 texture = ExtResource("2_fb3t6")
 
 [node name="Facing_Away" type="Sprite3D" parent="." unique_id=389771193]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.03470686, 1.5338396, 0)
-visible = false
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.035, 0.841, 0)
 texture = ExtResource("3_vd578")
 
 [node name="Facing_Right" type="Sprite3D" parent="." unique_id=2056815498]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.13621792, 1.4179742, 0.022795081)
-visible = false
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.136, 0.726, 0.023)
 texture = ExtResource("4_nl27k")
 
 [node name="Facing_Left" type="Sprite3D" parent="." unique_id=823429312]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -0.0898833, 1.4179742, 0.022795081)
-visible = false
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -0.09, 0.726, 0.023)
 texture = ExtResource("5_obynr")

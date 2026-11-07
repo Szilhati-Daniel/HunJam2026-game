@@ -102,6 +102,9 @@ func stop_movement() -> void:
 	self.velocity.x = 0.0
 	self.velocity.z = 0.0
 
+func idle_movement() -> void:
+	return
+	
 func attack_player() -> void:
 	if not can_attack:
 		return

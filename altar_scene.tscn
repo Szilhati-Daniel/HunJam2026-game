@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ciwtxush3fuib" path="res://prefabs/player.tscn" id="1_5o2q7"]
 [ext_resource type="PackedScene" uid="uid://vwfn42666ns4" path="res://prefabs/scene_geometry.tscn" id="1_skw32"]
-[ext_resource type="PackedScene" uid="uid://kbnbdj6gf0fa" path="res://prefabs/animal.tscn" id="2_e8g2b"]
+[ext_resource type="PackedScene" uid="uid://collv4k2p7eml" path="res://prefabs/animal.tscn" id="2_e8g2b"]
 [ext_resource type="Script" uid="uid://bwbvwje7ofcpb" path="res://scripts/camera.gd" id="2_vr562"]
 [ext_resource type="PackedScene" uid="uid://b4cejqpifqcui" path="res://prefabs/scenery.tscn" id="5_hbham"]
 [ext_resource type="Texture2D" uid="uid://bl4uw37f0jg4a" path="res://assets/graphics/testSprites/bush/bush.png" id="6_tb2pl"]
@@ -36,8 +36,7 @@ transform = Transform3D(1, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.70710
 
 [node name="Player" parent="." unique_id=752145659 instance=ExtResource("1_5o2q7")]
 
-[node name="Animal" parent="." unique_id=630367358 instance=ExtResource("2_e8g2b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.184677, 0.0973618, 3.7906666)
+[node name="Animal2" parent="." unique_id=630367358 instance=ExtResource("2_e8g2b")]
 
 [node name="Scenery" type="Node" parent="." unique_id=562526141]
 
