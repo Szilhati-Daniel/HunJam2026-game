@@ -13,13 +13,6 @@ height = 1.5059204
 
 [node name="Animal" type="CharacterBody3D" unique_id=630367358]
 script = ExtResource("1_fb3t6")
-behaviour = null
-reaction_distance = null
-attack_distance = null
-movement_speed = null
-damage = null
-attack_cooldown = null
-health = null
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1086384340]
 visible = false
@@ -37,12 +30,15 @@ texture = ExtResource("2_fb3t6")
 
 [node name="Facing_Away" type="Sprite3D" parent="." unique_id=389771193]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.03470686, 0.84147334, 0)
+visible = false
 texture = ExtResource("3_vd578")
 
 [node name="Facing_Right" type="Sprite3D" parent="." unique_id=2056815498]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.13621792, 0.725608, 0.022795081)
+visible = false
 texture = ExtResource("4_nl27k")
 
 [node name="Facing_Left" type="Sprite3D" parent="." unique_id=823429312]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -0.0898833, 0.725608, 0.022795081)
+visible = false
 texture = ExtResource("5_obynr")

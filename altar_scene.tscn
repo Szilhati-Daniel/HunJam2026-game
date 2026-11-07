@@ -24,6 +24,7 @@ transform = Transform3D(1, 0, 0, 0, 0.9256458, 0.37839106, 0, -0.37839106, 0.925
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.342, 0)
 
 [node name="Animal" parent="." unique_id=630367358 instance=ExtResource("4_vr562")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0973618, 0)
 behaviour = 1
 reaction_distance = 6.0
 attack_distance = 1.5

@@ -77,16 +77,9 @@ func change_sprite(direction : Vector3) -> void:
 
 	elif movement_angle_degrees >= 22.5 && movement_angle_degrees < 112.5:
 		face_towards.visible = true
-
-	elif movement_angle_degrees >= 112.5 && movement_angle_degrees < 157.5:
+	elif movement_angle_degrees >= 112.5 || movement_angle_degrees < -112.5:
 		face_left.visible = true
-
-	elif movement_angle_degrees >= 157.5 || movement_angle_degrees < -157.5:
-		face_left.visible = true
-	elif movement_angle_degrees >= -157.5 && movement_angle_degrees < -112.5:
-		face_left.visible = true
-
-	elif movement_angle_degrees >= -112.5 && movement_angle_degrees < -22.5:
+	else:
 		face_away.visible = true
 
 func cowardly() -> void:
