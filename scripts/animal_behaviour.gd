@@ -8,7 +8,7 @@ enum Behaviour {
 @export var behaviour : Behaviour = Behaviour.AGGRESSIVE
 
 @export var reaction_distance : float = 6.0
-@export var attack_distance : float = 1.5
+@export var attack_distance : float = 2
 @export var movement_speed : float = 1.0
 @export var idle_movement_speed : float = 2.0
 @export var damage : float = 10.0
@@ -41,8 +41,6 @@ var can_attack : bool = true
 func _ready() -> void:
 	$AnimationPlayer.play("init")
 	
-	print("Animal path: ", get_path())
-	print("Children: ", get_children())
 	find_player()
 
 
@@ -51,6 +49,12 @@ func _physics_process(delta: float) -> void:
 	var distance = self.global_position.distance_to(
 		player.global_position
 	)
+	
+	if distance < attack_distance - 0.1:
+		behaviour = Behaviour.COWARDLY
+	elif distance > attack_distance + 0.1:
+		behaviour = Behaviour.AGGRESSIVE
+	
 	if distance > reaction_distance:
 		if ! has_idle_point:
 			idle_center_point = Vector3(
@@ -76,8 +80,7 @@ func _physics_process(delta: float) -> void:
 func find_player() -> void:
 	var main = get_tree().current_scene
 	player = main.get_node_or_null("Player") as Node3D
-	print("Found player: ", player)
-		
+	
 func aggressive(distance : float) -> void:
 	if distance <= attack_distance:
 		stop_movement()

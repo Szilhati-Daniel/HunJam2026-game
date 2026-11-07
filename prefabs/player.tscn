@@ -25,7 +25,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_u51tk"]
 resource_name = "boink"
-length = 0.19999999999999998
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true

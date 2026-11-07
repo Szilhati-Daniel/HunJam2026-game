@@ -4,12 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cvfk2js6u40yc" path="res://prefabs/camera.tscn" id="1_hsd18"]
 [ext_resource type="Script" uid="uid://bt7omhhaytxky" path="res://scripts/render_manager.gd" id="1_iukky"]
 [ext_resource type="PackedScene" uid="uid://vwfn42666ns4" path="res://prefabs/scene_geometry.tscn" id="1_skw32"]
-[ext_resource type="PackedScene" uid="uid://collv4k2p7eml" path="res://prefabs/animal.tscn" id="2_e8g2b"]
-[ext_resource type="Script" uid="uid://bwbvwje7ofcpb" path="res://scripts/camera.gd" id="2_vr562"]
 [ext_resource type="PackedScene" uid="uid://c7tjk38uwtkay" path="res://prefabs/orbiting_staff_default.tscn" id="4_hsd18"]
-[ext_resource type="PackedScene" uid="uid://b4cejqpifqcui" path="res://prefabs/scenery.tscn" id="5_hbham"]
-[ext_resource type="Texture2D" uid="uid://vk36al1wjl0v" path="res://assets/graphics/testSprites/rock/rock.png" id="6_hsd18"]
-[ext_resource type="Texture2D" uid="uid://bl4uw37f0jg4a" path="res://assets/graphics/testSprites/bush/bush.png" id="6_tb2pl"]
 [ext_resource type="Shader" uid="uid://yj5dns15m5u0" path="res://shaders/postprocessing.gdshader" id="7_tb2pl"]
 [ext_resource type="PackedScene" uid="uid://d37dkjjugakgj" path="res://prefabs/postprocessing.tscn" id="9_iukky"]
 
@@ -41,33 +36,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.031551123, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.85480857, 1, 0)
 base_height = 1.9
 
-[node name="Animal" parent="." unique_id=630367358 instance=ExtResource("2_e8g2b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.7716675, 0.12231195, 1.5602903)
-behaviour = 1
-reaction_distance = 6.0
-attack_distance = 1.5
-movement_speed = 1.0
-damage = 10.0
-attack_cooldown = 1.0
-health = 100.0
-
 [node name="CanvasLayer" parent="." unique_id=830739654 instance=ExtResource("9_iukky")]
 shader = SubResource("ShaderMaterial_fs4dc")
 
 [node name="Node3D" type="Node3D" parent="." unique_id=1295124109]
-
-[node name="Bush" parent="Node3D" unique_id=1919570451 instance=ExtResource("5_hbham")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.52, 1, -5.016)
-texture = ExtResource("6_tb2pl")
-
-[node name="Scenery2" parent="Node3D" unique_id=195264165 instance=ExtResource("5_hbham")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.789, 1, -4.621)
-texture = ExtResource("6_tb2pl")
-
-[node name="Scenery" parent="Node3D" unique_id=2144286084 instance=ExtResource("5_hbham")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.57, 1, -13.427)
-texture = ExtResource("6_tb2pl")
-
-[node name="Sprite3D" parent="Node3D" unique_id=279644329 instance=ExtResource("5_hbham")]
-transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1, 4.377, 0.8210974, -4.914)
-texture = ExtResource("6_hsd18")

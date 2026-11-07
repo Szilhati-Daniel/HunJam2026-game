@@ -9,7 +9,8 @@
 [sub_resource type="CylinderMesh" id="CylinderMesh_g4v7s"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_iwpo4"]
-height = 1.5059204
+height = 1.4508686
+radius = 0.7705078
 
 [sub_resource type="Animation" id="Animation_5dwmj"]
 length = 0.001
@@ -28,7 +29,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_x7ohf"]
 resource_name = "boink"
-length = 0.19999999999999998
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -72,7 +73,7 @@ visible = false
 mesh = SubResource("CylinderMesh_g4v7s")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1603345145]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8786926, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8511667, 0)
 shape = SubResource("CylinderShape3D_iwpo4")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1655014917]

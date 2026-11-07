@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 @export_range(0.1, 5.0, 0.01)
-var movement_speed = 2.0
+var movement_speed = 4.0
 var health = 100.0
 var last_direction = Vector3(0,0,1) # so that it starts out facing camera
 
@@ -9,8 +9,6 @@ var last_direction = Vector3(0,0,1) # so that it starts out facing camera
 @onready var face_away: Sprite3D = $Sprites/Facing_Away
 @onready var face_left: Sprite3D = $Sprites/Facing_Left
 @onready var face_right: Sprite3D = $Sprites/Facing_Right
-
-@onready var damage: int = 25 # TODO
 
 @onready var staff : Node3D
 
@@ -65,15 +63,14 @@ func change_sprite(direction : Vector3) -> void:
 			face_away.visible = true	
 
 func take_damage(damage : float) -> void:
-	print("Oh no im dying :(")
+	#print("Oh no im dying :(")
 	health -= damage
-	print("\t current health: ", health)
+	#print("\t current health: ", health)
 	if health <= 0:
 		death()
 		
 func get_boinked():
-	$AnimationPlayer.plan("boink")
-	take_damage(damage)
+	$AnimationPlayer.play("boink")
 
 func death() -> void:
 	#TODO kill, i mean implement
