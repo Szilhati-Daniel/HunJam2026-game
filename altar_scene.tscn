@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://d38oiseso0r5s"]
 
-[ext_resource type="PackedScene" uid="uid://ciwtxush3fuib" path="res://player.tscn" id="1_5o2q7"]
-[ext_resource type="PackedScene" uid="uid://vwfn42666ns4" path="res://scene_geometry.tscn" id="1_skw32"]
-[ext_resource type="PackedScene" uid="uid://collv4k2p7eml" path="res://character_body_3d.tscn" id="2_e8g2b"]
+[ext_resource type="PackedScene" uid="uid://ciwtxush3fuib" path="res://prefabs/player.tscn" id="1_5o2q7"]
+[ext_resource type="PackedScene" uid="uid://vwfn42666ns4" path="res://prefabs/scene_geometry.tscn" id="1_skw32"]
+[ext_resource type="PackedScene" uid="uid://collv4k2p7eml" path="res://prefabs/animal.tscn" id="2_e8g2b"]
 
 [node name="Node3D" type="Node3D" unique_id=399075566]
 
