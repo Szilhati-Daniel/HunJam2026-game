@@ -13,7 +13,7 @@ enum Behaviour {
 @export var damage : float = 10.0
 @export var attack_cooldown : float = 1.0
 @export var health : float = 100.0
-var last_direction = Vector3(0,0,1) # so its facing down when it spawns
+var last_direction = Vector3(0,0,0) # so its facing down when it spawns
 
 var player : Node3D
 var can_attack : bool = true
@@ -69,15 +69,15 @@ func change_sprite(direction : Vector3) -> void:
 	face_left.visible = false
 	face_right.visible = false
 	
-	var movement_angle = Vector2(velocity.x, velocity.z).angle()
+	var movement_angle = Vector2(last_direction.x, last_direction.z).angle()
 	var movement_angle_degrees = rad_to_deg(movement_angle)
 	
-	if movement_angle_degrees >= -22.5 && movement_angle_degrees < 22.5:
+	if movement_angle_degrees >= -45 && movement_angle_degrees < 45:
 		face_right.visible = true
 
-	elif movement_angle_degrees >= 22.5 && movement_angle_degrees < 112.5:
+	elif movement_angle_degrees >= 45 && movement_angle_degrees < 135:
 		face_towards.visible = true
-	elif movement_angle_degrees >= 112.5 || movement_angle_degrees < -112.5:
+	elif movement_angle_degrees >= 135 || movement_angle_degrees < -135:
 		face_left.visible = true
 	else:
 		face_away.visible = true
