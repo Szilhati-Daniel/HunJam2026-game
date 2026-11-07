@@ -153,8 +153,6 @@ func idle_movement(delta : float) -> void:
 
 	self.velocity.x = idle_direction.x * idle_movement_speed
 	self.velocity.z = idle_direction.z * idle_movement_speed
-	print("Current pos: ", self.global_position)
-	print("Center point: ", idle_center_point)
 	
 func attack_player() -> void:
 	if not can_attack:
