@@ -18,9 +18,13 @@ enum Behaviour {
 @export var idle_max_time : float = 3.0
 @export var idle_wait_min : float = 1.0
 @export var idle_wait_max : float = 4.0
+#for when idle center is created:
+@export var idle_area_radius : float = 5.0
 
 var idle_timer : float = 0.0
 var is_idle_waiting : bool = true
+var idle_center_point : Vector3
+var has_idle_point : bool = false
 
 var idle_direction : Vector3 = Vector3.ZERO
 var last_direction = Vector3(0,0,0) # so its facing down when it spawns
@@ -46,10 +50,18 @@ func _physics_process(delta: float) -> void:
 		player.global_position
 	)
 	if distance > reaction_distance:
+		if ! has_idle_point:
+			idle_center_point = Vector3(
+				randf_range(self.global_position.x-idle_area_radius, self.global_position.x+idle_area_radius),
+				0,
+				randf_range(self.global_position.z-idle_area_radius, self.global_position.z+idle_area_radius)
+			)
+			has_idle_point = true
 		idle_movement(delta)
 		velocity = velocity.normalized() * idle_movement_speed
 
 	else:
+		has_idle_point = false
 		match behaviour:
 			Behaviour.COWARDLY:
 				cowardly()
@@ -113,15 +125,24 @@ func stop_movement() -> void:
 	self.velocity.x = 0.0
 	self.velocity.z = 0.0
 
+func my_atan(from : Vector3, to : Vector3) -> float:
+	if from.x == to.x:
+		return PI if from.z<to.z else -PI
+	elif from.z == to.z:
+		return PI if from.x<to.x else -PI
+	else:
+		return atan2(to.z - from.z, to.x - from.x)
+		
 func idle_movement(delta : float) -> void:
 	idle_timer -= delta
 	if idle_timer <= 0:
 		if is_idle_waiting:
-			var angle = randf_range(0.0, TAU)
+			var angle = my_atan(self.global_position, idle_center_point)
+			var random_angle = randf_range(angle-PI/4, angle+PI/4)
 			idle_direction = Vector3(
-				cos(angle),
-				0,
-				sin(angle)
+			cos(random_angle),
+			0,
+			sin(random_angle)
 			)
 			is_idle_waiting = false
 			idle_timer = randf_range(idle_min_time, idle_max_time)
@@ -132,6 +153,8 @@ func idle_movement(delta : float) -> void:
 
 	self.velocity.x = idle_direction.x * idle_movement_speed
 	self.velocity.z = idle_direction.z * idle_movement_speed
+	print("Current pos: ", self.global_position)
+	print("Center point: ", idle_center_point)
 	
 func attack_player() -> void:
 	if not can_attack:
