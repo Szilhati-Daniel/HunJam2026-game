@@ -44,7 +44,7 @@ func _physics_process(delta: float) -> void:
 			cowardly()
 		Behaviour.AGGRESSIVE:
 			aggressive(distance)
-			
+	animal.move_and_slide()
 			
 func find_player() -> void:
 	var main = get_tree().current_scene
