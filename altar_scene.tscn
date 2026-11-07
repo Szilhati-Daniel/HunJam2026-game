@@ -5,6 +5,8 @@
 [ext_resource type="Script" uid="uid://bt7omhhaytxky" path="res://scripts/render_manager.gd" id="1_iukky"]
 [ext_resource type="PackedScene" uid="uid://vwfn42666ns4" path="res://prefabs/scene_geometry.tscn" id="1_skw32"]
 [ext_resource type="PackedScene" uid="uid://collv4k2p7eml" path="res://prefabs/animal.tscn" id="2_e8g2b"]
+[ext_resource type="Script" uid="uid://bwbvwje7ofcpb" path="res://scripts/camera.gd" id="2_vr562"]
+[ext_resource type="PackedScene" uid="uid://c7tjk38uwtkay" path="res://prefabs/orbiting_staff_default.tscn" id="4_hsd18"]
 [ext_resource type="PackedScene" uid="uid://b4cejqpifqcui" path="res://prefabs/scenery.tscn" id="5_hbham"]
 [ext_resource type="Texture2D" uid="uid://vk36al1wjl0v" path="res://assets/graphics/testSprites/rock/rock.png" id="6_hsd18"]
 [ext_resource type="Texture2D" uid="uid://bl4uw37f0jg4a" path="res://assets/graphics/testSprites/bush/bush.png" id="6_tb2pl"]
@@ -34,6 +36,10 @@ transform = Transform3D(1, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.70710
 
 [node name="Player" parent="." unique_id=752145659 instance=ExtResource("1_5o2q7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.031551123, 0)
+
+[node name="Staff" parent="Player" unique_id=727086820 instance=ExtResource("4_hsd18")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.85480857, 1, 0)
+base_height = 1.9
 
 [node name="Animal" parent="." unique_id=630367358 instance=ExtResource("2_e8g2b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.7716675, 0.12231195, 1.5602903)
