@@ -1,10 +1,26 @@
 [gd_scene format=3 uid="uid://ciwtxush3fuib"]
 
 [ext_resource type="Script" uid="uid://cxv6fusw0mkbd" path="res://scripts/player_controller.gd" id="1_4flbx"]
+[ext_resource type="Texture2D" uid="uid://crfp1n2k8sc5n" path="res://softengbot.png" id="2_onrkg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_onrkg"]
+albedo_texture = ExtResource("2_onrkg")
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_g4v7s"]
+material = SubResource("StandardMaterial3D_onrkg")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_57qmd"]
+albedo_texture = ExtResource("2_onrkg")
+
+[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+size = Vector3(1, 2.5701904, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i3pqv"]
+albedo_texture = ExtResource("2_onrkg")
+uv1_scale = Vector3(3, 3, 3)
+uv2_scale = Vector3(10, 10, 10)
 
 [node name="Player" type="CharacterBody3D" unique_id=752145659 groups=["player"]]
 script = ExtResource("1_4flbx")
@@ -15,8 +31,20 @@ shape = SubResource("CapsuleShape3D_g4v7s")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1545846609]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
 mesh = SubResource("CapsuleMesh_g4v7s")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1221520367]
+
+[node name="MeshInstance3D_debug" type="MeshInstance3D" parent="." unique_id=1164181007]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7850952, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_57qmd")
+mesh = SubResource("BoxMesh_g4v7s")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=136471018]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.10065946, 0.79555297, -0.014194071)
+material_override = SubResource("StandardMaterial3D_i3pqv")
+texture = ExtResource("2_onrkg")
 
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
