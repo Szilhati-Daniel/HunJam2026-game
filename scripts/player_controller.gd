@@ -26,6 +26,7 @@ var nearby_interactable: Node3D = null
 @onready var health_bar_progress: ProgressBar = $HealthBar/Panel/ProgressBar
 
 @export var can_move: bool = true
+var changing_scene = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -46,7 +47,8 @@ func _process(delta: float) -> void:
 		if distance > 8.0: #  I HAVE NO FUCKING IDEA WHY IT ONLY WORKS HERE BUT IDC ATP
 			nearby_interactable = null
 			interaction_prompt.hide()
-			textbox.visible = false
+			if textbox != null:
+				textbox.visible = false
 	
 	if Input.is_key_pressed(KEY_A):
 		velocity.x -= 1.0
@@ -126,11 +128,13 @@ func trigger_pause():
 	HitStopManager.get_hit(0.25)
 
 func _on_area_3d_area_entered(area: Area3D) -> void:
+	if changing_scene:
+		return
 	if area.is_in_group("interactable"):
 		nearby_interactable = area.get_parent_node_3d()
 		interaction_prompt.show()
 	elif area.is_in_group("trigger"):
-		
+		changing_scene = true
 		var scene_name = get_tree().current_scene.name
 		
 		var trigger_name = area.get_parent_node_3d().name
@@ -145,15 +149,17 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 			new_scene.has_rope = SceneDataManager.has_rope
 			new_scene.has_paint = SceneDataManager.has_paint
 		
-		SceneLoader.change_scene(new_scene)
+		SceneLoader.change_scene.call_deferred(new_scene)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
 		if event.keycode == KEY_E:
 			if nearby_interactable == null:
 				return
-			if not textbox.visible:
-				nearby_interactable.interact()
+			if textbox != null:
+				if not textbox.visible:
+					nearby_interactable.interact()
+				else:
+					textbox.advance_dialogue()
 			else:
-				textbox.advance_dialogue()
-			get_viewport().set_input_as_handled()
+				nearby_interactable.interact()
