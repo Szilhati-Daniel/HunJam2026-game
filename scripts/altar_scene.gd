@@ -20,6 +20,11 @@ var player_position_from_scene: Dictionary[String, Vector3] = {
 
 @onready var player = get_node("Player")
 
+@onready var throat_sound = $Sounds/AudioStreamPlayer
+
+func sing():
+	throat_sound.play()
+
 func _ready():
 	$Candles.visible = false
 	$Sacrefice.visible = false
@@ -37,7 +42,6 @@ func update_sprite():
 		$Candles.visible = true
 	if SceneDataManager.has_paint:
 		$altar.state = AltarState.ROPE
-		$Sacrefice.visible = true
 	$altar.update_sprite()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
