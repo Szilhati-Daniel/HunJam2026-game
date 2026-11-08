@@ -12,7 +12,8 @@ enum AltarState {
 var player_position_from_scene: Dictionary[String, Vector3] = {
 	"default": Vector3(0, 0, 0),
 	"level1": Vector3(-7.75, 0, -2.4),
-	"level2": Vector3(1, 0, 8)
+	"level2": Vector3(1, 0, 8),
+	"level3": Vector3(8.75, 0, -2.5)
 }
 
 @export var load_from_level: String = "default"
@@ -34,6 +35,7 @@ func update_sprite():
 		$Candles.visible = true
 	if SceneDataManager.has_paint:
 		$altar.state = AltarState.ROPE
+		$Sacrefice.visible = true
 	$altar.update_sprite()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -4,10 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://cvfk2js6u40yc" path="res://prefabs/camera.tscn" id="2_gje6g"]
 [ext_resource type="PackedScene" uid="uid://vwfn42666ns4" path="res://prefabs/scene_geometry.tscn" id="3_ru16j"]
 [ext_resource type="PackedScene" uid="uid://ciwtxush3fuib" path="res://prefabs/player.tscn" id="4_v35yo"]
-[ext_resource type="PackedScene" uid="uid://c7tjk38uwtkay" path="res://prefabs/orbiting_staff_default.tscn" id="6_cjwkg"]
 [ext_resource type="PackedScene" uid="uid://d37dkjjugakgj" path="res://prefabs/postprocessing.tscn" id="7_8olkb"]
 [ext_resource type="Shader" uid="uid://yj5dns15m5u0" path="res://shaders/postprocessing.gdshader" id="8_5h1p3"]
-[ext_resource type="Texture2D" uid="uid://b6alwxys2dbiq" path="res://assets/graphics/testSprites/cave/cave.png" id="9_786bs"]
 [ext_resource type="Texture2D" uid="uid://bl4uw37f0jg4a" path="res://assets/graphics/testSprites/bush/bush.png" id="11_b8cub"]
 [ext_resource type="PackedScene" uid="uid://catas0elpp3ra" path="res://prefabs/altar.tscn" id="12_8lpc5"]
 [ext_resource type="PackedScene" uid="uid://dvnkgqgu2wtm6" path="res://prefabs/text_box.tscn" id="12_786bs"]
@@ -64,7 +62,7 @@ transform = Transform3D(94.179214, 0, 0, 0, 1.986177, 0, 0, 0, 93.19406, 0, 0, -
 transform = Transform3D(1, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, 0, 14.906595, 16.28323)
 
 [node name="Player" parent="." unique_id=752145659 node_paths=PackedStringArray("textbox", "interaction_prompt") instance=ExtResource("4_v35yo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.031551123, 8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.75, 0, -2.505)
 movement_speed = 10.0
 textbox = NodePath("../CanvasLayer/TextBox")
 interaction_prompt = NodePath("../CanvasLayer/InteractionPrompt")
@@ -99,10 +97,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.83274126, 5.5568895, -4.519
 script = ExtResource("12_rhp74")
 textbox = NodePath("../../CanvasLayer/TextBox")
 prompt = NodePath("../../CanvasLayer/InteractionPrompt")
-
-[node name="Cave" type="Sprite3D" parent="Scenery/Cave_node" unique_id=1490182735]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.83274126, 1.0000305, -0.043633938)
-texture = ExtResource("9_786bs")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Scenery/Cave_node" unique_id=1427649143]
 
