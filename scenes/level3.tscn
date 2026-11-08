@@ -25,6 +25,7 @@ shader = ExtResource("2_6lxtr")
 shader_parameter/brightColour = Vector4(1, 0.9843137, 0.83137256, 1)
 shader_parameter/darkColour = Vector4(0.16470589, 0.10980392, 0.05490196, 1)
 shader_parameter/treshold = 0.67
+shader_parameter/invert = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6uuvf"]
 bg_color = Color(0.16470589, 0.10980392, 0.05490196, 0.6666667)
@@ -44,6 +45,64 @@ size = Vector3(95.63379, 1, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6uuvf"]
 radius = 1.0857607
+
+[sub_resource type="Animation" id="Animation_6uuvf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer:invert_colours")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_x008a"]
+resource_name = "init_flicker"
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_07lh1"]
+resource_name = "item_flicker"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer:invert_colours")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.21999998, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_atr84"]
+resource_name = "periodic_flicker"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer:invert_colours")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.22, 0.41, 0.55, 0.68, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6uuvf"]
+_data = {
+&"RESET": SubResource("Animation_6uuvf"),
+&"init_flicker": SubResource("Animation_x008a"),
+&"item_flicker": SubResource("Animation_07lh1"),
+&"periodic_flicker": SubResource("Animation_atr84")
+}
 
 [node name="level3" type="Node3D" unique_id=944084263]
 script = ExtResource("8_5mhml")
@@ -356,3 +415,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00016593933, 0, -0.0004043
 [node name="item" type="Sprite3D" parent="pedestal2" unique_id=971039117]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2674358, -0.01020813)
 texture = ExtResource("18_07lh1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=812380926]
+libraries/ = SubResource("AnimationLibrary_6uuvf")

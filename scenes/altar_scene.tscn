@@ -30,6 +30,7 @@ shader = ExtResource("8_5h1p3")
 shader_parameter/brightColour = Vector4(1, 0.9843137, 0.83137256, 1)
 shader_parameter/darkColour = Vector4(0.16470589, 0.10980392, 0.05490196, 1)
 shader_parameter/treshold = 0.67
+shader_parameter/invert = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_miw16"]
 bg_color = Color(0.16470589, 0.10980392, 0.05490196, 0.6666667)

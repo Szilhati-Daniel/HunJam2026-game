@@ -7,6 +7,8 @@ extends Node3D
 
 var player_nearby = false
 
+@onready var animation_player = get_tree().current_scene.get_node("AnimationPlayer")
+
 func _ready():
 	prompt.hide()
 
@@ -26,9 +28,10 @@ func _on_body_exited(body):
 		prompt.hide()
 		
 func interact():
+	animation_player.play("item_flicker")
 	item.hide()
 	update_data()
-	
+
 func update_data():
 	if item_name == "candle":
 		SceneDataManager.has_candle = true

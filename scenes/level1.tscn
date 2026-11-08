@@ -22,6 +22,7 @@ shader = ExtResource("6_6sh32")
 shader_parameter/brightColour = Vector4(1, 0.984, 0.831, 1)
 shader_parameter/darkColour = Vector4(0.165, 0.11, 0.055, 1)
 shader_parameter/treshold = 0.67
+shader_parameter/invert = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dxn3v"]
 bg_color = Color(0.16470589, 0.10980392, 0.05490196, 0.6666667)
@@ -50,6 +51,43 @@ size = Vector3(16.351868, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7numd"]
 size = Vector3(1, 1, 16.729492)
+
+[sub_resource type="Animation" id="Animation_dxn3v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer:invert_colours")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_14jow"]
+resource_name = "item_flicker"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer:invert_colours")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mvsps"]
+_data = {
+&"RESET": SubResource("Animation_dxn3v"),
+&"item_flicker": SubResource("Animation_14jow")
+}
 
 [node name="level1" type="Node3D" unique_id=1308682315]
 script = ExtResource("1_bbk5w")
@@ -414,3 +452,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.610558, 0, 7.599757)
 
 [node name="Fence5" parent="." unique_id=228550357 instance=ExtResource("4_dwgg1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.880238, 0, 9.967426)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=546910147]
+libraries/ = SubResource("AnimationLibrary_mvsps")
