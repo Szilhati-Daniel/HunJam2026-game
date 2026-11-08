@@ -21,6 +21,7 @@ func _process(delta: float) -> void:
 		light_position -= Vector2(0.5, 0.5)
 		
 		shader.set_shader_parameter("lightCentre", light_position)
+		shader.set_shader_parameter("screenSize", screen_size)
 
 func process_node(node: Node3D):
 	for sprite in node.get_children():
