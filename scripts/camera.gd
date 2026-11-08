@@ -7,6 +7,11 @@ var center_offset: Vector3 = Vector3(0, 3, 0)
 @export
 var offset: Vector3
 
+@export var have_bounds: bool = false
+
+## minx, maxx, minz, maxz
+@export var bounds: Vector4
+
 @export
 var smoothing_agility: float = 6.5
 
@@ -27,5 +32,10 @@ func _process(delta: float) -> void:
 		current_center = center_target
 	else:
 		current_center += diff * factor
+	
+	if have_bounds:
+		current_center.x = clamp(current_center.x, bounds.x, bounds.y)
+		current_center.z = clamp(current_center.z, bounds.z, bounds.w)
+	
 	camera.look_at_from_position(current_center + offset * 4, current_center)
 	

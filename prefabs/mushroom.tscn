@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dmg624a10pok7"]
+
+[ext_resource type="Texture2D" uid="uid://dwefe45nfwkpg" path="res://assets/graphics/testSprites/mushroom/mushroom.png" id="1_vlfr3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xrivr"]
+size = Vector3(1, 3.6669312, 1.0014648)
+
+[node name="mushroom" type="StaticBody3D" unique_id=1657481697]
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1662770659]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8628207, 0)
+texture = ExtResource("1_vlfr3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=692982766]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8109436, 0.0007324219)
+shape = SubResource("BoxShape3D_xrivr")
