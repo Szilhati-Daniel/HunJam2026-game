@@ -4,9 +4,7 @@ extends Control
 @onready var dialogue_text = $Panel/MarginContainer/VBoxContainer/DialogueText
 
 var dialogue_lines = [
-	["Altar", "Hey you're finally awake, sigma."],
-	["Altar", "Things have been strange around here lately."],
-	["Altar", "Decorate me :D"]
+	["", "Not ready"]
 ]
 
 var current_line = 0

@@ -5,6 +5,8 @@ var textbox: Control
 @export
 var prompt: Control
 
+@onready var animation_player = get_tree().current_scene.get_node("AnimationPlayer")
+
 var player_nearby = false
 
 func _ready():
@@ -26,4 +28,8 @@ func _on_body_exited(body):
 		prompt.hide()
 		
 func interact():
-	textbox.start_dialogue()
+	if SceneDataManager.has_candle and SceneDataManager.has_rope and SceneDataManager.has_paint:
+		prompt.hide()
+		animation_player.play("end_cutscene")
+	else:
+		textbox.start_dialogue()

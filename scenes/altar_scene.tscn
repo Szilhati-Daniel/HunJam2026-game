@@ -33,7 +33,7 @@ shader_parameter/treshold = 0.67
 shader_parameter/invert = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_miw16"]
-bg_color = Color(0.16470589, 0.10980392, 0.05490196, 0.6666667)
+bg_color = Color(0, 0, 0, 1)
 border_color = Color(0.8, 0.8, 0.8, 0)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
@@ -117,7 +117,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -141,7 +141,7 @@ tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [4]
+"values": [0]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
@@ -303,7 +303,6 @@ script = ExtResource("1_xfrg3")
 
 [node name="altar" parent="." unique_id=1204404280 instance=ExtResource("12_8lpc5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08710861, 0, -4.608044)
-state = 4
 
 [node name="Camera" parent="." unique_id=1052899663 node_paths=PackedStringArray("player", "camera_focus_points") instance=ExtResource("2_gje6g")]
 player = NodePath("../Player")
@@ -326,7 +325,6 @@ can_move = true
 
 [node name="CanvasLayer" parent="." unique_id=830739654 instance=ExtResource("7_8olkb")]
 shader = SubResource("ShaderMaterial_fs4dc")
-invert_colours = true
 
 [node name="TextBox" parent="CanvasLayer" unique_id=191808093 instance=ExtResource("12_786bs")]
 visible = false

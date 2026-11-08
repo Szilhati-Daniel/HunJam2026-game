@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://ds6imem0kvqo5" path="res://scripts/textbox_dialogue.gd" id="1_aqod8"]
 [ext_resource type="FontFile" uid="uid://coj3b5umcrqrj" path="res://fonts/who asks satan.ttf" id="2_erqxl"]
 [ext_resource type="FontFile" uid="uid://e5joy43k1hda" path="res://fonts/Searle.ttf" id="3_t0k5l"]
+[ext_resource type="Texture2D" uid="uid://bfx04ksh3np0" path="res://assets/graphics/testSprites/ui/textbox.png" id="4_ca6ge"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhp74"]
 bg_color = Color(0.16470589, 0.10980392, 0.05490196, 0.6666667)
@@ -50,17 +51,23 @@ custom_minimum_size = Vector2(900, 180)
 layout_mode = 2
 
 [node name="NameLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer" unique_id=1971764601]
+z_index = 1
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.9843137, 0.83137256, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_erqxl")
 theme_override_font_sizes/font_size = 52
 text = "ALTAR"
 
 [node name="DialogueText" type="RichTextLabel" parent="Panel/MarginContainer/VBoxContainer" unique_id=667224188]
+z_index = 1
 layout_mode = 2
-theme_override_colors/default_color = Color(1, 0.9843137, 0.83137256, 1)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("3_t0k5l")
-theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/normal_font_size = 61
 bbcode_enabled = true
 text = "Hey sigma!"
 fit_content = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel/MarginContainer/VBoxContainer" unique_id=2065721034]
+position = Vector2(444, -78)
+texture = ExtResource("4_ca6ge")

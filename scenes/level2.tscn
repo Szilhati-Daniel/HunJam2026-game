@@ -34,7 +34,7 @@ shader_parameter/lightSmoothing = 0.0
 shader_parameter/screenSize = Vector2(2, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_63e4f"]
-bg_color = Color(0.16470589, 0.10980392, 0.05490196, 0.6666667)
+bg_color = Color(0, 0, 0, 1)
 border_color = Color(0.8, 0.8, 0.8, 0)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_63e4f"]
