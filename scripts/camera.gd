@@ -34,7 +34,7 @@ func _process(delta: float) -> void:
 	center_target = player.position + center_offset
 	actual_center = center_target
 	
-	var min_dst = 1000.0
+	var min_dst = 10000000.0
 	
 	for focus_point in camera_focus_points:
 		if !focus_point:
