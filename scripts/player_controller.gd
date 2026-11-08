@@ -28,11 +28,18 @@ var nearby_interactable: Node3D = null
 @export var can_move: bool = true
 var changing_scene = false
 
+@onready var boink_sound: AudioStreamPlayer3D = $Sounds/Boink_Hit
+@onready var move1_sound: AudioStreamPlayer3D = $Sounds/Move1
+@onready var move2_sound: AudioStreamPlayer3D = $Sounds/Move2
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$AnimationPlayer.play("RESET")
 	staff = get_node_or_null("Staff") as Node3D
 	health = SceneDataManager.player_health
+	move1_sound.volume_db = 9.0
+	move2_sound.volume_db = 9.0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -52,15 +59,20 @@ func _process(delta: float) -> void:
 	
 	if Input.is_key_pressed(KEY_A):
 		velocity.x -= 1.0
+		move2_sound.play()
 	if Input.is_key_pressed(KEY_D):
 		velocity.x += 1.0
+		move2_sound.play()
 	if Input.is_key_pressed(KEY_W):
 		velocity.z -= 1.0
+		move1_sound.play()
 	if Input.is_key_pressed(KEY_S):
 		velocity.z += 1.0
+		move1_sound.play()
 		
 	if Input.is_key_pressed(KEY_SPACE):
 		staff.boink(last_direction)
+		boink_sound.play()
 	
 	var delta_pos_x = Vector3(velocity.normalized().x, 0, 0) * movement_speed * delta
 	var delta_pos_z = Vector3(0, 0, velocity.normalized().z) * movement_speed * delta
