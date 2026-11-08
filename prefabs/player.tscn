@@ -8,6 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://bl0i572k45xr6" path="res://assets/graphics/testSprites/player/idle/right_sketch/player_idle_right.png" id="6_dw050"]
 [ext_resource type="Texture2D" uid="uid://0v7vwnctjode" path="res://assets/graphics/testSprites/ui/stars.png" id="7_u51tk"]
 [ext_resource type="PackedScene" uid="uid://c7tjk38uwtkay" path="res://prefabs/orbiting_staff_default.tscn" id="8_kbsxf"]
+[ext_resource type="AudioStream" uid="uid://b0gucnl6dvvvo" path="res://sounds/final_hit.mp3" id="9_8rb0w"]
+[ext_resource type="AudioStream" uid="uid://bh3hayreu6p8c" path="res://sounds/final_move1.mp3" id="10_sd3sa"]
+[ext_resource type="AudioStream" uid="uid://dohmun3m211nu" path="res://sounds/final_move2.mp3" id="11_m2qjg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
 
@@ -191,5 +194,16 @@ visible = false
 texture = ExtResource("7_u51tk")
 
 [node name="Staff" parent="." unique_id=219690096 instance=ExtResource("8_kbsxf")]
+
+[node name="Sounds" type="Node" parent="." unique_id=1172468304]
+
+[node name="Boink_Hit" type="AudioStreamPlayer3D" parent="Sounds" unique_id=1186204602]
+stream = ExtResource("9_8rb0w")
+
+[node name="Move1" type="AudioStreamPlayer3D" parent="Sounds" unique_id=1634111090]
+stream = ExtResource("10_sd3sa")
+
+[node name="Move2" type="AudioStreamPlayer3D" parent="Sounds" unique_id=1324630288]
+stream = ExtResource("11_m2qjg")
 
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

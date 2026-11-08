@@ -1,9 +1,9 @@
 extends Node3D
 
 @export var orbit_radius : float = 0.6
-@export var orbit_speed : float = 1.5
+@export var orbit_speed : float = 2.0
 @export var base_height : float = 1.5
-@export var attack_cooldown : float = 0
+@export var attack_cooldown : float = 0.4
 @export var damage : float = 25
 
 var angle : float = 0.0

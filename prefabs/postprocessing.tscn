@@ -13,6 +13,7 @@ shader_parameter/treshold = 0.5
 script = ExtResource("1_a8hbr")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1810065379]
+z_index = 99
 material = SubResource("ShaderMaterial_g4v7s")
 anchors_preset = 15
 anchor_right = 1.0

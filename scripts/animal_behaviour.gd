@@ -9,8 +9,8 @@ enum Behaviour {
 
 @export var reaction_distance : float = 6.0
 @export var attack_distance : float = 2
-@export var movement_speed : float = 1.0
-@export var idle_movement_speed : float = 2.0
+@export var movement_speed : float = 4.0
+@export var idle_movement_speed : float = 5.0
 @export var damage : float = 10.0
 @export var attack_cooldown : float = 1.0
 @export var health : float = 100.0
@@ -39,6 +39,8 @@ var can_attack : bool = true
 @onready var face_away: Sprite3D = $Sprites/Facing_Away
 @onready var face_left: Sprite3D = $Sprites/Facing_Left
 @onready var face_right: Sprite3D = $Sprites/Facing_Right
+
+@onready var attack_sound: AudioStreamPlayer3D = $Sounds/Attack
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -172,6 +174,7 @@ func attack_player() -> void:
 	if not can_attack:
 		return
 	play_hit_animation()
+	attack_sound.play()
 	can_attack = false
 	player.take_damage(damage)
 	await get_tree().create_timer(attack_cooldown).timeout

@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 @export_range(0.1, 100.0, 0.01)
-var movement_speed = 4.0
+var movement_speed = 5.0
 var health = 100.0
 var last_direction = Vector3(0,0,1) # so that it starts out facing camera
 
@@ -30,11 +30,18 @@ var nearby_interactable: Node3D = null
 var changing_scene = false
 @export var superior_direction: Vector3 = Vector3.ZERO
 
+@onready var boink_sound: AudioStreamPlayer3D = $Sounds/Boink_Hit
+@onready var move1_sound: AudioStreamPlayer3D = $Sounds/Move1
+@onready var move2_sound: AudioStreamPlayer3D = $Sounds/Move2
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$AnimationPlayer.play("RESET")
 	staff = get_node_or_null("Staff") as Node3D
 	health = SceneDataManager.player_health
+	move1_sound.volume_db = 9.0
+	move2_sound.volume_db = 9.0
 
 func update_direction():
 	if superior_direction != Vector3.ZERO:
@@ -62,14 +69,19 @@ func _process(delta: float) -> void:
 	
 	if Input.is_key_pressed(KEY_A):
 		velocity.x -= 1.0
+		move2_sound.play()
 	if Input.is_key_pressed(KEY_D):
 		velocity.x += 1.0
+		move2_sound.play()
 	if Input.is_key_pressed(KEY_W):
 		velocity.z -= 1.0
+		move1_sound.play()
 	if Input.is_key_pressed(KEY_S):
 		velocity.z += 1.0
+		move1_sound.play()
 		
 	if Input.is_key_pressed(KEY_SPACE):
+		boink_sound.play()
 		staff.boink(last_direction)
 	
 	var delta_pos_x = Vector3(velocity.normalized().x, 0, 0) * movement_speed * delta
