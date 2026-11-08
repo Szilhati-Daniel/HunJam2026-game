@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://nthbmfmgmb4a" path="res://assets/graphics/testSprites/rabbit/idle_sketch/rabbit_idle_up.png" id="3_vd578"]
 [ext_resource type="Texture2D" uid="uid://dbbswdth1jc68" path="res://assets/graphics/testSprites/rabbit/idle_sketch/rabbit_idle_right.png" id="4_nl27k"]
 [ext_resource type="Texture2D" uid="uid://c2k3lmf2m4u0x" path="res://assets/graphics/testSprites/rabbit/idle_sketch/rabbit_idle_left.png" id="5_obynr"]
+[ext_resource type="Texture2D" uid="uid://0v7vwnctjode" path="res://assets/graphics/testSprites/ui/stars.png" id="6_lryi0"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_g4v7s"]
 
@@ -26,6 +27,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(1, 1, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:can_move")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_x7ohf"]
 resource_name = "boink"
@@ -42,6 +55,9 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(1, 0.8, 1), Vector3(1, 1, 1)]
 }
+
+[sub_resource type="Animation" id="Animation_hisla"]
+resource_name = "get_hit"
 
 [sub_resource type="Animation" id="Animation_lryi0"]
 resource_name = "init"
@@ -62,6 +78,7 @@ tracks/0/keys = {
 _data = {
 &"RESET": SubResource("Animation_5dwmj"),
 &"boink": SubResource("Animation_x7ohf"),
+&"get_hit": SubResource("Animation_hisla"),
 &"init": SubResource("Animation_lryi0")
 }
 
@@ -101,3 +118,6 @@ texture = ExtResource("5_obynr")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1767770837]
 libraries/ = SubResource("AnimationLibrary_x7ohf")
+
+[node name="Stars" type="Sprite3D" parent="." unique_id=545554922]
+texture = ExtResource("6_lryi0")

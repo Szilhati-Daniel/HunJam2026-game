@@ -21,6 +21,8 @@ enum Behaviour {
 #for when idle center is created:
 @export var idle_area_radius : float = 5.0
 
+@export var can_move: bool = true
+
 var idle_timer : float = 0.0
 var is_idle_waiting : bool = true
 var idle_center_point : Vector3
@@ -74,8 +76,10 @@ func _physics_process(delta: float) -> void:
 			Behaviour.AGGRESSIVE:
 				aggressive(distance)
 		velocity = velocity.normalized() * movement_speed
-	change_sprite(velocity)
-	move_and_slide()
+	
+	if can_move:
+		change_sprite(velocity)
+		move_and_slide()
 
 func find_player() -> void:
 	var main = get_tree().current_scene

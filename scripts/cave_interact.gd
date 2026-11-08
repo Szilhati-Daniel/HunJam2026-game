@@ -1,7 +1,9 @@
 extends Node3D
 
-@onready var textbox = get_node("/root/Node3D/CanvasLayer/TextBox")
-@onready var prompt = get_node("/root/Node3D/CanvasLayer/InteractionPrompt")
+@export
+var textbox: Control
+@export
+var prompt: Control
 
 var player_nearby = false
 
