@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://645nm88o5tkc"]
+
+[node name="HealthBar" type="Node3D" unique_id=596134817]
+
+[node name="Background" type="Sprite3D" parent="." unique_id=161643442]
+
+[node name="Fill" type="Sprite3D" parent="." unique_id=1654556975]
