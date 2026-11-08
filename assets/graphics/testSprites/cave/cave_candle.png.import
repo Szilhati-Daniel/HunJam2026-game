@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bw3ahngjch3tu"
-path="res://.godot/imported/cave_candle.png-c10c102e74bc683a323b10b52f8587d0.ctex"
+path="res://.godot/imported/cave_candle.png-f4d0497056c0952dd5007c3f527904e7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/testSprites/items/paint/cave_candle.png"
-dest_files=["res://.godot/imported/cave_candle.png-c10c102e74bc683a323b10b52f8587d0.ctex"]
+source_file="res://assets/graphics/testSprites/cave/cave_candle.png"
+dest_files=["res://.godot/imported/cave_candle.png-f4d0497056c0952dd5007c3f527904e7.ctex"]
 
 [params]
 
