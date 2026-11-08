@@ -46,6 +46,9 @@ size = Vector3(1, 5.6625977, 6.6083984)
 [node name="altar_scene" type="Node3D" unique_id=399075566]
 script = ExtResource("1_xfrg3")
 
+[node name="altar" parent="." unique_id=1204404280 instance=ExtResource("12_8lpc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08710861, 0, -4.608044)
+
 [node name="Camera" parent="." unique_id=1052899663 node_paths=PackedStringArray("player") instance=ExtResource("2_gje6g")]
 player = NodePath("../Player")
 have_bounds = true
@@ -109,14 +112,6 @@ shape = SubResource("BoxShape3D_g4v7s")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Scenery/Cave_node/Area3D" unique_id=1818170555]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.46513057, -2.7650967, 0)
 shape = SubResource("SphereShape3D_g4v7s")
-
-[node name="Cave" type="Sprite3D" parent="Scenery" unique_id=200700113]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.55692, -4.5626564)
-visible = false
-texture = ExtResource("9_786bs")
-
-[node name="altar" parent="Scenery" unique_id=1204404280 instance=ExtResource("12_8lpc5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08710861, 0, -4.608044)
 
 [node name="rock3" parent="Scenery" unique_id=240688656 instance=ExtResource("19_xfrg3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9383965, 0, -4.280762)

@@ -1,5 +1,14 @@
 extends Node3D
 
+
+enum AltarState {
+	NORMAL,
+	CANDLE,
+	ROPE,
+	PAINT,
+	FACE
+}
+
 var player_position_from_scene: Dictionary[String, Vector3] = {
 	"default": Vector3(0, 0, 0),
 	"level1": Vector3(-7.75, 0, -2.4),
@@ -7,15 +16,22 @@ var player_position_from_scene: Dictionary[String, Vector3] = {
 }
 
 @export var load_from_level: String = "default"
-@export var has_candle: bool = false
-@export var has_rope: bool = false
-@export var has_paint: bool = false
 
 @onready var player = get_node("Player")
 
 func _ready():
 	var new_player_position = player_position_from_scene.get(load_from_level)
 	player.position = new_player_position
+	update_sprite()
+
+func update_sprite():
+	if !SceneDataManager.has_candle:
+		return
+	if SceneDataManager.has_rope:
+		$altar.state = AltarState.CANDLE
+	if SceneDataManager.has_paint:
+		$altar.state = AltarState.ROPE
+	$altar.update_sprite()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

@@ -97,6 +97,7 @@ text = "Interact: E"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.259, 0, -17.724)
 script = ExtResource("9_dxn3v")
 prompt = NodePath("../../CanvasLayer/InteractionPrompt")
+item_name = "candle"
 
 [node name="Area3D" type="Area3D" parent="perimeter/pedestal" unique_id=1887657309 groups=["interactable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00016593933, 0, -0.0004043579)

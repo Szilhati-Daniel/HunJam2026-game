@@ -145,9 +145,6 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 		
 		if scene_name != "altar_scene":
 			new_scene.load_from_level = scene_name
-			new_scene.has_candle = SceneDataManager.has_candle
-			new_scene.has_rope = SceneDataManager.has_rope
-			new_scene.has_paint = SceneDataManager.has_paint
 		
 		SceneLoader.change_scene.call_deferred(new_scene)
 

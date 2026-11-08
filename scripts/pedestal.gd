@@ -3,6 +3,7 @@ extends Node3D
 @export var textbox: Control
 @export var prompt: Control
 @onready var item = $item
+@export var item_name: String
 
 var player_nearby = false
 
@@ -26,3 +27,12 @@ func _on_body_exited(body):
 		
 func interact():
 	item.hide()
+	update_data()
+	
+func update_data():
+	if item_name == "candle":
+		SceneDataManager.has_candle = true
+	elif item_name == "rope":
+		SceneDataManager.has_rope = true
+	elif item_name == "paint":
+		SceneDataManager.has_paint = true
