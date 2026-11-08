@@ -23,14 +23,13 @@ func show_line():
 	name_label.text = dialogue_lines[current_line][0]
 	dialogue_text.text = dialogue_lines[current_line][1]
 
-func _input(event):
+func advance_dialogue() -> void:
 	if not visible:
 		return
+		
+	current_line += 1
 
-	if event.is_action_pressed("ui_accept"):
-		current_line += 1
-
-		if current_line >= dialogue_lines.size():
-			visible = false
-		else:
-			show_line()
+	if current_line >= dialogue_lines.size():
+		visible = false
+	else:
+		show_line()

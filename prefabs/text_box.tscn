@@ -7,22 +7,28 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = -97.0
+offset_right = 7.0
+offset_bottom = -97.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_aqod8")
 
 [node name="Panel" type="Panel" parent="." unique_id=1769249997]
-custom_minimum_size = Vector2(900, 180)
+custom_minimum_size = Vector2(500, 90)
+custom_maximum_size = Vector2(10000, 10000)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -40.0
-offset_right = 20.0
+offset_left = -450.0
+offset_top = -123.0
+offset_right = 450.0
+offset_bottom = 35.0
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -33,6 +39,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=1121903103]
+custom_minimum_size = Vector2(900, 180)
 layout_mode = 2
 
 [node name="NameLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer" unique_id=1971764601]
