@@ -12,16 +12,17 @@ var camera = $"Camera/Camera3D"
 func _process(delta: float) -> void:
 	process_node(self)
 	
+	var shader = color_rect.material
+	var screen_size = get_viewport().size
+	shader.set_shader_parameter("screenSize", screen_size)
+	
 	if light_source:
-		var shader = color_rect.material
-		var screen_size = get_viewport().size
 		
 		var light_position = camera.unproject_position(light_source.global_position)
 		light_position /= Vector2(screen_size)
 		light_position -= Vector2(0.5, 0.5)
 		
 		shader.set_shader_parameter("lightCentre", light_position)
-		shader.set_shader_parameter("screenSize", screen_size)
 
 func process_node(node: Node3D):
 	for sprite in node.get_children():

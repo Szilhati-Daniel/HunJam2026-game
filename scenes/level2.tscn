@@ -53,9 +53,8 @@ size = Vector3(1, 3.6483154, 5.666992)
 [sub_resource type="BoxShape3D" id="BoxShape3D_wi6ju"]
 size = Vector3(20.47107, 5.668091, 1)
 
-[node name="level2" type="Node3D" unique_id=488317995 node_paths=PackedStringArray("light_source")]
+[node name="level2" type="Node3D" unique_id=488317995]
 script = ExtResource("1_hrcei")
-light_source = NodePath("Player/Staff")
 
 [node name="Node3D" type="Node3D" parent="." unique_id=1923978696]
 

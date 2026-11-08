@@ -3,6 +3,7 @@ shader_type canvas_item;
 uniform vec4 brightColour = vec4(1.0, 0.9843137255, 0.8313725490, 1.0);
 uniform vec4 darkColour = vec4(0.1647058824, 0.1098039216, 0.0549019608, 1.0);
 uniform float treshold = 0.67;
+uniform bool invert = false;
 
 uniform vec2 lightCentre = vec2(0.0, 0.0);
 uniform float lightRadius = 0.25;
@@ -40,6 +41,7 @@ void fragment() {
 	float healthBar = calculateHealthBar(SCREEN_UV * screenSize);
 	float lightness = calculateLightness(correctedUV);
 	float brightness = calculateBrightness(colour);
-	vec4 finalColour = mix(darkColour, brightColour, brightness * min(lightness + healthBar, 1.0));
+	float factor = brightness * min(lightness + healthBar, 1.0);
+	vec4 finalColour = mix(darkColour, brightColour, invert ? 1.0 - factor : factor);
 	COLOR = finalColour;
 }
