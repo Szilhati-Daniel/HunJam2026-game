@@ -15,6 +15,14 @@ var target_scenes: Dictionary[String, PackedScene]
 
 @onready var staff : Node3D
 
+@onready var health_bar: Control = $HealthBar
+@onready var camera: Camera3D = get_viewport().get_camera_3d()
+
+@export var healthbar_height: float = 4.0
+
+@onready var health_bar_progress: ProgressBar = $HealthBar/Panel/ProgressBar
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$AnimationPlayer.play("init")
@@ -44,6 +52,7 @@ func _process(delta: float) -> void:
 	
 	move_and_collide(delta_pos_x)
 	move_and_collide(delta_pos_z)
+	#update_healthbar_position()
 
 func change_sprite(direction : Vector3) -> void:
 	if direction != Vector3.ZERO:
@@ -68,12 +77,29 @@ func change_sprite(direction : Vector3) -> void:
 func take_damage(damage : float) -> void:
 	#print("Oh no im dying :(")
 	health -= damage
+	health_bar_progress.value = health
 	#print("\t current health: ", health)
 	if health <= 0:
 		death()
 		
 func get_boinked():
 	$AnimationPlayer.play("boink")
+	
+"""func update_healthbar_position() -> void:
+	var head_position = global_position + Vector3.UP * healthbar_height
+
+	if camera.is_position_behind(head_position):
+		health_bar.hide()
+		return
+
+	health_bar.show()
+
+	var screen_position = camera.unproject_position(head_position)
+
+	health_bar.global_position = Vector2(
+		screen_position.x - 120,
+		screen_position.y - 12.5
+	)"""
 
 func death() -> void:
 	#TODO kill, i mean implement
