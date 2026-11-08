@@ -19,12 +19,14 @@
 [ext_resource type="PackedScene" uid="uid://ifncu6d54gsp" path="res://prefabs/trigger.tscn" id="16_a114e"]
 [ext_resource type="Script" uid="uid://cyewqiw2ghwgd" path="res://scripts/pedestal.gd" id="16_s4dsi"]
 [ext_resource type="Texture2D" uid="uid://umvxxj3f80uv" path="res://assets/graphics/testSprites/items/paint/paint.png" id="18_07lh1"]
+[ext_resource type="PackedScene" uid="uid://collv4k2p7eml" path="res://prefabs/animal.tscn" id="20_6uuvf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6qt4k"]
 shader = ExtResource("2_6lxtr")
 shader_parameter/brightColour = Vector4(1, 0.9843137, 0.83137256, 1)
 shader_parameter/darkColour = Vector4(0.16470589, 0.10980392, 0.05490196, 1)
 shader_parameter/treshold = 0.67
+shader_parameter/invert = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6uuvf"]
 bg_color = Color(0.16470589, 0.10980392, 0.05490196, 0.6666667)
@@ -356,3 +358,33 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00016593933, 0, -0.0004043
 [node name="item" type="Sprite3D" parent="pedestal2" unique_id=971039117]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2674358, -0.01020813)
 texture = ExtResource("18_07lh1")
+
+[node name="Animal" parent="." unique_id=630367358 instance=ExtResource("20_6uuvf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.388578, 0, 15.274464)
+
+[node name="Animal2" parent="." unique_id=1352101002 instance=ExtResource("20_6uuvf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.01507, 0, -21.173796)
+
+[node name="Animal3" parent="." unique_id=1869663250 instance=ExtResource("20_6uuvf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.23478, 0, -13.539911)
+
+[node name="Animal4" parent="." unique_id=985581616 instance=ExtResource("20_6uuvf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.24545, 0, -4.803026)
+
+[node name="Animal5" parent="." unique_id=1859286742 instance=ExtResource("20_6uuvf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.149536, 0, 13.729789)
+
+[node name="Animal6" parent="." unique_id=408559768 instance=ExtResource("20_6uuvf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.554157, 0, 27.959473)
+
+[node name="Animal7" parent="." unique_id=1306986791 instance=ExtResource("20_6uuvf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6783447, 0, 29.70038)
+
+[node name="Animal8" parent="." unique_id=2082784631 instance=ExtResource("20_6uuvf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 85.399155, 0, 32.164337)
+
+[node name="Animal9" parent="." unique_id=831110334 instance=ExtResource("20_6uuvf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76.95267, 0, -29.323248)
+
+[node name="Animal10" parent="." unique_id=828363075 instance=ExtResource("20_6uuvf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.469414, 0, -5.749012)
