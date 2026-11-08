@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://khygwya4baqo"]
+
+[ext_resource type="Texture2D" uid="uid://cbimu51ak0may" path="res://assets/graphics/testSprites/mushroom/mushrooms.png" id="1_qu3iw"]
+
+[node name="mushrooms" type="Node3D" unique_id=88573394]
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=998149392]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.8286128, 0)
+texture = ExtResource("1_qu3iw")

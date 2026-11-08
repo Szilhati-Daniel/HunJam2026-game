@@ -34,7 +34,7 @@ shader_parameter/treshold = 0.67
 [sub_resource type="BoxShape3D" id="BoxShape3D_xrivr"]
 size = Vector3(1, 5.6625977, 6.6083984)
 
-[node name="Node3D" type="Node3D" unique_id=399075566]
+[node name="altar_scene" type="Node3D" unique_id=399075566]
 script = ExtResource("1_af0aq")
 
 [node name="Camera" parent="." unique_id=1052899663 node_paths=PackedStringArray("player") instance=ExtResource("2_gje6g")]
@@ -48,13 +48,14 @@ transform = Transform3D(94.179214, 0, 0, 0, 1.986177, 0, 0, 0, 93.19406, 0, 0, -
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1715215167]
 transform = Transform3D(1, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, 0, 14.906595, 16.28323)
 
-[node name="Player" parent="." unique_id=752145659 node_paths=PackedStringArray("target_scenes") instance=ExtResource("4_v35yo")]
+[node name="Player" parent="." unique_id=752145659 instance=ExtResource("4_v35yo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.031551123, 0)
-target_scenes = {
-NodePath("../toLevel1"): ExtResource("5_b42ur"),
-NodePath("../toLevel2"): ExtResource("6_8olkb"),
-NodePath("../toLevel3"): ExtResource("7_5h1p3")
-}
+movement_speed = 10.0
+target_scenes = Dictionary[String, PackedScene]({
+"toLevel1": ExtResource("5_b42ur"),
+"toLevel2": ExtResource("6_8olkb"),
+"toLevel3": ExtResource("7_5h1p3")
+})
 
 [node name="Staff" parent="Player" unique_id=727086820 instance=ExtResource("6_cjwkg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.85480857, 1, 0)

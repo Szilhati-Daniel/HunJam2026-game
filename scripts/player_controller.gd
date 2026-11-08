@@ -1,12 +1,12 @@
 extends CharacterBody3D
 
-@export_range(0.1, 5.0, 0.01)
+@export_range(0.1, 100.0, 0.01)
 var movement_speed = 4.0
 var health = 100.0
 var last_direction = Vector3(0,0,1) # so that it starts out facing camera
 
 @export
-var target_scenes: Dictionary[Node3D, PackedScene]
+var target_scenes: Dictionary[String, PackedScene]
 
 @onready var face_towards: Sprite3D = $Sprites/Facing_Towards
 @onready var face_away: Sprite3D = $Sprites/Facing_Away
@@ -81,16 +81,24 @@ func death() -> void:
 
 func _on_area_3d_area_entered(area: Area3D) -> void:
 	if not area.is_in_group("trigger"):
-		pass
+		return
+	
+	var scene_name = get_tree().current_scene.name
+	
+	var trigger_name = area.get_parent_node_3d().name
+	SceneLoader.load_scene(scene_name, trigger_name)
+	return
 	
 	print("trigger")
+	print(target_scenes)
 	var trigger = area.get_parent_node_3d()
-	print(trigger)
+	print(trigger.name)
+	print(target_scenes.get(trigger.name))
 	print(target_scenes)
 	
-	if target_scenes.has(trigger):
+	if target_scenes.has(trigger.name):
 		print("found it")
-		var new_scene = target_scenes.get(trigger).instantiate()
+		var new_scene = target_scenes.get(trigger.name).instantiate()
 		print(new_scene)
 		await get_tree().change_scene_to_node(new_scene)
 	
