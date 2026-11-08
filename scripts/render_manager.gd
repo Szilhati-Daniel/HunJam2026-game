@@ -1,7 +1,7 @@
 extends Node3D
 
 @export
-var light_source: Node3D
+var player: Node3D
 
 @onready
 var color_rect = $"CanvasLayer/ColorRect"
@@ -16,7 +16,8 @@ func _process(delta: float) -> void:
 	var screen_size = get_viewport().size
 	shader.set_shader_parameter("screenSize", screen_size)
 	
-	if light_source:
+	if player:
+		var light_source = get_node(str(player.get_path()) + "/Staff")
 		
 		var light_position = camera.unproject_position(light_source.global_position)
 		light_position /= Vector2(screen_size)
