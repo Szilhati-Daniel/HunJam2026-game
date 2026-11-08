@@ -25,8 +25,6 @@ func _process(delta: float) -> void:
 		var light_source = get_node(str(player.get_path()) + "/Staff")
 		
 		var light_position = camera.unproject_position(light_source.global_position)
-		light_position /= Vector2(screen_size)
-		light_position -= Vector2(0.5, 0.5)
 		
 		shader.set_shader_parameter("lightCentre", light_position)
 

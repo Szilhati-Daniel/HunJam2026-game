@@ -29,7 +29,7 @@ shader_parameter/darkColour = Vector4(0.16470589, 0.10980392, 0.05490196, 1)
 shader_parameter/treshold = 0.67
 shader_parameter/invert = false
 shader_parameter/lightCentre = Vector2(0, 0)
-shader_parameter/lightRadius = 0.25
+shader_parameter/lightRadius = 275.0
 shader_parameter/lightSmoothing = 0.0
 shader_parameter/screenSize = Vector2(2, 1)
 

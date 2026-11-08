@@ -6,7 +6,7 @@ uniform float treshold = 0.67;
 uniform bool invert = false;
 
 uniform vec2 lightCentre = vec2(0.0, 0.0);
-uniform float lightRadius = 0.25;
+uniform float lightRadius = 125.0;
 uniform float lightSmoothing = 0.0;
 
 uniform vec2 screenSize = vec2(1.0, 1.0);
@@ -36,10 +36,10 @@ float calculateBrightness(vec4 colour) {
 
 void fragment() {
 	float aspectRatio = SCREEN_PIXEL_SIZE.x / SCREEN_PIXEL_SIZE.y;
-	vec2 correctedUV = (SCREEN_UV - 0.5) / vec2(aspectRatio, 1.0);
+	vec2 screenPosition = SCREEN_UV * screenSize;
     vec4 colour = textureLod(screen_texture, SCREEN_UV, 0.0);
-	float healthBar = calculateHealthBar(SCREEN_UV * screenSize);
-	float lightness = calculateLightness(correctedUV);
+	float healthBar = calculateHealthBar(screenPosition);
+	float lightness = calculateLightness(screenPosition);
 	float brightness = calculateBrightness(colour);
 	float factor = brightness * min(lightness + healthBar, 1.0);
 	vec4 finalColour = mix(darkColour, brightColour, invert ? 1.0 - factor : factor);
