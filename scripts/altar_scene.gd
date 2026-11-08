@@ -23,6 +23,7 @@ var player_position_from_scene: Dictionary[String, Vector3] = {
 @onready var throat_sound = $Sounds/AudioStreamPlayer
 
 func sing():
+	throat_sound.volume_db = 20
 	throat_sound.play()
 
 func _ready():
