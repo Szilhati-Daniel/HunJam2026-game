@@ -8,6 +8,11 @@ var last_direction = Vector3(0,0,1) # so that it starts out facing camera
 @export
 var target_scenes: Dictionary[String, PackedScene]
 
+@export
+var textbox: Control
+@export
+var interaction_prompt: Control
+
 @onready var face_towards: Sprite3D = $Sprites/Facing_Towards
 @onready var face_away: Sprite3D = $Sprites/Facing_Away
 @onready var face_left: Sprite3D = $Sprites/Facing_Left
@@ -16,8 +21,6 @@ var target_scenes: Dictionary[String, PackedScene]
 @onready var staff : Node3D
 
 var nearby_interactable: Node3D = null
-@onready var interaction_prompt = get_node("/root/Node3D/CanvasLayer/InteractionPrompt")
-@onready var textbox = get_node("/root/Node3D/CanvasLayer/TextBox")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -48,8 +51,6 @@ func _process(delta: float) -> void:
 		
 	if Input.is_key_pressed(KEY_SPACE):
 		staff.boink(last_direction)
-		
-		
 	
 	var delta_pos_x = Vector3(velocity.normalized().x, 0, 0) * movement_speed * delta
 	var delta_pos_z = Vector3(0, 0, velocity.normalized().z) * movement_speed * delta
@@ -98,29 +99,28 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 		nearby_interactable = area.get_parent_node_3d()
 		interaction_prompt.show()
 	elif not area.is_in_group("trigger"):
-		pass
+		return
 	
 	var scene_name = get_tree().current_scene.name
 	
-	if target_scenes.has(trigger):
-		print("found it")
-		var new_scene = target_scenes.get(trigger).instantiate()
-		print(new_scene)
-		await get_tree().change_scene_to_node(new_scene)
-		
+	var trigger_name = area.get_parent_node_3d().name
+	var new_scene = SceneLoader.load_scene(scene_name, trigger_name)
+	
+	if scene_name != "altar_scene":
+		new_scene.load_from_level = scene_name
+		new_scene.has_candle = SceneDataManager.has_candle
+		new_scene.has_rope = SceneDataManager.has_rope
+		new_scene.has_paint = SceneDataManager.has_paint
+	
+	SceneLoader.change_scene(new_scene)
 
-			
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
 		if event.keycode == KEY_E:
-
 			if nearby_interactable == null:
 				return
-
 			if not textbox.visible:
 				nearby_interactable.interact()
 			else:
 				textbox.advance_dialogue()
-
 			get_viewport().set_input_as_handled()
-	

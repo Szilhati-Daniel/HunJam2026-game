@@ -11,6 +11,7 @@ var camera = $"Camera/Camera3D"
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	process_node(self)
+	
 	if light_source:
 		var shader = color_rect.material
 		var screen_size = get_viewport().size

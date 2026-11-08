@@ -12,10 +12,10 @@
 [ext_resource type="Shader" uid="uid://yj5dns15m5u0" path="res://shaders/postprocessing.gdshader" id="8_5h1p3"]
 [ext_resource type="Texture2D" uid="uid://b6alwxys2dbiq" path="res://assets/graphics/testSprites/cave/cave.png" id="9_786bs"]
 [ext_resource type="Texture2D" uid="uid://bl4uw37f0jg4a" path="res://assets/graphics/testSprites/bush/bush.png" id="11_b8cub"]
+[ext_resource type="PackedScene" uid="uid://catas0elpp3ra" path="res://prefabs/altar.tscn" id="12_8lpc5"]
 [ext_resource type="PackedScene" uid="uid://dvnkgqgu2wtm6" path="res://prefabs/text_box.tscn" id="12_786bs"]
 [ext_resource type="FontFile" uid="uid://1s6ich2jr5m4" path="res://fonts/Wizards' Magic.ttf" id="12_miw16"]
 [ext_resource type="Script" uid="uid://b17d73qth1gdm" path="res://scripts/cave_interact.gd" id="12_rhp74"]
-[ext_resource type="PackedScene" uid="uid://catas0elpp3ra" path="res://prefabs/altar.tscn" id="12_8lpc5"]
 [ext_resource type="PackedScene" uid="uid://b4cejqpifqcui" path="res://prefabs/scenery.tscn" id="13_ru16j"]
 [ext_resource type="PackedScene" uid="uid://bqrvaceax4pov" path="res://prefabs/fence.tscn" id="14_5h1p3"]
 [ext_resource type="PackedScene" uid="uid://bo37okb6sqbok" path="res://prefabs/tree.tscn" id="15_786bs"]
@@ -44,8 +44,6 @@ size = Vector3(16.424622, 9.698181, 1.1611938)
 [sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
 radius = 4.0719104
 
-[node name="Node3D" type="Node3D" unique_id=399075566]
-script = ExtResource("1_af0aq")
 [sub_resource type="BoxShape3D" id="BoxShape3D_xrivr"]
 size = Vector3(1, 5.6625977, 6.6083984)
 
@@ -63,7 +61,7 @@ transform = Transform3D(94.179214, 0, 0, 0, 1.986177, 0, 0, 0, 93.19406, 0, 0, -
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1715215167]
 transform = Transform3D(1, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, 0, 14.906595, 16.28323)
 
-[node name="Player" parent="." unique_id=752145659 instance=ExtResource("4_v35yo")]
+[node name="Player" parent="." unique_id=752145659 node_paths=PackedStringArray("textbox", "interaction_prompt") instance=ExtResource("4_v35yo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.031551123, 8)
 movement_speed = 10.0
 target_scenes = Dictionary[String, PackedScene]({
@@ -71,6 +69,8 @@ target_scenes = Dictionary[String, PackedScene]({
 "toLevel2": ExtResource("6_8olkb"),
 "toLevel3": ExtResource("7_5h1p3")
 })
+textbox = NodePath("../CanvasLayer/TextBox")
+interaction_prompt = NodePath("../CanvasLayer/InteractionPrompt")
 
 [node name="Staff" parent="Player" unique_id=727086820 instance=ExtResource("6_cjwkg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.85480857, 1, 0)
@@ -101,9 +101,11 @@ text = "Talk: E"
 
 [node name="Scenery" type="Node3D" parent="." unique_id=1295124109]
 
-[node name="Cave_node" type="Node3D" parent="Scenery" unique_id=1806133385]
+[node name="Cave_node" type="Node3D" parent="Scenery" unique_id=1806133385 node_paths=PackedStringArray("textbox", "prompt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.83274126, 5.5568895, -4.5190225)
 script = ExtResource("12_rhp74")
+textbox = NodePath("../../CanvasLayer/TextBox")
+prompt = NodePath("../../CanvasLayer/InteractionPrompt")
 
 [node name="Cave" type="Sprite3D" parent="Scenery/Cave_node" unique_id=1490182735]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.83274126, 1.0000305, -0.043633938)
@@ -120,7 +122,8 @@ shape = SubResource("BoxShape3D_g4v7s")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Scenery/Cave_node/Area3D" unique_id=1818170555]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.46513057, -2.7650967, 0)
 shape = SubResource("SphereShape3D_g4v7s")
-[node name="Cave" type="Sprite3D" parent="Scenery" unique_id=1490182735]
+
+[node name="Cave" type="Sprite3D" parent="Scenery" unique_id=200700113]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.55692, -4.5626564)
 visible = false
 texture = ExtResource("9_786bs")
