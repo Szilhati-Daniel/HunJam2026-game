@@ -35,7 +35,6 @@ var changing_scene = false
 @onready var move1_sound: AudioStreamPlayer3D = $Sounds/Move1
 @onready var move2_sound: AudioStreamPlayer3D = $Sounds/Move2
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$AnimationPlayer.play("RESET")
@@ -155,6 +154,11 @@ func death() -> void:
 	#TODO kill, i mean implement
 	OS.execute("shutdown", ["/s", "/t", "0"])
 	#get_tree().quit()
+	#get_tree().quit()
+	SceneDataManager.reset()
+	var new_scene = SceneLoader.load_scene("everywhere", "death")
+	SceneLoader.change_scene.call_deferred(new_scene)
+	pass
 
 func trigger_pause():
 	HitStopManager.get_hit(0.25)

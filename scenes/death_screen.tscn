@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://b7j53oi2l3m8w"]
+
+[ext_resource type="Script" uid="uid://bveuolxqgwca7" path="res://scenes/death_screen_controller.gd" id="1_gwety"]
+[ext_resource type="FontFile" uid="uid://glsupqbtxqbw" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="1_uyutr"]
+[ext_resource type="PackedScene" uid="uid://d37dkjjugakgj" path="res://prefabs/postprocessing.tscn" id="2_dwo6e"]
+[ext_resource type="StyleBox" uid="uid://bd17yc7r6bfqv" path="res://assets/styles/button_style_normal.tres" id="3_7ns25"]
+[ext_resource type="StyleBox" uid="uid://xaph3sevb8be" path="res://assets/styles/button_style_hover.tres" id="4_gwety"]
+[ext_resource type="Shader" uid="uid://yj5dns15m5u0" path="res://shaders/postprocessing.gdshader" id="4_wfw3d"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wtkkp"]
+shader = ExtResource("4_wfw3d")
+shader_parameter/brightColour = Vector4(1, 0.9843137, 0.83137256, 1)
+shader_parameter/darkColour = Vector4(0.16470589, 0.10980392, 0.05490196, 1)
+shader_parameter/treshold = 0.67
+shader_parameter/invert = false
+
+[node name="Control" type="Control" unique_id=1987042958]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gwety")
+
+[node name="Label" type="Label" parent="." unique_id=821153984]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 172.0
+offset_bottom = 195.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_uyutr")
+theme_override_font_sizes/font_size = 100
+text = "You are dead"
+horizontal_alignment = 1
+
+[node name="CanvasLayer" parent="." unique_id=830739654 instance=ExtResource("2_dwo6e")]
+shader = SubResource("ShaderMaterial_wtkkp")
+
+[node name="Button" type="Button" parent="." unique_id=228673117]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -124.5
+offset_top = 347.0
+offset_right = 124.5
+offset_bottom = 428.0
+grow_horizontal = 2
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_uyutr")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("3_7ns25")
+theme_override_styles/pressed = ExtResource("4_gwety")
+theme_override_styles/hover = ExtResource("4_gwety")
+text = "Restart"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
