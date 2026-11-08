@@ -22,6 +22,8 @@ var target_dictionaries: Dictionary[String, Dictionary] = {
 
 func load_scene(scene_name: String, trigger_name: String) -> Node:
 	var target_dict = target_dictionaries.get(scene_name)
+	if not target_dict.has(trigger_name):
+		return
 	var new_scene = target_dict.get(trigger_name).instantiate()
 	return new_scene
 	
