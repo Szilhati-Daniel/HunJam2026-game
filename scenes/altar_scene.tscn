@@ -37,7 +37,6 @@ shader_parameter/treshold = 0.67
 [sub_resource type="BoxShape3D" id="BoxShape3D_xrivr"]
 size = Vector3(1, 5.6625977, 6.6083984)
 
-[node name="altar_scene" type="Node3D" unique_id=399075566]
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_miw16"]
 bg_color = Color(0.16470589, 0.10980392, 0.05490196, 0.6666667)
 border_color = Color(0.8, 0.8, 0.8, 0)
