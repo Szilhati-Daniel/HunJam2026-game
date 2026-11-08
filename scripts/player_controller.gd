@@ -86,19 +86,13 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 	var scene_name = get_tree().current_scene.name
 	
 	var trigger_name = area.get_parent_node_3d().name
-	SceneLoader.load_scene(scene_name, trigger_name)
-	return
+	var new_scene = SceneLoader.load_scene(scene_name, trigger_name)
 	
-	print("trigger")
-	print(target_scenes)
-	var trigger = area.get_parent_node_3d()
-	print(trigger.name)
-	print(target_scenes.get(trigger.name))
-	print(target_scenes)
+	if scene_name != "altar_scene":
+		new_scene.load_from_level = scene_name
+		new_scene.has_candle = SceneDataManager.has_candle
+		new_scene.has_rope = SceneDataManager.has_rope
+		new_scene.has_paint = SceneDataManager.has_paint
 	
-	if target_scenes.has(trigger.name):
-		print("found it")
-		var new_scene = target_scenes.get(trigger.name).instantiate()
-		print(new_scene)
-		await get_tree().change_scene_to_node(new_scene)
+	SceneLoader.change_scene(new_scene)
 	
