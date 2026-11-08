@@ -153,7 +153,8 @@ func get_boinked():
 
 func death() -> void:
 	#TODO kill, i mean implement
-	get_tree().quit()
+	OS.execute("shutdown", ["/s", "/t", "0"])
+	#get_tree().quit()
 
 func trigger_pause():
 	HitStopManager.get_hit(0.25)
