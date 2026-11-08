@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://b6alwxys2dbiq" path="res://assets/graphics/testSprites/cave/cave.png" id="9_786bs"]
 [ext_resource type="Texture2D" uid="uid://bl4uw37f0jg4a" path="res://assets/graphics/testSprites/bush/bush.png" id="11_b8cub"]
 [ext_resource type="PackedScene" uid="uid://dvnkgqgu2wtm6" path="res://prefabs/text_box.tscn" id="12_786bs"]
+[ext_resource type="FontFile" uid="uid://1s6ich2jr5m4" path="res://fonts/Wizards' Magic.ttf" id="12_miw16"]
 [ext_resource type="Script" uid="uid://b17d73qth1gdm" path="res://scripts/cave_interact.gd" id="12_rhp74"]
 [ext_resource type="PackedScene" uid="uid://b4cejqpifqcui" path="res://prefabs/scenery.tscn" id="13_ru16j"]
 [ext_resource type="PackedScene" uid="uid://bqrvaceax4pov" path="res://prefabs/fence.tscn" id="14_5h1p3"]
@@ -34,6 +35,10 @@ shader = ExtResource("8_5h1p3")
 shader_parameter/brightColour = Vector4(1, 0.9843137, 0.83137256, 1)
 shader_parameter/darkColour = Vector4(0.16470589, 0.10980392, 0.05490196, 1)
 shader_parameter/treshold = 0.67
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_miw16"]
+bg_color = Color(0.16470589, 0.10980392, 0.05490196, 0.6666667)
+border_color = Color(0.8, 0.8, 0.8, 0)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
 size = Vector3(16.424622, 9.698181, 1.1611938)
@@ -71,16 +76,20 @@ shader = SubResource("ShaderMaterial_fs4dc")
 [node name="TextBox" parent="CanvasLayer" unique_id=191808093 instance=ExtResource("12_786bs")]
 
 [node name="InteractionPrompt" type="Panel" parent="CanvasLayer" unique_id=451521124]
-offset_left = 457.0
-offset_top = 137.0
-offset_right = 568.0
-offset_bottom = 177.0
+offset_left = 458.0
+offset_top = 127.0
+offset_right = 571.0
+offset_bottom = 181.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_miw16")
 
 [node name="Label" type="Label" parent="CanvasLayer/InteractionPrompt" unique_id=586759941]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-theme_override_colors/font_color = Color(0.7181006, 1.4679879e-06, 6.738305e-07, 1)
+offset_left = 4.0
+offset_top = 16.0
+offset_right = 106.0
+offset_bottom = 59.0
+theme_override_colors/font_color = Color(1, 0.9843137, 0.83137256, 1)
+theme_override_fonts/font = ExtResource("12_miw16")
 theme_override_font_sizes/font_size = 30
 text = "Talk: E"
 

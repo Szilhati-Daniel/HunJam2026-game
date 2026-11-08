@@ -1,6 +1,11 @@
 [gd_scene format=3 uid="uid://dvnkgqgu2wtm6"]
 
 [ext_resource type="Script" uid="uid://ds6imem0kvqo5" path="res://scripts/textbox_dialogue.gd" id="1_aqod8"]
+[ext_resource type="FontFile" uid="uid://coj3b5umcrqrj" path="res://fonts/who asks satan.ttf" id="2_erqxl"]
+[ext_resource type="FontFile" uid="uid://e5joy43k1hda" path="res://fonts/Searle.ttf" id="3_t0k5l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhp74"]
+bg_color = Color(0.16470589, 0.10980392, 0.05490196, 0.6666667)
 
 [node name="TextBox" type="Control" unique_id=191808093]
 layout_mode = 3
@@ -31,12 +36,14 @@ offset_right = 450.0
 offset_bottom = 35.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_rhp74")
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=2029480126]
-custom_minimum_size = Vector2(20, 20)
+custom_maximum_size = Vector2(1000, 1000)
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 900.0
+offset_bottom = 180.0
+theme_override_constants/margin_left = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=1121903103]
 custom_minimum_size = Vector2(900, 180)
@@ -44,13 +51,16 @@ layout_mode = 2
 
 [node name="NameLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer" unique_id=1971764601]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.12941177, 0.32941177, 1)
-theme_override_font_sizes/font_size = 32
-text = "Character Name"
+theme_override_colors/font_color = Color(1, 0.9843137, 0.83137256, 1)
+theme_override_fonts/font = ExtResource("2_erqxl")
+theme_override_font_sizes/font_size = 52
+text = "ALTAR"
 
 [node name="DialogueText" type="RichTextLabel" parent="Panel/MarginContainer/VBoxContainer" unique_id=667224188]
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 26
+theme_override_colors/default_color = Color(1, 0.9843137, 0.83137256, 1)
+theme_override_fonts/normal_font = ExtResource("3_t0k5l")
+theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "Hey sigma!"
 fit_content = true
