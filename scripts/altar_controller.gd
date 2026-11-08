@@ -17,7 +17,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	update_sprite()
 
 func change_altar_state(new_state: AltarState):
 	if state == new_state:

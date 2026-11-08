@@ -26,6 +26,8 @@ func _ready():
 	var new_player_position = player_position_from_scene.get(load_from_level)
 	player.position = new_player_position
 	update_sprite()
+	
+	$AnimationPlayer.play("end_cutscene")
 
 func update_sprite():
 	if !SceneDataManager.has_candle:

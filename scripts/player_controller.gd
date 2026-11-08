@@ -16,6 +16,7 @@ var interaction_prompt: Control
 @onready var face_right: Sprite3D = $Sprites/Facing_Right
 
 @onready var staff : Node3D
+@export var has_staff = true
 
 var nearby_interactable: Node3D = null
 @onready var health_bar: Control = $HealthBar
@@ -27,6 +28,7 @@ var nearby_interactable: Node3D = null
 
 @export var can_move: bool = true
 var changing_scene = false
+@export var superior_direction: Vector3 = Vector3.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -34,8 +36,16 @@ func _ready() -> void:
 	staff = get_node_or_null("Staff") as Node3D
 	health = SceneDataManager.player_health
 
+func update_direction():
+	if superior_direction != Vector3.ZERO:
+		change_sprite(superior_direction)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	$Staff.visible = has_staff
+		
+	update_direction()
+	
 	health_bar_progress.value = health
 	
 	var velocity = Vector3()
