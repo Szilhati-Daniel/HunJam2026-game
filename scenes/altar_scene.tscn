@@ -1,0 +1,546 @@
+[gd_scene format=3 uid="uid://d38oiseso0r5s"]
+
+[ext_resource type="Script" uid="uid://bdcfhscv7dq3l" path="res://scripts/altar_scene.gd" id="1_xfrg3"]
+[ext_resource type="PackedScene" uid="uid://cvfk2js6u40yc" path="res://prefabs/camera.tscn" id="2_gje6g"]
+[ext_resource type="PackedScene" uid="uid://vwfn42666ns4" path="res://prefabs/scene_geometry.tscn" id="3_ru16j"]
+[ext_resource type="PackedScene" uid="uid://ciwtxush3fuib" path="res://prefabs/player.tscn" id="4_v35yo"]
+[ext_resource type="PackedScene" uid="uid://d37dkjjugakgj" path="res://prefabs/postprocessing.tscn" id="7_8olkb"]
+[ext_resource type="Shader" uid="uid://yj5dns15m5u0" path="res://shaders/postprocessing.gdshader" id="8_5h1p3"]
+[ext_resource type="Texture2D" uid="uid://bl4uw37f0jg4a" path="res://assets/graphics/testSprites/bush/bush.png" id="11_b8cub"]
+[ext_resource type="PackedScene" uid="uid://catas0elpp3ra" path="res://prefabs/altar.tscn" id="12_8lpc5"]
+[ext_resource type="PackedScene" uid="uid://dvnkgqgu2wtm6" path="res://prefabs/text_box.tscn" id="12_786bs"]
+[ext_resource type="FontFile" uid="uid://1s6ich2jr5m4" path="res://fonts/Wizards' Magic.ttf" id="12_miw16"]
+[ext_resource type="Script" uid="uid://b17d73qth1gdm" path="res://scripts/cave_interact.gd" id="12_rhp74"]
+[ext_resource type="PackedScene" uid="uid://b4cejqpifqcui" path="res://prefabs/scenery.tscn" id="13_ru16j"]
+[ext_resource type="PackedScene" uid="uid://bqrvaceax4pov" path="res://prefabs/fence.tscn" id="14_5h1p3"]
+[ext_resource type="PackedScene" uid="uid://bo37okb6sqbok" path="res://prefabs/tree.tscn" id="15_786bs"]
+[ext_resource type="PackedScene" uid="uid://ifncu6d54gsp" path="res://prefabs/trigger.tscn" id="15_v35yo"]
+[ext_resource type="PackedScene" uid="uid://bqfeix08xvhi0" path="res://prefabs/pointy_rock.tscn" id="17_b8cub"]
+[ext_resource type="PackedScene" uid="uid://b47f7fjowlx02" path="res://prefabs/big_rock.tscn" id="18_rlco6"]
+[ext_resource type="PackedScene" uid="uid://b0d3k430w1vpu" path="res://prefabs/rock.tscn" id="19_xfrg3"]
+[ext_resource type="PackedScene" uid="uid://dc56pw7wjiak3" path="res://prefabs/broken_fence.tscn" id="22_8lpc5"]
+[ext_resource type="PackedScene" uid="uid://bo8se43ums6fj" path="res://prefabs/very_big_rock.tscn" id="22_ooqja"]
+[ext_resource type="PackedScene" uid="uid://bq1mpoq7bqyfp" path="res://prefabs/grass.tscn" id="22_rhp74"]
+[ext_resource type="PackedScene" uid="uid://ewd4a2hdbtk7" path="res://prefabs/oak_tree.tscn" id="23_miw16"]
+[ext_resource type="Texture2D" uid="uid://b5n7o64cuf8uo" path="res://assets/graphics/testSprites/items/candle/candle.png" id="24_xfrg3"]
+[ext_resource type="Texture2D" uid="uid://7eoxii7h6lol" path="res://assets/graphics/testSprites/cave/sacrefice_decoration.png" id="25_c3nnj"]
+[ext_resource type="AudioStream" uid="uid://d020t4cn1tb74" path="res://sounds/!final_cutscene.mp3" id="25_ooqja"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fs4dc"]
+shader = ExtResource("8_5h1p3")
+shader_parameter/brightColour = Vector4(1, 0.9843137, 0.83137256, 1)
+shader_parameter/darkColour = Vector4(0.16470589, 0.10980392, 0.05490196, 1)
+shader_parameter/treshold = 0.67
+shader_parameter/invert = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_miw16"]
+bg_color = Color(0, 0, 0, 1)
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(16.424622, 9.698181, 1.1611938)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
+radius = 4.0719104
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xrivr"]
+size = Vector3(1, 5.6625977, 6.6083984)
+
+[sub_resource type="Animation" id="Animation_xfrg3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:can_move")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera:focus_treshold")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [5.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Player:superior_direction")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("camera focus:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.9458375, 7.5184307, -5.386132)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Player:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.6630578, 0, -1.2115536)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasLayer:invert_colours")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sacrefice:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("altar:state")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Player:has_staff")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Candles:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_c3nnj"]
+resource_name = "end_cutscene"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:can_move")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera:focus_treshold")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1000.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Player:superior_direction")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("camera focus:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.6120992, 1.8905945, -5.386132), Vector3(1.7063689, 5.0125904, -5.386132)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Player:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.6630578, 0, -1.2115536)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasLayer:invert_colours")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1, 1.13, 1.29, 1.6, 2.02, 2.24, 3.16, 3.22, 3.29, 3.54, 3.96, 5.02, 6.02, 6.09, 6.29, 6.45, 6.66, 6.85, 7.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sacrefice:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(2.24),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("altar:state")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 5.03),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 4]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Player:has_staff")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 1.61),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Candles:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/10/type = "method"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath(".")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(5.0333333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"sing"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ooqja"]
+_data = {
+&"RESET": SubResource("Animation_xfrg3"),
+&"end_cutscene": SubResource("Animation_c3nnj")
+}
+
+[node name="altar_scene" type="Node3D" unique_id=399075566]
+script = ExtResource("1_xfrg3")
+
+[node name="altar" parent="." unique_id=1204404280 instance=ExtResource("12_8lpc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08710861, 0, -4.608044)
+
+[node name="Camera" parent="." unique_id=1052899663 node_paths=PackedStringArray("player", "camera_focus_points") instance=ExtResource("2_gje6g")]
+player = NodePath("../Player")
+have_bounds = true
+bounds = Vector4(-3, 4, -1, 5)
+camera_focus_points = [NodePath("../camera focus"), null]
+
+[node name="Floor" parent="." unique_id=258324324 instance=ExtResource("3_ru16j")]
+transform = Transform3D(94.179214, 0, 0, 0, 1.986177, 0, 0, 0, 93.19406, 0, 0, -24.522484)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1715215167]
+transform = Transform3D(1, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, 0, 14.906595, 16.28323)
+
+[node name="Player" parent="." unique_id=752145659 node_paths=PackedStringArray("textbox", "interaction_prompt") instance=ExtResource("4_v35yo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6630578, 0, -1.2115536)
+movement_speed = 10.0
+textbox = NodePath("../CanvasLayer/TextBox")
+interaction_prompt = NodePath("../CanvasLayer/InteractionPrompt")
+can_move = true
+
+[node name="CanvasLayer" parent="." unique_id=830739654 instance=ExtResource("7_8olkb")]
+shader = SubResource("ShaderMaterial_fs4dc")
+
+[node name="TextBox" parent="CanvasLayer" unique_id=191808093 instance=ExtResource("12_786bs")]
+visible = false
+
+[node name="InteractionPrompt" type="Panel" parent="CanvasLayer" unique_id=451521124]
+visible = false
+offset_left = 458.0
+offset_top = 127.0
+offset_right = 571.0
+offset_bottom = 181.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_miw16")
+
+[node name="Label" type="Label" parent="CanvasLayer/InteractionPrompt" unique_id=586759941]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 16.0
+offset_right = 106.0
+offset_bottom = 59.0
+theme_override_colors/font_color = Color(1, 0.9843137, 0.83137256, 1)
+theme_override_fonts/font = ExtResource("12_miw16")
+theme_override_font_sizes/font_size = 30
+text = "Talk: E"
+
+[node name="Scenery" type="Node3D" parent="." unique_id=1295124109]
+
+[node name="Cave_node" type="Node3D" parent="Scenery" unique_id=1806133385 node_paths=PackedStringArray("textbox", "prompt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.83274126, 5.5568895, -4.5190225)
+script = ExtResource("12_rhp74")
+textbox = NodePath("../../CanvasLayer/TextBox")
+prompt = NodePath("../../CanvasLayer/InteractionPrompt")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Scenery/Cave_node" unique_id=1427649143]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Scenery/Cave_node/StaticBody3D" unique_id=1515506343]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3113098, -0.6986389, 0.080596924)
+shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="Area3D" type="Area3D" parent="Scenery/Cave_node" unique_id=2074173499 groups=["interactable"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Scenery/Cave_node/Area3D" unique_id=1818170555]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.46513057, -2.7650967, 0)
+shape = SubResource("SphereShape3D_g4v7s")
+
+[node name="rock3" parent="Scenery" unique_id=240688656 instance=ExtResource("19_xfrg3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9383965, 0, -4.280762)
+
+[node name="bush" type="Sprite3D" parent="Scenery" unique_id=1632721527]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.019477, 1.3601422, -4.434863)
+texture = ExtResource("11_b8cub")
+
+[node name="Fence" parent="Scenery" unique_id=1573263111 instance=ExtResource("14_5h1p3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.483, 0, -10)
+
+[node name="Fence2" parent="Scenery" unique_id=1650758249 instance=ExtResource("14_5h1p3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.08, 0, -10.2)
+
+[node name="Tree" parent="Scenery" unique_id=1385436313 instance=ExtResource("15_786bs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.597, 0, -12)
+
+[node name="bush2" type="Sprite3D" parent="Scenery" unique_id=133905552]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.443457, 1.0481539, -11.419669)
+texture = ExtResource("11_b8cub")
+
+[node name="pointy rock2" parent="Scenery" unique_id=1072402386 instance=ExtResource("17_b8cub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6273937, 0, -6.4669743)
+
+[node name="big rock" parent="Scenery" unique_id=821766989 instance=ExtResource("18_rlco6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.245315, 0, -8.494219)
+
+[node name="very big rock" parent="Scenery" unique_id=1000508796 instance=ExtResource("22_ooqja")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6530657, 0, -9.72843)
+
+[node name="broken fence" parent="Scenery" unique_id=2028076470 instance=ExtResource("22_8lpc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.505203, 0, -3.3038688)
+
+[node name="Oak tree" parent="Scenery" unique_id=166263153 instance=ExtResource("23_miw16")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.082188, 0, -4.4200363)
+
+[node name="Tree3" parent="Scenery" unique_id=1930772652 instance=ExtResource("15_786bs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.462541, 0, 0.19367504)
+
+[node name="Fence3" parent="Scenery" unique_id=1180805340 instance=ExtResource("14_5h1p3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.587251, 0, -4.048847)
+
+[node name="broken fence2" parent="Scenery" unique_id=1324553835 instance=ExtResource("22_8lpc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.385141, 0, -0.41960526)
+flip_H = true
+
+[node name="Grass" parent="Scenery" unique_id=257434752 instance=ExtResource("22_rhp74")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.0629487, 0, -3.9434996)
+
+[node name="Grass2" parent="Scenery" unique_id=939753990 instance=ExtResource("22_rhp74")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.574884, 0, 1.3047428)
+
+[node name="Grass3" parent="Scenery" unique_id=1901299129 instance=ExtResource("22_rhp74")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.2975187, 0, -0.8921423)
+
+[node name="pointy rock" parent="Scenery" unique_id=1085582968 instance=ExtResource("17_b8cub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.9123125, 0, 3.6269712)
+
+[node name="pointy rock3" parent="Scenery" unique_id=49198009 instance=ExtResource("17_b8cub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.765718, 0, 9.747212)
+
+[node name="pointy rock4" parent="Scenery" unique_id=1826902788 instance=ExtResource("17_b8cub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1345854, 0, 9.715802)
+
+[node name="big rock2" parent="Scenery" unique_id=158190341 instance=ExtResource("18_rlco6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.432911, 0, 5.5104923)
+
+[node name="big rock3" parent="Scenery" unique_id=1228529385 instance=ExtResource("18_rlco6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1047764, 0, 7.6874967)
+
+[node name="pointy rock5" parent="Scenery" unique_id=1972069026 instance=ExtResource("17_b8cub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.964435, 0, 6.796951)
+
+[node name="pointy rock6" parent="Scenery" unique_id=1341863392 instance=ExtResource("17_b8cub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.10336, 0, 8.78238)
+
+[node name="big rock4" parent="Scenery" unique_id=616841639 instance=ExtResource("18_rlco6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.499485, 0, 9.836348)
+
+[node name="big rock5" parent="Scenery" unique_id=901761272 instance=ExtResource("18_rlco6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.1277523, 0, 7.7215514)
+
+[node name="pointy rock7" parent="Scenery" unique_id=1162614642 instance=ExtResource("17_b8cub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.912406, 0, 6.289091)
+
+[node name="Oak tree2" parent="Scenery" unique_id=736020892 instance=ExtResource("23_miw16")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.126654, 0, 6.7362003)
+
+[node name="Fence4" parent="Scenery" unique_id=505998814 instance=ExtResource("14_5h1p3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.711359, 0, -0.5630493)
+
+[node name="bush4" parent="Scenery" unique_id=375418285 instance=ExtResource("13_ru16j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.342417, 1.1103067, 5.635708)
+texture = ExtResource("11_b8cub")
+
+[node name="big rock6" parent="Scenery" unique_id=891959459 instance=ExtResource("18_rlco6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.786776, 0, 10.718537)
+
+[node name="Fence5" parent="Scenery" unique_id=1732198712 instance=ExtResource("14_5h1p3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.119934, 0, -3.9408321)
+
+[node name="Collisions" type="StaticBody3D" parent="." unique_id=1334358070]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions" unique_id=1796392968]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.472885, 2.3312988, 2.8041992)
+shape = SubResource("BoxShape3D_xrivr")
+
+[node name="toLevel1" parent="." unique_id=2018339637 instance=ExtResource("15_v35yo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.442573, 0, -2.2638865)
+
+[node name="toLevel2" parent="." unique_id=2056591594 instance=ExtResource("15_v35yo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2708721, 0, 9.978792)
+
+[node name="toLevel3" parent="." unique_id=1126567623 instance=ExtResource("15_v35yo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.778187, 0, -2.3389246)
+
+[node name="Candles" type="Node3D" parent="." unique_id=1465427325]
+
+[node name="candle" type="Sprite3D" parent="Candles" unique_id=1740245299]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6950834, 0.5, -0.9378259)
+texture = ExtResource("24_xfrg3")
+
+[node name="candle2" type="Sprite3D" parent="Candles" unique_id=566530537]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.285878, 0.5, -0.7534648)
+texture = ExtResource("24_xfrg3")
+
+[node name="candle3" type="Sprite3D" parent="Candles" unique_id=106386934]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5493183, 0.5, -2.1372397)
+texture = ExtResource("24_xfrg3")
+
+[node name="candle4" type="Sprite3D" parent="Candles" unique_id=1555266315]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5779303, 0.5, 0.26859403)
+texture = ExtResource("24_xfrg3")
+
+[node name="candle5" type="Sprite3D" parent="Candles" unique_id=1810323441]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.984516, 0.5, 0.35162985)
+texture = ExtResource("24_xfrg3")
+
+[node name="candle6" type="Sprite3D" parent="Candles" unique_id=1010868411]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.449676, 0.5, -2.1485195)
+texture = ExtResource("24_xfrg3")
+
+[node name="Sacrefice" type="Sprite3D" parent="." unique_id=383093524]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.596336, 0.009999582, -9.436298)
+texture = ExtResource("25_c3nnj")
+
+[node name="camera focus" type="Node3D" parent="." unique_id=1437996616]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9458375, 7.5184307, -5.386132)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=468305998]
+libraries/ = SubResource("AnimationLibrary_ooqja")
+
+[node name="Sounds" type="Node" parent="." unique_id=548138969]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Sounds" unique_id=1287560592]
+stream = ExtResource("25_ooqja")
+
+[node name="pointy rock" parent="." unique_id=2053466105 instance=ExtResource("17_b8cub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.250587, 0, 8.557695)
+
+[node name="pointy rock2" parent="." unique_id=1639811943 instance=ExtResource("17_b8cub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9568224, 0, -1.620285)

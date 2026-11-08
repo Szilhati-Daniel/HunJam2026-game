@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://catas0elpp3ra"]
+
+[ext_resource type="Texture2D" uid="uid://b6alwxys2dbiq" path="res://assets/graphics/testSprites/cave/cave.png" id="1_86qfe"]
+[ext_resource type="Script" uid="uid://bocp8i4y742c6" path="res://scripts/altar_controller.gd" id="1_qhqrw"]
+[ext_resource type="Texture2D" uid="uid://bw3ahngjch3tu" path="res://assets/graphics/testSprites/cave/cave_candle.png" id="2_qhqrw"]
+[ext_resource type="Texture2D" uid="uid://bi3wpswkxqp2" path="res://assets/graphics/testSprites/cave/cave_rope.png" id="3_6mbmk"]
+[ext_resource type="Texture2D" uid="uid://dqtto45e8nuji" path="res://assets/graphics/testSprites/cave/cave_paint.png" id="4_t3ic8"]
+[ext_resource type="Texture2D" uid="uid://56obhecyf11t" path="res://assets/graphics/testSprites/cave/cave_face.png" id="5_jso26"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xrivr"]
+size = Vector3(16.45166, 11.09906, 1)
+
+[node name="altar" type="StaticBody3D" unique_id=1204404280]
+script = ExtResource("1_qhqrw")
+
+[node name="Sprites" type="Node3D" parent="." unique_id=1994579190]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.330444, 0)
+
+[node name="normal" type="Sprite3D" parent="Sprites" unique_id=523287112]
+texture = ExtResource("1_86qfe")
+
+[node name="candle" type="Sprite3D" parent="Sprites" unique_id=1414120915]
+visible = false
+texture = ExtResource("2_qhqrw")
+
+[node name="rope" type="Sprite3D" parent="Sprites" unique_id=1328982764]
+visible = false
+texture = ExtResource("3_6mbmk")
+
+[node name="paint" type="Sprite3D" parent="Sprites" unique_id=61618307]
+visible = false
+texture = ExtResource("4_t3ic8")
+
+[node name="face" type="Sprite3D" parent="Sprites" unique_id=1542703432]
+visible = false
+texture = ExtResource("5_jso26")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=317373222]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.65600586, 5.6368713, 0)
+shape = SubResource("BoxShape3D_xrivr")

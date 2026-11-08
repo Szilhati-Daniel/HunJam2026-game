@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dmg624a10pok7"]
+
+[ext_resource type="Script" uid="uid://c6hs5ey6p5qq1" path="res://scripts/mushrooms.gd" id="1_qgim4"]
+[ext_resource type="Texture2D" uid="uid://dwefe45nfwkpg" path="res://assets/graphics/testSprites/mushroom/mushroom.png" id="1_vlfr3"]
+[ext_resource type="Texture2D" uid="uid://cbimu51ak0may" path="res://assets/graphics/testSprites/mushroom/mushrooms.png" id="2_3cirx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(0.4777832, 0.50634766, 0.2876587)
+
+[node name="Mushroom" type="CharacterBody3D" unique_id=645287546]
+script = ExtResource("1_qgim4")
+
+[node name="mushroom" type="Sprite3D" parent="." unique_id=190065956]
+transform = Transform3D(0.33, 0, 0, 0, 0.33, 0, 0, 0, 0.33, 0, 0.60786724, 0)
+texture = ExtResource("1_vlfr3")
+
+[node name="mushrooms" type="Sprite3D" parent="." unique_id=371077010]
+transform = Transform3D(0.33, 0, 0, 0, 0.33, 0, 0, 0, 0.33, 0, 0.5098487, 0)
+visible = false
+texture = ExtResource("2_3cirx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=447851196]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.014770508, 0.24682617, -0.011871338)
+shape = SubResource("BoxShape3D_g4v7s")
+disabled = true

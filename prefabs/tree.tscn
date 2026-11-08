@@ -1,9 +1,12 @@
 [gd_scene format=3 uid="uid://bo37okb6sqbok"]
 
-[ext_resource type="Texture2D" uid="uid://byvfdyquuot0v" path="res://assets/graphics/testSprites/tree/tree.png" id="1_odf6j"]
+[ext_resource type="Texture2D" uid="uid://uncp7wehqtrj" path="res://assets/graphics/testSprites/tree/tree.png" id="1_odf6j"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
-height = 3.217041
+[sub_resource type="BoxShape3D" id="BoxShape3D_bo4dx"]
+size = Vector3(0.8087158, 2.3200684, 0.1463623)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(2.2235107, 0.34362793, 0.28619385)
 
 [node name="Tree" type="CharacterBody3D" unique_id=1385436313]
 
@@ -12,5 +15,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.510998, 0)
 texture = ExtResource("1_odf6j")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1247964478]
-transform = Transform3D(0.74655974, 0.6653184, 0, -0.6653184, 0.74655974, 0, 0, 0, 1, -0.13538645, 1.0752109, 0)
-shape = SubResource("CapsuleShape3D_g4v7s")
+transform = Transform3D(0.74655974, 0.6653184, 0, -0.6653184, 0.74655974, 0, 0, 0, 1, -0.11918937, 0.9582553, 0.06744385)
+shape = SubResource("BoxShape3D_bo4dx")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=1026685668]
+transform = Transform3D(0.91788834, -0.39683896, 0, 0.39683896, 0.91788834, 0, 0, 0, 1, -1.7401161, 0.42487115, -0.016998291)
+shape = SubResource("BoxShape3D_g4v7s")

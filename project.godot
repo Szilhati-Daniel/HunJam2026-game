@@ -10,10 +10,17 @@ config_version=5
 
 [application]
 
-config/name="godotGame"
-run/main_scene="uid://d38oiseso0r5s"
+config/name="Happy bunnies"
+config/version="1.0"
+run/main_scene="uid://d3yyi6d5mwe2m"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+SceneLoader="*uid://c67okb4xpfumm"
+SceneDataManager="*uid://crrriglkep4bd"
+HitStopManager="*uid://cpkj4gh67otaa"
 
 [display]
 

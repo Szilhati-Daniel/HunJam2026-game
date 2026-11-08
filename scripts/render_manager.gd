@@ -1,9 +1,49 @@
 extends Node3D
 
+@export
+var player: Node3D
+
+@onready
+var color_rect = $"CanvasLayer/ColorRect"
+@onready
+var camera = $"Camera/Camera3D"
+
+var can_start_flicker = true
+
+func _ready():
+	$AnimationPlayer.play("init_flicker")
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	process_node(self)
+	
+	var shader = color_rect.material
+	var screen_size = get_viewport().size
+	shader.set_shader_parameter("screenSize", screen_size)
+	
+	if player:
+		var light_source = get_node(str(player.get_path()) + "/Staff")
+		
+		var light_position = camera.unproject_position(light_source.global_position)
+		light_position /= Vector2(1152.0, 648.0)
+		light_position *= Vector2(screen_size)
+		
+		shader.set_shader_parameter("lightCentre", light_position)
 
+func _physics_process(delta):
+	await start_periodic_flicker()
+
+func start_periodic_flicker():
+	if !can_start_flicker:
+		return
+	
+	can_start_flicker = false
+	var duration = randf_range(10, 30)
+	await get_tree().create_timer(duration).timeout
+	$AnimationPlayer.play("periodic_flicker")
+	await $AnimationPlayer.animation_finished
+	can_start_flicker = true
+	
 func process_node(node: Node3D):
 	for sprite in node.get_children():
 		if (sprite is Sprite3D):

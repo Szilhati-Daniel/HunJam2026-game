@@ -1,0 +1,355 @@
+[gd_scene format=3 uid="uid://c2lnoc3im5i6t"]
+
+[ext_resource type="PackedScene" uid="uid://ciwtxush3fuib" path="res://prefabs/player.tscn" id="1_2k3dv"]
+[ext_resource type="PackedScene" uid="uid://vwfn42666ns4" path="res://prefabs/scene_geometry.tscn" id="1_d6fun"]
+[ext_resource type="Script" uid="uid://bt7omhhaytxky" path="res://scripts/render_manager.gd" id="1_hrcei"]
+[ext_resource type="PackedScene" uid="uid://cvfk2js6u40yc" path="res://prefabs/camera.tscn" id="2_alqfr"]
+[ext_resource type="PackedScene" uid="uid://d37dkjjugakgj" path="res://prefabs/postprocessing.tscn" id="3_yqkch"]
+[ext_resource type="Shader" uid="uid://u8wxdxjtqp2p" path="res://shaders/postprocessing_cave.gdshader" id="6_hrcei"]
+[ext_resource type="FontFile" uid="uid://1s6ich2jr5m4" path="res://fonts/Wizards' Magic.ttf" id="6_s4es8"]
+[ext_resource type="Script" uid="uid://cyewqiw2ghwgd" path="res://scripts/pedestal.gd" id="7_24ks5"]
+[ext_resource type="PackedScene" uid="uid://bqfeix08xvhi0" path="res://prefabs/pointy_rock.tscn" id="8_bo4dx"]
+[ext_resource type="PackedScene" uid="uid://b4cejqpifqcui" path="res://prefabs/scenery.tscn" id="8_xa7n4"]
+[ext_resource type="Texture2D" uid="uid://c0dv0i7arjp3v" path="res://assets/graphics/testSprites/big_rock/wall.png" id="9_bo4dx"]
+[ext_resource type="Texture2D" uid="uid://j1atabpn604q" path="res://assets/graphics/testSprites/items/rope/rope.png" id="9_s4es8"]
+[ext_resource type="PackedScene" uid="uid://bo8se43ums6fj" path="res://prefabs/very_big_rock.tscn" id="11_76toy"]
+[ext_resource type="PackedScene" uid="uid://dmg624a10pok7" path="res://prefabs/mushroom.tscn" id="12_56gwk"]
+[ext_resource type="PackedScene" uid="uid://khygwya4baqo" path="res://prefabs/mushrooms.tscn" id="13_ve5ok"]
+[ext_resource type="PackedScene" uid="uid://b47f7fjowlx02" path="res://prefabs/big_rock.tscn" id="14_ve5ok"]
+[ext_resource type="PackedScene" uid="uid://b0d3k430w1vpu" path="res://prefabs/rock.tscn" id="15_cleqw"]
+[ext_resource type="PackedScene" uid="uid://v4y3ogwd7mg7" path="res://prefabs/pedestal.tscn" id="16_wvb8j"]
+[ext_resource type="Texture2D" uid="uid://b6alwxys2dbiq" path="res://assets/graphics/testSprites/cave/cave.png" id="17_g8vcy"]
+[ext_resource type="PackedScene" uid="uid://collv4k2p7eml" path="res://prefabs/animal.tscn" id="18_cqal4"]
+[ext_resource type="PackedScene" uid="uid://ifncu6d54gsp" path="res://prefabs/trigger.tscn" id="19_o3sye"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yqkch"]
+shader = ExtResource("6_hrcei")
+shader_parameter/brightColour = Vector4(1, 0.9843137, 0.83137256, 1)
+shader_parameter/darkColour = Vector4(0.16470589, 0.10980392, 0.05490196, 1)
+shader_parameter/treshold = 0.67
+shader_parameter/invert = false
+shader_parameter/lightCentre = Vector2(0, 0)
+shader_parameter/lightRadius = 275.0
+shader_parameter/lightSmoothing = 0.0
+shader_parameter/screenSize = Vector2(2, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_63e4f"]
+bg_color = Color(0, 0, 0, 1)
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_63e4f"]
+radius = 1.0857607
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xrivr"]
+size = Vector3(11.661499, 10.978699, 1.0108643)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_13qdw"]
+size = Vector3(1, 5.258789, 23.998413)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b1lj4"]
+size = Vector3(1, 8.983276, 23.70813)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_njqwk"]
+size = Vector3(1, 3.6483154, 5.666992)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wi6ju"]
+size = Vector3(20.47107, 5.668091, 1)
+
+[sub_resource type="Animation" id="Animation_s4es8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer:invert_colours")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_y6lc1"]
+resource_name = "init_flicker"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer:invert_colours")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4.02, 4.19, 4.7, 4.76, 4.88, 4.94),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_63e4f"]
+resource_name = "item_flicker"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer:invert_colours")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_ekhvm"]
+resource_name = "periodic_flicker"
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y6lc1"]
+_data = {
+&"RESET": SubResource("Animation_s4es8"),
+&"init_flicker": SubResource("Animation_y6lc1"),
+&"item_flicker": SubResource("Animation_63e4f"),
+&"periodic_flicker": SubResource("Animation_ekhvm")
+}
+
+[node name="level2" type="Node3D" unique_id=488317995 node_paths=PackedStringArray("player")]
+script = ExtResource("1_hrcei")
+player = NodePath("Player")
+
+[node name="Node3D" type="Node3D" parent="." unique_id=1923978696]
+
+[node name="Player" parent="." unique_id=752145659 node_paths=PackedStringArray("interaction_prompt") instance=ExtResource("1_2k3dv")]
+movement_speed = 10.0
+interaction_prompt = NodePath("../CanvasLayer/InteractionPrompt")
+can_move = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1606381182]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
+
+[node name="Camera" parent="." unique_id=1052899663 node_paths=PackedStringArray("player") instance=ExtResource("2_alqfr")]
+player = NodePath("../Player")
+have_bounds = true
+bounds = Vector4(-4.5, 4.2, 0.1, 18)
+
+[node name="CanvasLayer" parent="." unique_id=830739654 instance=ExtResource("3_yqkch")]
+shader = SubResource("ShaderMaterial_yqkch")
+
+[node name="InteractionPrompt" type="Panel" parent="CanvasLayer" unique_id=1385200743]
+offset_left = 458.0
+offset_top = 127.0
+offset_right = 631.0
+offset_bottom = 181.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_63e4f")
+
+[node name="Label" type="Label" parent="CanvasLayer/InteractionPrompt" unique_id=1449357577]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 16.0
+offset_right = 106.0
+offset_bottom = 59.0
+theme_override_colors/font_color = Color(1, 0.9843137, 0.83137256, 1)
+theme_override_fonts/font = ExtResource("6_s4es8")
+theme_override_font_sizes/font_size = 30
+text = "Interact: E"
+
+[node name="ground" parent="." unique_id=258324324 instance=ExtResource("1_d6fun")]
+transform = Transform3D(40, 0, 0, 0, 1, 0, 0, 0, 60, 1.1607356, 0, 28.978872)
+
+[node name="Scenery" type="Node3D" parent="." unique_id=466967058]
+
+[node name="pedestal" type="Node3D" parent="Scenery" unique_id=2089944145 node_paths=PackedStringArray("prompt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 20.5)
+script = ExtResource("7_24ks5")
+prompt = NodePath("../../CanvasLayer/InteractionPrompt")
+item_name = "rope"
+
+[node name="Area3D" type="Area3D" parent="Scenery/pedestal" unique_id=1668427649 groups=["interactable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00016593933, 0, -0.0004043579)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Scenery/pedestal/Area3D" unique_id=1398233812]
+shape = SubResource("SphereShape3D_63e4f")
+
+[node name="pedestal" parent="Scenery/pedestal" unique_id=1489384173 instance=ExtResource("16_wvb8j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00016593933, 0, -0.0004043579)
+
+[node name="item" type="Sprite3D" parent="Scenery/pedestal" unique_id=1359065246]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0643413, -0.01020813)
+texture = ExtResource("9_s4es8")
+
+[node name="pointy rock" parent="Scenery" unique_id=1072402386 instance=ExtResource("8_bo4dx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3894963, 0, -1.3036542)
+
+[node name="Scenery" parent="Scenery" unique_id=195264165 instance=ExtResource("8_xa7n4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.418022, 5.24058, -2.1260123)
+texture = ExtResource("9_bo4dx")
+
+[node name="Scenery2" parent="Scenery" unique_id=192853412 instance=ExtResource("8_xa7n4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.959508, 5.186631, -2.2201345)
+texture = ExtResource("9_bo4dx")
+
+[node name="pointy rock2" parent="Scenery" unique_id=1629614464 instance=ExtResource("8_bo4dx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7872539, 0, -1.5442152)
+
+[node name="very big rock" parent="Scenery" unique_id=1000508796 instance=ExtResource("11_76toy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.57146645, 0, 10.461851)
+
+[node name="mushroom" parent="Scenery" unique_id=1657481697 instance=ExtResource("12_56gwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3164124, 0.041474104, 13.09594)
+
+[node name="mushrooms" parent="Scenery" unique_id=1506670327 instance=ExtResource("13_ve5ok")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9099092, 0, 2.6278973)
+
+[node name="mushrooms2" parent="Scenery" unique_id=505773465 instance=ExtResource("13_ve5ok")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.957069, 0, 7.2747993)
+
+[node name="mushrooms3" parent="Scenery" unique_id=307465455 instance=ExtResource("13_ve5ok")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8145423, 0, 14.549421)
+
+[node name="big rock" parent="Scenery" unique_id=821766989 instance=ExtResource("14_ve5ok")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.471586, 0, 0)
+
+[node name="big rock2" parent="Scenery" unique_id=1435799228 instance=ExtResource("14_ve5ok")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.765376, 0, 3.6374607)
+
+[node name="big rock3" parent="Scenery" unique_id=2067675786 instance=ExtResource("14_ve5ok")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.441759, 0, 8.768151)
+
+[node name="pointy rock3" parent="Scenery" unique_id=1444115701 instance=ExtResource("8_bo4dx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.920246, 0, 6.282777)
+
+[node name="pointy rock4" parent="Scenery" unique_id=1271785721 instance=ExtResource("8_bo4dx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.95373, 0, 11.501728)
+
+[node name="big rock4" parent="Scenery" unique_id=1196532426 instance=ExtResource("14_ve5ok")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.614686, 0, 14.2979555)
+
+[node name="rock" parent="Scenery" unique_id=240688656 instance=ExtResource("15_cleqw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.699163, 0, 12.687922)
+
+[node name="big rock5" parent="Scenery" unique_id=1546129768 instance=ExtResource("14_ve5ok")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.154383, 0, 17.268663)
+
+[node name="pointy rock5" parent="Scenery" unique_id=173998830 instance=ExtResource("8_bo4dx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.864098, 0, 17.975119)
+
+[node name="mushroom2" parent="Scenery" unique_id=471017886 instance=ExtResource("12_56gwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1660986, 0, 21.89735)
+
+[node name="mushrooms4" parent="Scenery" unique_id=88573394 instance=ExtResource("13_ve5ok")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9744387, 0, 21.02773)
+
+[node name="big rock6" parent="Scenery" unique_id=1894765563 instance=ExtResource("14_ve5ok")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.682407, 0, 22.190813)
+
+[node name="pointy rock6" parent="Scenery" unique_id=1186979986 instance=ExtResource("8_bo4dx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.754283, 0, 20.392916)
+
+[node name="mushroom3" parent="Scenery" unique_id=554391981 instance=ExtResource("12_56gwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6629763, 0, 23.159458)
+
+[node name="big rock7" parent="Scenery" unique_id=465033812 instance=ExtResource("14_ve5ok")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.117844, 0, 21.241907)
+
+[node name="pointy rock7" parent="Scenery" unique_id=2114023656 instance=ExtResource("8_bo4dx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.818201, 0, 16.091543)
+
+[node name="big rock8" parent="Scenery" unique_id=767185137 instance=ExtResource("14_ve5ok")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.796658, 0, 0.30218124)
+
+[node name="big rock9" parent="Scenery" unique_id=1563518557 instance=ExtResource("14_ve5ok")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.857213, 0, 6.735367)
+
+[node name="big rock10" parent="Scenery" unique_id=1049435080 instance=ExtResource("14_ve5ok")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.772681, 0, 9.141657)
+
+[node name="big rock11" parent="Scenery" unique_id=965409801 instance=ExtResource("14_ve5ok")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.032131, 0, 12.933964)
+
+[node name="big rock12" parent="Scenery" unique_id=1077084503 instance=ExtResource("14_ve5ok")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.325092, 0, 20.266468)
+
+[node name="mushroom4" parent="Scenery" unique_id=464392811 instance=ExtResource("12_56gwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.947603, 0, 14.488117)
+
+[node name="pointy rock8" parent="Scenery" unique_id=75344106 instance=ExtResource("8_bo4dx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.636163, 0, 2.133668)
+
+[node name="pointy rock9" parent="Scenery" unique_id=2033768604 instance=ExtResource("8_bo4dx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.692314, 0, 3.813096)
+
+[node name="pointy rock10" parent="Scenery" unique_id=116419319 instance=ExtResource("8_bo4dx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.133439, 0, 16.808508)
+
+[node name="pointy rock11" parent="Scenery" unique_id=1908436067 instance=ExtResource("8_bo4dx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.74031, 0, 21.166647)
+
+[node name="rock2" parent="Scenery" unique_id=92303061 instance=ExtResource("15_cleqw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.720664, 0, 23.046604)
+
+[node name="mushrooms5" parent="Scenery" unique_id=178234369 instance=ExtResource("13_ve5ok")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3088326, 0, 15.883768)
+
+[node name="big rock13" parent="Scenery" unique_id=1601437904 instance=ExtResource("14_ve5ok")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.661296, 0, 24.101145)
+
+[node name="mushroom5" parent="Scenery" unique_id=985279241 instance=ExtResource("12_56gwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.271241, 0, 24.705156)
+
+[node name="pointy rock12" parent="Scenery" unique_id=168815872 instance=ExtResource("8_bo4dx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.713062, 0, 18.635242)
+
+[node name="mushrooms6" parent="Scenery" unique_id=292026176 instance=ExtResource("13_ve5ok")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2877216, 0, 23.400503)
+
+[node name="cave entrance" parent="Scenery" unique_id=1363672433 instance=ExtResource("8_xa7n4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3058081, 6.084421, -2.8286064)
+flip_h = true
+texture = ExtResource("17_g8vcy")
+
+[node name="collisions" type="StaticBody3D" parent="." unique_id=1028412372]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="collisions" unique_id=542840799]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.077942, 4.9893494, -2.360138)
+shape = SubResource("BoxShape3D_xrivr")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="collisions" unique_id=229438720]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.013716, 6.3188605, -2.4908028)
+shape = SubResource("BoxShape3D_xrivr")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="collisions" unique_id=1391910139]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.030287, 2.1293945, 8.536072)
+shape = SubResource("BoxShape3D_13qdw")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="collisions" unique_id=977497665]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.288518, 3.9916382, 11.354065)
+shape = SubResource("BoxShape3D_b1lj4")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="collisions" unique_id=1127202032]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.581666, 1.3241577, 20.254131)
+shape = SubResource("BoxShape3D_njqwk")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="collisions" unique_id=1758589112]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6432495, 2.3340454, 21.530888)
+shape = SubResource("BoxShape3D_wi6ju")
+
+[node name="Animals" type="Node3D" parent="." unique_id=2032673951]
+
+[node name="Animal" parent="Animals" unique_id=630367358 instance=ExtResource("18_cqal4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2059994, 0, 11.747003)
+
+[node name="Animal2" parent="Animals" unique_id=271613374 instance=ExtResource("18_cqal4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1980543, 0, 7.9053555)
+
+[node name="Animal3" parent="Animals" unique_id=925427037 instance=ExtResource("18_cqal4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.33948898, 0, 18.008747)
+
+[node name="Animal4" parent="Animals" unique_id=1706598145 instance=ExtResource("18_cqal4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.009237, 0, 9.61043)
+
+[node name="toAltar" parent="." unique_id=2018339637 instance=ExtResource("19_o3sye")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.8739974)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1016576441]
+libraries/ = SubResource("AnimationLibrary_y6lc1")

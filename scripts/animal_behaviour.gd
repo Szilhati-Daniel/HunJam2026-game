@@ -9,8 +9,8 @@ enum Behaviour {
 
 @export var reaction_distance : float = 6.0
 @export var attack_distance : float = 2
-@export var movement_speed : float = 1.0
-@export var idle_movement_speed : float = 2.0
+@export var movement_speed : float = 4.0
+@export var idle_movement_speed : float = 5.0
 @export var damage : float = 10.0
 @export var attack_cooldown : float = 1.0
 @export var health : float = 100.0
@@ -20,6 +20,9 @@ enum Behaviour {
 @export var idle_wait_max : float = 4.0
 #for when idle center is created:
 @export var idle_area_radius : float = 5.0
+
+@export var can_move: bool = true
+var facing: String
 
 var idle_timer : float = 0.0
 var is_idle_waiting : bool = true
@@ -36,6 +39,8 @@ var can_attack : bool = true
 @onready var face_away: Sprite3D = $Sprites/Facing_Away
 @onready var face_left: Sprite3D = $Sprites/Facing_Left
 @onready var face_right: Sprite3D = $Sprites/Facing_Right
+
+@onready var attack_sound: AudioStreamPlayer3D = $Sounds/Attack
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -74,8 +79,10 @@ func _physics_process(delta: float) -> void:
 			Behaviour.AGGRESSIVE:
 				aggressive(distance)
 		velocity = velocity.normalized() * movement_speed
-	change_sprite(velocity)
-	move_and_slide()
+	
+	if can_move:
+		change_sprite(velocity)
+		move_and_slide()
 
 func find_player() -> void:
 	var main = get_tree().current_scene
@@ -102,13 +109,17 @@ func change_sprite(direction : Vector3) -> void:
 	
 	if movement_angle_degrees >= -45 && movement_angle_degrees < 45:
 		face_right.visible = true
+		facing = "right"
 
 	elif movement_angle_degrees >= 45 && movement_angle_degrees < 135:
 		face_towards.visible = true
+		facing = "down"
 	elif movement_angle_degrees >= 135 || movement_angle_degrees < -135:
 		face_left.visible = true
+		facing = "left"
 	else:
 		face_away.visible = true
+		facing = "up"
 
 func cowardly() -> void:
 	var direction = (
@@ -162,10 +173,30 @@ func idle_movement(delta : float) -> void:
 func attack_player() -> void:
 	if not can_attack:
 		return
+	play_hit_animation()
+	attack_sound.play()
 	can_attack = false
 	player.take_damage(damage)
 	await get_tree().create_timer(attack_cooldown).timeout
 	can_attack = true
+	
+func play_hit_animation():
+	if !can_move:
+		return
+	
+	var player_pos: Vector3 = player.get_global_position()
+	
+	#$AnimationPlayer.play("RESET")
+	if facing == "down" or facing == "up":
+		if player_pos.x < global_position.x:
+			$AnimationPlayer.play("hit_" + facing + "_left")
+		else:
+			$AnimationPlayer.play("hit_" + facing + "_right")
+	else:
+		if player_pos.z < global_position.z:
+			$AnimationPlayer.play("hit_" + facing + "_up")
+		else:
+			$AnimationPlayer.play("hit_" + facing + "_down")
 
 func damaged_by_player(damage : float) -> void:
 	health -= damage
@@ -176,6 +207,7 @@ func damaged_by_player(damage : float) -> void:
 		death()
 		
 func get_boinked():
+	#$AnimationPlayer.play("RESET")
 	$AnimationPlayer.play("boink")
 
 func death() -> void:
