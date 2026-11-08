@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://vwfn42666ns4"]
 
+[ext_resource type="Texture2D" uid="uid://cdsro3u8ykl8r" path="res://assets/graphics/testSprites/ground.png" id="1_1ulgf"]
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_yf5fn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g4v7s"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
 size = Vector3(2.0021973, 0.11581421, 1.9885559)
@@ -9,7 +13,13 @@ size = Vector3(2.0021973, 0.11581421, 1.9885559)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1991498156]
 mesh = SubResource("PlaneMesh_yf5fn")
+surface_material_override/0 = SubResource("StandardMaterial3D_g4v7s")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=18187018]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004272461, -0.05607605, 0.0004119873)
 shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=823455544]
+transform = Transform3D(6, 0, 0, 0, -2.6226832e-07, 6, 0, -6, -2.6226832e-07, 0, -0.19060543, 0)
+visible = false
+texture = ExtResource("1_1ulgf")

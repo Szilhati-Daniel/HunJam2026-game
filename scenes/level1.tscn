@@ -104,6 +104,7 @@ transform = Transform3D(27.58102, 0, 0, 0, 10, 0, 0, 0, 41.861763, 0, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.007088, 0, 6.9553547)
 movement_speed = 10.0
 interaction_prompt = NodePath("../CanvasLayer/InteractionPrompt")
+can_move = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1835771992]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
