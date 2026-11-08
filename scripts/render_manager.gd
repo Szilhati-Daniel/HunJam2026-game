@@ -1,7 +1,7 @@
 extends Node3D
 
 @export
-var light_source: Node3D
+var player: Node3D
 
 @onready
 var color_rect = $"CanvasLayer/ColorRect"
@@ -12,16 +12,18 @@ var camera = $"Camera/Camera3D"
 func _process(delta: float) -> void:
 	process_node(self)
 	
-	if light_source:
-		var shader = color_rect.material
-		var screen_size = get_viewport().size
+	var shader = color_rect.material
+	var screen_size = get_viewport().size
+	shader.set_shader_parameter("screenSize", screen_size)
+	
+	if player:
+		var light_source = get_node(str(player.get_path()) + "/Staff")
 		
 		var light_position = camera.unproject_position(light_source.global_position)
 		light_position /= Vector2(screen_size)
 		light_position -= Vector2(0.5, 0.5)
 		
 		shader.set_shader_parameter("lightCentre", light_position)
-		shader.set_shader_parameter("screenSize", screen_size)
 
 func process_node(node: Node3D):
 	for sprite in node.get_children():
