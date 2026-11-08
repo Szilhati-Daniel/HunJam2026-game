@@ -137,6 +137,7 @@ bounds = Vector4(4.4, 65, -25, 25)
 [node name="Player" parent="." unique_id=752145659 node_paths=PackedStringArray("interaction_prompt") instance=ExtResource("4_5mhml")]
 movement_speed = 10.0
 interaction_prompt = NodePath("../CanvasLayer/InteractionPrompt")
+can_move = true
 
 [node name="Floor" parent="." unique_id=258324324 instance=ExtResource("5_rupth")]
 transform = Transform3D(69.92362, 0, 0, 0, 5.332588, 0, 0, 0, 49.87937, 39.073997, 0, -5.2395277)

@@ -123,6 +123,7 @@ player = NodePath("Player")
 [node name="Player" parent="." unique_id=752145659 node_paths=PackedStringArray("interaction_prompt") instance=ExtResource("1_2k3dv")]
 movement_speed = 10.0
 interaction_prompt = NodePath("../CanvasLayer/InteractionPrompt")
+can_move = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1606381182]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
