@@ -18,11 +18,16 @@ var target_scenes_level3: Dictionary[String, PackedScene] = {
 	"toAltar": preload("res://scenes/altar_scene.tscn")
 }
 
+var target_scenes_everywhere: Dictionary[String, PackedScene] = {
+	"death": preload("res://scenes/death_screen.tscn")
+}
+
 var target_dictionaries: Dictionary[String, Dictionary] = {
 	"altar_scene": target_scenes_altar,
 	"level1": target_scenes_level1,
 	"level2": target_scenes_level2,
-	"level3": target_scenes_level3
+	"level3": target_scenes_level3,
+	"everywhere": target_scenes_everywhere
 }
 
 func load_scene(scene_name: String, trigger_name: String) -> Node:
