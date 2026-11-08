@@ -25,6 +25,7 @@ var nearby_interactable: Node3D = null
 
 @onready var health_bar_progress: ProgressBar = $HealthBar/Panel/ProgressBar
 
+var changing_scene = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -42,7 +43,8 @@ func _process(delta: float) -> void:
 		if distance > 8.0: #  I HAVE NO FUCKING IDEA WHY IT ONLY WORKS HERE BUT IDC ATP
 			nearby_interactable = null
 			interaction_prompt.hide()
-			textbox.visible = false
+			if textbox != null:
+				textbox.visible = false
 	
 	if Input.is_key_pressed(KEY_A):
 		velocity.x -= 1.0
@@ -117,32 +119,35 @@ func death() -> void:
 	return
 
 func _on_area_3d_area_entered(area: Area3D) -> void:
+	if changing_scene:
+		return
 	if area.is_in_group("interactable"):
 		nearby_interactable = area.get_parent_node_3d()
 		interaction_prompt.show()
-	elif not area.is_in_group("trigger"):
-		return
-	
-	var scene_name = get_tree().current_scene.name
-	
-	var trigger_name = area.get_parent_node_3d().name
-	var new_scene = SceneLoader.load_scene(scene_name, trigger_name)
-	
-	if scene_name != "altar_scene":
-		new_scene.load_from_level = scene_name
-		new_scene.has_candle = SceneDataManager.has_candle
-		new_scene.has_rope = SceneDataManager.has_rope
-		new_scene.has_paint = SceneDataManager.has_paint
-	
-	SceneLoader.change_scene(new_scene)
+	elif area.is_in_group("trigger"):
+		changing_scene = true
+		var scene_name = get_tree().current_scene.name
+		
+		var trigger_name = area.get_parent_node_3d().name
+		var new_scene = SceneLoader.load_scene(scene_name, trigger_name)
+		
+		if scene_name != "altar_scene":
+			new_scene.load_from_level = scene_name
+			new_scene.has_candle = SceneDataManager.has_candle
+			new_scene.has_rope = SceneDataManager.has_rope
+			new_scene.has_paint = SceneDataManager.has_paint
+		
+		SceneLoader.change_scene.call_deferred(new_scene)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
 		if event.keycode == KEY_E:
 			if nearby_interactable == null:
 				return
-			if not textbox.visible:
-				nearby_interactable.interact()
+			if textbox != null:
+				if not textbox.visible:
+					nearby_interactable.interact()
+				else:
+					textbox.advance_dialogue()
 			else:
-				textbox.advance_dialogue()
-			get_viewport().set_input_as_handled()
+				nearby_interactable.interact()

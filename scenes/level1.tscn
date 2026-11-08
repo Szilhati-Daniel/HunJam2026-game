@@ -7,9 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://bqrvaceax4pov" path="res://prefabs/fence.tscn" id="4_dwgg1"]
 [ext_resource type="PackedScene" uid="uid://bo37okb6sqbok" path="res://prefabs/tree.tscn" id="4_ejswk"]
 [ext_resource type="PackedScene" uid="uid://c7tjk38uwtkay" path="res://prefabs/orbiting_staff_default.tscn" id="5_conm7"]
-[ext_resource type="PackedScene" uid="uid://d38oiseso0r5s" path="res://scenes/altar_scene.tscn" id="5_i8kv5"]
 [ext_resource type="PackedScene" uid="uid://d37dkjjugakgj" path="res://prefabs/postprocessing.tscn" id="5_ru4tf"]
 [ext_resource type="Shader" uid="uid://yj5dns15m5u0" path="res://shaders/postprocessing.gdshader" id="6_6sh32"]
+[ext_resource type="FontFile" uid="uid://1s6ich2jr5m4" path="res://fonts/Wizards' Magic.ttf" id="8_i8kv5"]
+[ext_resource type="Script" uid="uid://cyewqiw2ghwgd" path="res://scripts/pedestal.gd" id="9_dxn3v"]
 [ext_resource type="PackedScene" uid="uid://ewd4a2hdbtk7" path="res://prefabs/oak_tree.tscn" id="10_d3jkd"]
 [ext_resource type="PackedScene" uid="uid://bq1mpoq7bqyfp" path="res://prefabs/grass.tscn" id="13_f31uk"]
 [ext_resource type="PackedScene" uid="uid://v4y3ogwd7mg7" path="res://prefabs/pedestal.tscn" id="13_gnai3"]
@@ -21,6 +22,13 @@ shader = ExtResource("6_6sh32")
 shader_parameter/brightColour = Vector4(1, 0.984, 0.831, 1)
 shader_parameter/darkColour = Vector4(0.165, 0.11, 0.055, 1)
 shader_parameter/treshold = 0.67
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dxn3v"]
+bg_color = Color(0.16470589, 0.10980392, 0.05490196, 0.6666667)
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_gnai3"]
+radius = 1.0857607
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
 size = Vector3(1, 2.890625, 14.49025)
@@ -54,9 +62,10 @@ bounds = Vector4(-5, 3.5, -14, 10)
 [node name="CharacterBody3D" parent="." unique_id=258324324 instance=ExtResource("1_m7ahb")]
 transform = Transform3D(27.58102, 0, 0, 0, 10, 0, 0, 0, 41.861763, 0, 0, 0)
 
-[node name="Player" parent="." unique_id=752145659 instance=ExtResource("3_ru4tf")]
+[node name="Player" parent="." unique_id=752145659 node_paths=PackedStringArray("interaction_prompt") instance=ExtResource("3_ru4tf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.007088, 0, 6.9553547)
 movement_speed = 10.0
+interaction_prompt = NodePath("../CanvasLayer/InteractionPrompt")
 
 [node name="Staff" parent="Player" unique_id=219690096 instance=ExtResource("5_conm7")]
 
@@ -66,7 +75,39 @@ transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70
 [node name="CanvasLayer" parent="." unique_id=830739654 instance=ExtResource("5_ru4tf")]
 shader = SubResource("ShaderMaterial_ejswk")
 
+[node name="InteractionPrompt" type="Panel" parent="CanvasLayer" unique_id=266093199]
+offset_left = 458.0
+offset_top = 127.0
+offset_right = 631.0
+offset_bottom = 181.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dxn3v")
+
+[node name="Label" type="Label" parent="CanvasLayer/InteractionPrompt" unique_id=251789556]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 16.0
+offset_right = 106.0
+offset_bottom = 59.0
+theme_override_colors/font_color = Color(1, 0.9843137, 0.83137256, 1)
+theme_override_fonts/font = ExtResource("8_i8kv5")
+theme_override_font_sizes/font_size = 30
+text = "Interact: E"
+
 [node name="perimeter" type="Node3D" parent="." unique_id=1653596271]
+
+[node name="pedestal" type="Node3D" parent="perimeter" unique_id=324052396 node_paths=PackedStringArray("prompt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.259, 0, -17.724)
+script = ExtResource("9_dxn3v")
+prompt = NodePath("../../CanvasLayer/InteractionPrompt")
+
+[node name="Area3D" type="Area3D" parent="perimeter/pedestal" unique_id=1887657309 groups=["interactable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00016593933, 0, -0.0004043579)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="perimeter/pedestal/Area3D" unique_id=1466533043]
+shape = SubResource("SphereShape3D_gnai3")
+
+[node name="pedestal" parent="perimeter/pedestal" unique_id=1489384173 instance=ExtResource("13_gnai3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00016593933, 0, -0.0004043579)
 
 [node name="Fence10" parent="perimeter" unique_id=1573263111 instance=ExtResource("4_dwgg1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.585336, 0, -10.298305)
@@ -346,9 +387,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.449608, 0, -17.053024)
 
 [node name="Grass30" parent="perimeter" unique_id=1192335340 instance=ExtResource("13_f31uk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.0282583, 0, -18.091259)
-
-[node name="pedestal" parent="perimeter" unique_id=1489384173 instance=ExtResource("13_gnai3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.258834, 0, -17.724405)
 
 [node name="Fence4" parent="." unique_id=1714232507 instance=ExtResource("4_dwgg1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.565726, 0, -16.351257)
