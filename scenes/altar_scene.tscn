@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://ewd4a2hdbtk7" path="res://prefabs/oak_tree.tscn" id="23_miw16"]
 [ext_resource type="Texture2D" uid="uid://b5n7o64cuf8uo" path="res://assets/graphics/testSprites/items/candle/candle.png" id="24_xfrg3"]
 [ext_resource type="Texture2D" uid="uid://7eoxii7h6lol" path="res://assets/graphics/testSprites/cave/sacrefice_decoration.png" id="25_c3nnj"]
+[ext_resource type="AudioStream" uid="uid://d020t4cn1tb74" path="res://sounds/!final_cutscene.mp3" id="25_ooqja"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fs4dc"]
 shader = ExtResource("8_5h1p3")
@@ -291,6 +292,20 @@ tracks/9/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/10/type = "method"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath(".")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(5.0333333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"sing"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ooqja"]
 _data = {
@@ -518,3 +533,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9458375, 7.5184307, -5.3861
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=468305998]
 libraries/ = SubResource("AnimationLibrary_ooqja")
+
+[node name="Sounds" type="Node" parent="." unique_id=548138969]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Sounds" unique_id=1287560592]
+stream = ExtResource("25_ooqja")
