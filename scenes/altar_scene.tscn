@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://b6alwxys2dbiq" path="res://assets/graphics/testSprites/cave/cave.png" id="9_786bs"]
 [ext_resource type="Texture2D" uid="uid://vk36al1wjl0v" path="res://assets/graphics/testSprites/rock/rock.png" id="10_a840s"]
 [ext_resource type="Texture2D" uid="uid://bl4uw37f0jg4a" path="res://assets/graphics/testSprites/bush/bush.png" id="11_b8cub"]
+[ext_resource type="PackedScene" uid="uid://dvnkgqgu2wtm6" path="res://prefabs/text_box.tscn" id="12_786bs"]
 [ext_resource type="Texture2D" uid="uid://cuyv7vtjek285" path="res://assets/graphics/testSprites/fence/fence.png" id="12_rlco6"]
 [ext_resource type="PackedScene" uid="uid://b4cejqpifqcui" path="res://prefabs/scenery.tscn" id="13_ru16j"]
 [ext_resource type="Texture2D" uid="uid://dwefe45nfwkpg" path="res://assets/graphics/testSprites/mushroom/mushroom.png" id="14_v35yo"]
@@ -58,6 +59,8 @@ shader = SubResource("ShaderMaterial_fs4dc")
 [node name="Cave" type="Sprite3D" parent="Scenery" unique_id=1490182735]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.55692, -4.5626564)
 texture = ExtResource("9_786bs")
+
+[node name="TextBox" parent="Scenery/Cave" unique_id=191808093 instance=ExtResource("12_786bs")]
 
 [node name="rock" type="Sprite3D" parent="Scenery" unique_id=202205773]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.918356, 0.9635048, -4.226183)
