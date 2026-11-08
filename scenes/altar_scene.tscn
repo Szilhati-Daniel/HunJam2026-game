@@ -13,6 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://b6alwxys2dbiq" path="res://assets/graphics/testSprites/cave/cave.png" id="9_786bs"]
 [ext_resource type="Texture2D" uid="uid://bl4uw37f0jg4a" path="res://assets/graphics/testSprites/bush/bush.png" id="11_b8cub"]
 [ext_resource type="PackedScene" uid="uid://catas0elpp3ra" path="res://prefabs/altar.tscn" id="12_8lpc5"]
+[ext_resource type="PackedScene" uid="uid://dvnkgqgu2wtm6" path="res://prefabs/text_box.tscn" id="12_786bs"]
+[ext_resource type="FontFile" uid="uid://1s6ich2jr5m4" path="res://fonts/Wizards' Magic.ttf" id="12_miw16"]
+[ext_resource type="Script" uid="uid://b17d73qth1gdm" path="res://scripts/cave_interact.gd" id="12_rhp74"]
 [ext_resource type="PackedScene" uid="uid://b4cejqpifqcui" path="res://prefabs/scenery.tscn" id="13_ru16j"]
 [ext_resource type="PackedScene" uid="uid://bqrvaceax4pov" path="res://prefabs/fence.tscn" id="14_5h1p3"]
 [ext_resource type="PackedScene" uid="uid://bo37okb6sqbok" path="res://prefabs/tree.tscn" id="15_786bs"]
@@ -35,6 +38,17 @@ shader_parameter/treshold = 0.67
 size = Vector3(1, 5.6625977, 6.6083984)
 
 [node name="altar_scene" type="Node3D" unique_id=399075566]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_miw16"]
+bg_color = Color(0.16470589, 0.10980392, 0.05490196, 0.6666667)
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(16.424622, 9.698181, 1.1611938)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
+radius = 4.0719104
+
+[node name="Node3D" type="Node3D" unique_id=399075566]
 script = ExtResource("1_af0aq")
 
 [node name="Camera" parent="." unique_id=1052899663 node_paths=PackedStringArray("player") instance=ExtResource("2_gje6g")]
@@ -64,6 +78,26 @@ base_height = 1.9
 [node name="CanvasLayer" parent="." unique_id=830739654 instance=ExtResource("7_8olkb")]
 shader = SubResource("ShaderMaterial_fs4dc")
 
+[node name="TextBox" parent="CanvasLayer" unique_id=191808093 instance=ExtResource("12_786bs")]
+
+[node name="InteractionPrompt" type="Panel" parent="CanvasLayer" unique_id=451521124]
+offset_left = 458.0
+offset_top = 127.0
+offset_right = 571.0
+offset_bottom = 181.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_miw16")
+
+[node name="Label" type="Label" parent="CanvasLayer/InteractionPrompt" unique_id=586759941]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 16.0
+offset_right = 106.0
+offset_bottom = 59.0
+theme_override_colors/font_color = Color(1, 0.9843137, 0.83137256, 1)
+theme_override_fonts/font = ExtResource("12_miw16")
+theme_override_font_sizes/font_size = 30
+text = "Talk: E"
+
 [node name="Scenery" type="Node3D" parent="." unique_id=1295124109]
 
 [node name="Cave" type="Sprite3D" parent="Scenery" unique_id=1490182735]
@@ -73,6 +107,25 @@ texture = ExtResource("9_786bs")
 
 [node name="altar" parent="Scenery" unique_id=1204404280 instance=ExtResource("12_8lpc5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08710861, 0, -4.608044)
+[node name="Cave_node" type="Node3D" parent="Scenery" unique_id=1806133385]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.83274126, 5.5568895, -4.5190225)
+script = ExtResource("12_rhp74")
+
+[node name="Cave" type="Sprite3D" parent="Scenery/Cave_node" unique_id=1490182735]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.83274126, 1.0000305, -0.043633938)
+texture = ExtResource("9_786bs")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Scenery/Cave_node" unique_id=1427649143]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Scenery/Cave_node/StaticBody3D" unique_id=1515506343]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3113098, -0.6986389, 0.080596924)
+shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="Area3D" type="Area3D" parent="Scenery/Cave_node" unique_id=2074173499 groups=["interactable"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Scenery/Cave_node/Area3D" unique_id=1818170555]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.46513057, -2.7650967, 0)
+shape = SubResource("SphereShape3D_g4v7s")
 
 [node name="rock3" parent="Scenery" unique_id=240688656 instance=ExtResource("19_xfrg3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9383965, 0, -4.280762)
