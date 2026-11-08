@@ -29,6 +29,7 @@ var nearby_interactable: Node3D = null
 @export var can_move: bool = true
 var changing_scene = false
 @export var superior_direction: Vector3 = Vector3.ZERO
+@export var invincible = false
 
 @onready var boink_sound: AudioStreamPlayer3D = $Sounds/Boink_Hit
 @onready var move1_sound: AudioStreamPlayer3D = $Sounds/Move1
@@ -115,13 +116,18 @@ func change_sprite(direction : Vector3) -> void:
 			face_away.visible = true	
 
 func take_damage(damage : float) -> void:
+	if invincible:
+		return
 	#print("Oh no im dying :(")
+	invincible = true
 	$AnimationPlayer.play("get_hit")
 	health -= damage
 	health_bar_progress.value = health
 	#print("\t current health: ", health)
 	if health <= 0:
 		death()
+	await get_tree().create_timer(1).timeout
+	invincible = false
 		
 func get_boinked():
 	$AnimationPlayer.play("boink")
@@ -144,7 +150,7 @@ func get_boinked():
 
 func death() -> void:
 	#TODO kill, i mean implement
-	return
+	get_tree().quit()
 
 func trigger_pause():
 	HitStopManager.get_hit(0.25)
