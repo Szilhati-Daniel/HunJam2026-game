@@ -30,6 +30,17 @@ func _ready():
 	$Sacrefice.visible = false
 	var new_player_position = player_position_from_scene.get(load_from_level)
 	player.position = new_player_position
+	$"pointy rock".visible = true
+	$"pointy rock2/CollisionShape3D".disabled = false
+	$"pointy rock/CollisionShape3D".disabled = false
+	$"pointy rock2".visible = true
+	if SceneDataManager.has_candle:
+		$"pointy rock".visible = false
+		$"pointy rock/CollisionShape3D".disabled = true
+	if SceneDataManager.has_rope:
+		$"pointy rock2".visible = false
+		$"pointy rock2/CollisionShape3D".disabled = true
+	
 	update_sprite()
 	
 	#$AnimationPlayer.play("end_cutscene")

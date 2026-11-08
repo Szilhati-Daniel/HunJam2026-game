@@ -538,3 +538,9 @@ libraries/ = SubResource("AnimationLibrary_ooqja")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Sounds" unique_id=1287560592]
 stream = ExtResource("25_ooqja")
+
+[node name="pointy rock" parent="." unique_id=2053466105 instance=ExtResource("17_b8cub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.250587, 0, 8.557695)
+
+[node name="pointy rock2" parent="." unique_id=1639811943 instance=ExtResource("17_b8cub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9568224, 0, -1.620285)
