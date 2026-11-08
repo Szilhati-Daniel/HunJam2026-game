@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 @export_range(0.1, 100.0, 0.01)
-var movement_speed = 4.0
+var movement_speed = 5.0
 var health = 100.0
 var last_direction = Vector3(0,0,1) # so that it starts out facing camera
 
@@ -71,8 +71,8 @@ func _process(delta: float) -> void:
 		move1_sound.play()
 		
 	if Input.is_key_pressed(KEY_SPACE):
-		staff.boink(last_direction)
 		boink_sound.play()
+		staff.boink(last_direction)
 	
 	var delta_pos_x = Vector3(velocity.normalized().x, 0, 0) * movement_speed * delta
 	var delta_pos_z = Vector3(0, 0, velocity.normalized().z) * movement_speed * delta

@@ -9,8 +9,8 @@ enum Behaviour {
 
 @export var reaction_distance : float = 6.0
 @export var attack_distance : float = 2
-@export var movement_speed : float = 1.0
-@export var idle_movement_speed : float = 2.0
+@export var movement_speed : float = 4.0
+@export var idle_movement_speed : float = 5.0
 @export var damage : float = 10.0
 @export var attack_cooldown : float = 1.0
 @export var health : float = 100.0
