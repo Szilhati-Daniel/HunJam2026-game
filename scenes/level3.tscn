@@ -6,8 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://ciwtxush3fuib" path="res://prefabs/player.tscn" id="4_5mhml"]
 [ext_resource type="PackedScene" uid="uid://c7tjk38uwtkay" path="res://prefabs/orbiting_staff_default.tscn" id="5_b72m1"]
 [ext_resource type="PackedScene" uid="uid://vwfn42666ns4" path="res://prefabs/scene_geometry.tscn" id="5_rupth"]
-[ext_resource type="PackedScene" uid="uid://bqrvaceax4pov" path="res://prefabs/fence.tscn" id="6_6lxtr"]
 [ext_resource type="Script" uid="uid://bt7omhhaytxky" path="res://scripts/render_manager.gd" id="8_5mhml"]
+[ext_resource type="Script" uid="uid://eoui3obhryts" path="res://scripts/foliage_spawner.gd" id="8_6qt4k"]
+[ext_resource type="PackedScene" uid="uid://ewd4a2hdbtk7" path="res://prefabs/oak_tree.tscn" id="8_rupth"]
+[ext_resource type="PackedScene" uid="uid://bq1mpoq7bqyfp" path="res://prefabs/grass.tscn" id="9_6qt4k"]
+[ext_resource type="PackedScene" uid="uid://b5jha7ayu2fik" path="res://prefabs/trunk.tscn" id="9_rupth"]
+[ext_resource type="PackedScene" uid="uid://dmg624a10pok7" path="res://prefabs/mushroom.tscn" id="10_qewby"]
+[ext_resource type="PackedScene" uid="uid://v4y3ogwd7mg7" path="res://prefabs/pedestal.tscn" id="13_bradm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6qt4k"]
 shader = ExtResource("2_6lxtr")
@@ -15,7 +20,20 @@ shader_parameter/brightColour = Vector4(1, 0.9843137, 0.83137256, 1)
 shader_parameter/darkColour = Vector4(0.16470589, 0.10980392, 0.05490196, 1)
 shader_parameter/treshold = 0.67
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(136.01257, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yf5fn"]
+size = Vector3(1, 1, 80.86989)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_57qmd"]
+size = Vector3(1, 1, 95.05179)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d0u6y"]
+size = Vector3(95.63379, 1, 1)
+
 [node name="Node3D" type="Node3D" unique_id=944084263]
+script = ExtResource("8_5mhml")
 
 [node name="CanvasLayer" parent="." unique_id=830739654 instance=ExtResource("1_7uttt")]
 shader = SubResource("ShaderMaterial_6qt4k")
@@ -24,15 +42,260 @@ shader = SubResource("ShaderMaterial_6qt4k")
 player = NodePath("../Player")
 
 [node name="Player" parent="." unique_id=752145659 instance=ExtResource("4_5mhml")]
+movement_speed = 10.0
 
 [node name="Staff" parent="Player" unique_id=219690096 instance=ExtResource("5_b72m1")]
 
-[node name="CharacterBody3D" parent="." unique_id=258324324 instance=ExtResource("5_rupth")]
-transform = Transform3D(7.3, 0, 0, 0, 1, 0, 0, 0, 7.3, 0, 0, 0)
+[node name="Floor" parent="." unique_id=258324324 instance=ExtResource("5_rupth")]
+transform = Transform3D(69.92362, 0, 0, 0, 5.332588, 0, 0, 0, 49.87937, 0, 0, 0)
+
+[node name="FoliageSpawner" type="Node3D" parent="Floor" unique_id=1224332052 node_paths=PackedStringArray("spawn_under")]
+script = ExtResource("8_6qt4k")
+foliage_prefabs = Array[PackedScene]([ExtResource("9_6qt4k"), ExtResource("9_6qt4k"), ExtResource("10_qewby")])
+spawn_under = NodePath("../../Scenery")
+min_distance = 1.8
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=172561023]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
 
-[node name="Fence" parent="." unique_id=1573263111 instance=ExtResource("6_6lxtr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27304506, 0.28183103, -3.8704786)
-script = ExtResource("8_5mhml")
+[node name="Scenery" type="Node3D" parent="." unique_id=836614899]
+
+[node name="Oak tree32" parent="Scenery" unique_id=1442577686 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.692072, 0, 30.665552)
+
+[node name="Oak tree33" parent="Scenery" unique_id=1358250653 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7754726, 0, 31.0723)
+
+[node name="Oak tree34" parent="Scenery" unique_id=1666394467 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.81527, 0, 34.3129)
+
+[node name="Oak tree35" parent="Scenery" unique_id=354872584 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.17334, 0, 30.417376)
+
+[node name="Oak tree36" parent="Scenery" unique_id=937929095 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.748631, 0, 38.95668)
+
+[node name="Oak tree37" parent="Scenery" unique_id=954987552 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.964143, 0, 37.77136)
+
+[node name="Oak tree38" parent="Scenery" unique_id=701820539 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.865978, 0, 37.022575)
+
+[node name="Oak tree39" parent="Scenery" unique_id=73825247 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.515522, 0, 28.044193)
+
+[node name="Oak tree40" parent="Scenery" unique_id=631670013 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.241814, 0, 8.706146)
+
+[node name="Oak tree41" parent="Scenery" unique_id=586395731 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.273827, 0, 22.114319)
+
+[node name="Oak tree42" parent="Scenery" unique_id=1808629236 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.534576, 0, 38.85901)
+
+[node name="Oak tree26" parent="Scenery" unique_id=166263153 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -22.43238, 0, -26.181345)
+
+[node name="Oak tree27" parent="Scenery" unique_id=525964328 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0.63677067, 0, -23.239956)
+
+[node name="Oak tree28" parent="Scenery" unique_id=1880095805 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 20.053328, 0, -27.9932)
+
+[node name="Oak tree29" parent="Scenery" unique_id=2078872882 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 36.38657, 0, -11.251212)
+
+[node name="Oak tree30" parent="Scenery" unique_id=1128178306 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 44.4878, 0, -32.276985)
+
+[node name="Oak tree31" parent="Scenery" unique_id=712136980 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -41.02149, 0, -16.105288)
+
+[node name="Oak tree" parent="Scenery" unique_id=1200812458 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6682296, 0, -3.6472044)
+
+[node name="Oak tree2" parent="Scenery" unique_id=607434189 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5842853, 0, -1.7064466)
+
+[node name="Oak tree3" parent="Scenery" unique_id=2035856339 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2778512, 0, 11.115759)
+
+[node name="Oak tree4" parent="Scenery" unique_id=1386086531 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.330784, 0, 2.6827059)
+
+[node name="Oak tree5" parent="Scenery" unique_id=306889232 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3626375, 0, 6.914898)
+
+[node name="Oak tree6" parent="Scenery" unique_id=238667001 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.611676, 0, 15.427105)
+
+[node name="Oak tree7" parent="Scenery" unique_id=361997081 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.187605, 0, 18.225033)
+
+[node name="Oak tree8" parent="Scenery" unique_id=1787333880 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.960758, 0, 18.034332)
+
+[node name="Oak tree9" parent="Scenery" unique_id=1979730274 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.29225, 0, 5.1752205)
+
+[node name="Oak tree10" parent="Scenery" unique_id=1237582677 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.513258, 0, -12.545821)
+
+[node name="Oak tree11" parent="Scenery" unique_id=1558013131 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.235269, 0, -16.23199)
+
+[node name="Oak tree12" parent="Scenery" unique_id=845703480 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.184269, 0, -5.3679924)
+
+[node name="Oak tree13" parent="Scenery" unique_id=1890126777 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.572556, 0, 12.5360985)
+
+[node name="Oak tree14" parent="Scenery" unique_id=900783201 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.156716, 0, 24.436352)
+
+[node name="Oak tree15" parent="Scenery" unique_id=1443070046 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.948354, 0, 25.862404)
+
+[node name="Oak tree16" parent="Scenery" unique_id=762118170 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.097816, 0, -19.143353)
+
+[node name="Oak tree17" parent="Scenery" unique_id=681970219 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.268227, 0, -6.6823044)
+
+[node name="Oak tree18" parent="Scenery" unique_id=1323906867 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.289856, 0, 7.4961605)
+
+[node name="Oak tree19" parent="Scenery" unique_id=3011142 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.886896, 0, 24.044014)
+
+[node name="Oak tree20" parent="Scenery" unique_id=396304410 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.747334, 0, -25.959778)
+
+[node name="Oak tree21" parent="Scenery" unique_id=591099986 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.603893, 0, 19.991972)
+
+[node name="Oak tree22" parent="Scenery" unique_id=2009348780 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.351715, 0, 2.211769)
+
+[node name="Oak tree23" parent="Scenery" unique_id=1590964189 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.467422, 0, -15.763054)
+
+[node name="Oak tree24" parent="Scenery" unique_id=506975570 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.592, 0, -14.113871)
+
+[node name="Oak tree25" parent="Scenery" unique_id=1657139190 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.995, 0, -10.54)
+
+[node name="Trunk" parent="Scenery" unique_id=408481344 instance=ExtResource("9_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5070677, 0, 6.315867)
+
+[node name="Trunk2" parent="Scenery" unique_id=324566089 instance=ExtResource("9_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.016977, 0, 15.6384945)
+
+[node name="Trunk3" parent="Scenery" unique_id=672870320 instance=ExtResource("9_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.808891, 0, -2.086689)
+
+[node name="Trunk4" parent="Scenery" unique_id=447591633 instance=ExtResource("9_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.015766, 0, -3.4967957)
+
+[node name="Trunk5" parent="Scenery" unique_id=1132587462 instance=ExtResource("9_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.734467, 0, 8.519772)
+
+[node name="Trunk6" parent="Scenery" unique_id=1330525388 instance=ExtResource("9_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.217721, 0, 19.307789)
+
+[node name="Trunk7" parent="Scenery" unique_id=1808607307 instance=ExtResource("9_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.340103, 0, 6.305599)
+
+[node name="Trunk8" parent="Scenery" unique_id=870430156 instance=ExtResource("9_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.866399, -3.8146973e-06, -20.988796)
+
+[node name="Trunk9" parent="Scenery" unique_id=277985676 instance=ExtResource("9_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.940334, 0, -6.746628)
+
+[node name="Oak tree43" parent="Scenery" unique_id=2103740973 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -13.559445, 0, -28.190592)
+
+[node name="Oak tree44" parent="Scenery" unique_id=1600631354 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 11.677653, 0, -22.770048)
+
+[node name="Oak tree45" parent="Scenery" unique_id=766162456 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 42.334896, 0, -20.665823)
+
+[node name="Oak tree46" parent="Scenery" unique_id=1783152068 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 33.99786, 0, -31.298218)
+
+[node name="Oak tree47" parent="Scenery" unique_id=338088954 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.452, 0, -20.411)
+
+[node name="Oak tree48" parent="Scenery" unique_id=1510784254 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.406853, 0, -3.2358274)
+
+[node name="Oak tree49" parent="Scenery" unique_id=1791883275 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.921993, 0, 14.178152)
+
+[node name="Oak tree50" parent="Scenery" unique_id=1998723883 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.859154, 0, 15.3223295)
+
+[node name="Oak tree51" parent="Scenery" unique_id=66458498 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.891594, 0, 34.982983)
+
+[node name="Oak tree52" parent="Scenery" unique_id=1772522936 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.27387, 0, 37.635002)
+
+[node name="Oak tree53" parent="Scenery" unique_id=1214357193 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.24298, 0, 32.26291)
+
+[node name="Oak tree54" parent="Scenery" unique_id=637010943 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.43161, 0, 31.32167)
+
+[node name="Oak tree55" parent="Scenery" unique_id=202380514 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.14637, 0, 29.471878)
+
+[node name="Oak tree56" parent="Scenery" unique_id=1234912816 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.830326, 0, 16.117496)
+
+[node name="Oak tree57" parent="Scenery" unique_id=404995951 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.533928, 0, 16.592796)
+
+[node name="Oak tree58" parent="Scenery" unique_id=12907384 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.933037, 0, 24.218138)
+
+[node name="Oak tree59" parent="Scenery" unique_id=1666510507 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.22232, 0, 32.892242)
+
+[node name="Oak tree60" parent="Scenery" unique_id=827132969 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.240948, 0, 0.9289322)
+
+[node name="Oak tree61" parent="Scenery" unique_id=205125103 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.050747, 0, -13.151987)
+
+[node name="Oak tree62" parent="Scenery" unique_id=1015032389 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.360867, 0, -29.389755)
+
+[node name="Oak tree63" parent="Scenery" unique_id=925895581 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.146097, 0, -0.45384622)
+
+[node name="Oak tree64" parent="Scenery" unique_id=1061651859 instance=ExtResource("8_rupth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.554, 0, -5.353)
+
+[node name="perimeter" type="CharacterBody3D" parent="." unique_id=1345493233]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="perimeter" unique_id=1912505233]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8099976, 0.5172682, -27.981022)
+shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="perimeter" unique_id=2099314037]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.730774, 0, 1.186245)
+shape = SubResource("BoxShape3D_yf5fn")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="perimeter" unique_id=321271871]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.91291, 0, 1.9489517)
+shape = SubResource("BoxShape3D_57qmd")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="perimeter" unique_id=1724681422]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8793526, 0, 34.553177)
+shape = SubResource("BoxShape3D_d0u6y")
+
+[node name="pedestal" parent="." unique_id=1489384173 instance=ExtResource("13_bradm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.87368, 0, -17.569561)
