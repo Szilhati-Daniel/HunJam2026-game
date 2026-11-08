@@ -20,7 +20,10 @@ var target_dictionaries: Dictionary[String, Dictionary] = {
 	"level2": target_scenes_level2
 }
 
-func load_scene(scene_name: String, trigger_name: String):
+func load_scene(scene_name: String, trigger_name: String) -> Node:
 	var target_dict = target_dictionaries.get(scene_name)
 	var new_scene = target_dict.get(trigger_name).instantiate()
+	return new_scene
+	
+func change_scene(new_scene: Node):
 	await get_tree().change_scene_to_node(new_scene)

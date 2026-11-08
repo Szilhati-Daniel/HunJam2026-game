@@ -15,10 +15,6 @@ var target_scenes: Dictionary[String, PackedScene]
 
 @onready var staff : Node3D
 
-var nearby_interactable: Node3D = null
-@onready var interaction_prompt = get_node("/root/Node3D/CanvasLayer/InteractionPrompt")
-@onready var textbox = get_node("/root/Node3D/CanvasLayer/TextBox")
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$AnimationPlayer.play("init")
@@ -27,15 +23,6 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var velocity = Vector3()
-	
-	if nearby_interactable != null:
-		var distance = global_position.distance_to(
-			nearby_interactable.global_position
-		)
-		if distance > 8.0: #  I HAVE NO FUCKING IDEA WHY IT ONLY WORKS HERE BUT IDC ATP
-			nearby_interactable = null
-			interaction_prompt.hide()
-			textbox.visible = false
 	
 	if Input.is_key_pressed(KEY_A):
 		velocity.x -= 1.0
@@ -48,7 +35,6 @@ func _process(delta: float) -> void:
 		
 	if Input.is_key_pressed(KEY_SPACE):
 		staff.boink(last_direction)
-		
 		
 	
 	var delta_pos_x = Vector3(velocity.normalized().x, 0, 0) * movement_speed * delta
@@ -93,44 +79,20 @@ func death() -> void:
 	#TODO kill, i mean implement
 	return
 
-func _on_area_3d_area_entered(area: Area3D) -> void:	
-	if area.is_in_group("interactable"):
-		nearby_interactable = area.get_parent_node_3d()
-		interaction_prompt.show()
-	elif not area.is_in_group("trigger"):
+func _on_area_3d_area_entered(area: Area3D) -> void:
+	if not area.is_in_group("trigger"):
 		return
 	
 	var scene_name = get_tree().current_scene.name
 	
 	var trigger_name = area.get_parent_node_3d().name
-	SceneLoader.load_scene(scene_name, trigger_name)
-	return
-	print("trigger")
-	print(target_scenes)
-	var trigger = area.get_parent_node_3d()
-	print(trigger.name)
-	print(target_scenes.get(trigger.name))
-	print(target_scenes)
+	var new_scene = SceneLoader.load_scene(scene_name, trigger_name)
 	
-	if target_scenes.has(trigger.name):
-		print("found it")
-		var new_scene = target_scenes.get(trigger.name).instantiate()
-		print(new_scene)
-		await get_tree().change_scene_to_node(new_scene)
-		
-
-			
-func _input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed and not event.echo:
-		if event.keycode == KEY_E:
-
-			if nearby_interactable == null:
-				return
-
-			if not textbox.visible:
-				nearby_interactable.interact()
-			else:
-				textbox.advance_dialogue()
-
-			get_viewport().set_input_as_handled()
+	if scene_name != "altar_scene":
+		new_scene.load_from_level = scene_name
+		new_scene.has_candle = SceneDataManager.has_candle
+		new_scene.has_rope = SceneDataManager.has_rope
+		new_scene.has_paint = SceneDataManager.has_paint
+	
+	SceneLoader.change_scene(new_scene)
 	
