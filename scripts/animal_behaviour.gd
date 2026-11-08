@@ -22,6 +22,7 @@ enum Behaviour {
 @export var idle_area_radius : float = 5.0
 
 @export var can_move: bool = true
+var facing: String
 
 var idle_timer : float = 0.0
 var is_idle_waiting : bool = true
@@ -106,13 +107,17 @@ func change_sprite(direction : Vector3) -> void:
 	
 	if movement_angle_degrees >= -45 && movement_angle_degrees < 45:
 		face_right.visible = true
+		facing = "right"
 
 	elif movement_angle_degrees >= 45 && movement_angle_degrees < 135:
 		face_towards.visible = true
+		facing = "down"
 	elif movement_angle_degrees >= 135 || movement_angle_degrees < -135:
 		face_left.visible = true
+		facing = "left"
 	else:
 		face_away.visible = true
+		facing = "up"
 
 func cowardly() -> void:
 	var direction = (
@@ -166,10 +171,25 @@ func idle_movement(delta : float) -> void:
 func attack_player() -> void:
 	if not can_attack:
 		return
+	play_hit_animation()
 	can_attack = false
 	player.take_damage(damage)
 	await get_tree().create_timer(attack_cooldown).timeout
 	can_attack = true
+	
+func play_hit_animation():
+	var player_pos: Vector3 = player.get_global_position()
+	
+	if facing == "down" or facing == "up":
+		if player_pos.x < global_position.x:
+			$AnimationPlayer.play("hit_" + facing + "_left")
+		else:
+			$AnimationPlayer.play("hit_" + facing + "_right")
+	else:
+		if player_pos.z < global_position.z:
+			$AnimationPlayer.play("hit_" + facing + "_up")
+		else:
+			$AnimationPlayer.play("hit_" + facing + "_down")
 
 func damaged_by_player(damage : float) -> void:
 	health -= damage
