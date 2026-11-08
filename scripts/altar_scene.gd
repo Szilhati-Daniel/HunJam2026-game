@@ -20,6 +20,8 @@ var player_position_from_scene: Dictionary[String, Vector3] = {
 @onready var player = get_node("Player")
 
 func _ready():
+	$Candles.visible = false
+	$Sacrefice.visible = false
 	var new_player_position = player_position_from_scene.get(load_from_level)
 	player.position = new_player_position
 	update_sprite()
@@ -29,6 +31,7 @@ func update_sprite():
 		return
 	if SceneDataManager.has_rope:
 		$altar.state = AltarState.CANDLE
+		$Candles.visible = true
 	if SceneDataManager.has_paint:
 		$altar.state = AltarState.ROPE
 	$altar.update_sprite()
