@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bqfeix08xvhi0"]
+
+[ext_resource type="Texture2D" uid="uid://b3eiaqd3gqgth" path="res://assets/graphics/testSprites/rock/pointy_rock.png" id="1_483q0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xrivr"]
+size = Vector3(2.5454102, 3.5194092, 1.2160645)
+
+[node name="pointy rock" type="StaticBody3D" unique_id=1072402386]
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=2099650873]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1974702, 0)
+texture = ExtResource("1_483q0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=113373333]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11303711, 1.2597046, -0.25793457)
+shape = SubResource("BoxShape3D_xrivr")
