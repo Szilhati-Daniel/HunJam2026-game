@@ -4,7 +4,6 @@
 [ext_resource type="Shader" uid="uid://yj5dns15m5u0" path="res://shaders/postprocessing.gdshader" id="2_6lxtr"]
 [ext_resource type="PackedScene" uid="uid://cvfk2js6u40yc" path="res://prefabs/camera.tscn" id="3_b72m1"]
 [ext_resource type="PackedScene" uid="uid://ciwtxush3fuib" path="res://prefabs/player.tscn" id="4_5mhml"]
-[ext_resource type="PackedScene" uid="uid://c7tjk38uwtkay" path="res://prefabs/orbiting_staff_default.tscn" id="5_b72m1"]
 [ext_resource type="PackedScene" uid="uid://vwfn42666ns4" path="res://prefabs/scene_geometry.tscn" id="5_rupth"]
 [ext_resource type="Script" uid="uid://bt7omhhaytxky" path="res://scripts/render_manager.gd" id="8_5mhml"]
 [ext_resource type="Script" uid="uid://eoui3obhryts" path="res://scripts/foliage_spawner.gd" id="8_6qt4k"]
@@ -43,8 +42,6 @@ player = NodePath("../Player")
 
 [node name="Player" parent="." unique_id=752145659 instance=ExtResource("4_5mhml")]
 movement_speed = 10.0
-
-[node name="Staff" parent="Player" unique_id=219690096 instance=ExtResource("5_b72m1")]
 
 [node name="Floor" parent="." unique_id=258324324 instance=ExtResource("5_rupth")]
 transform = Transform3D(69.92362, 0, 0, 0, 5.332588, 0, 0, 0, 49.87937, 0, 0, 0)
