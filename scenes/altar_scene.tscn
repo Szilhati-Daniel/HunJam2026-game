@@ -51,10 +51,11 @@ script = ExtResource("1_xfrg3")
 [node name="altar" parent="." unique_id=1204404280 instance=ExtResource("12_8lpc5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08710861, 0, -4.608044)
 
-[node name="Camera" parent="." unique_id=1052899663 node_paths=PackedStringArray("player") instance=ExtResource("2_gje6g")]
+[node name="Camera" parent="." unique_id=1052899663 node_paths=PackedStringArray("player", "camera_focus_points") instance=ExtResource("2_gje6g")]
 player = NodePath("../Player")
 have_bounds = true
 bounds = Vector4(-3, 4, -1, 5)
+camera_focus_points = [NodePath("../camera focus"), null]
 
 [node name="Floor" parent="." unique_id=258324324 instance=ExtResource("3_ru16j")]
 transform = Transform3D(94.179214, 0, 0, 0, 1.986177, 0, 0, 0, 93.19406, 0, 0, -24.522484)
@@ -253,5 +254,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.449676, 0.5, -2.1485195)
 texture = ExtResource("24_xfrg3")
 
 [node name="Sacrefice" type="Sprite3D" parent="." unique_id=383093524]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07407093, 9.8448925, 0.1388911)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.596336, 0.009999582, -9.436298)
 texture = ExtResource("25_c3nnj")
+
+[node name="camera focus" type="Node3D" parent="." unique_id=1437996616]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9458375, 8.518431, -5.386132)
