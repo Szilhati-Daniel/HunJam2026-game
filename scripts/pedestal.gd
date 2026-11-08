@@ -2,6 +2,7 @@ extends Node3D
 
 @export var textbox: Control
 @export var prompt: Control
+@onready var item = $item
 
 var player_nearby = false
 
@@ -24,5 +25,4 @@ func _on_body_exited(body):
 		prompt.hide()
 		
 func interact():
-	#TODO Implement
-	pass
+	item.hide()

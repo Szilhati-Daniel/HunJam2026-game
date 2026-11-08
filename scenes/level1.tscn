@@ -12,6 +12,7 @@
 [ext_resource type="FontFile" uid="uid://1s6ich2jr5m4" path="res://fonts/Wizards' Magic.ttf" id="8_i8kv5"]
 [ext_resource type="Script" uid="uid://cyewqiw2ghwgd" path="res://scripts/pedestal.gd" id="9_dxn3v"]
 [ext_resource type="PackedScene" uid="uid://ewd4a2hdbtk7" path="res://prefabs/oak_tree.tscn" id="10_d3jkd"]
+[ext_resource type="Texture2D" uid="uid://b5n7o64cuf8uo" path="res://assets/graphics/testSprites/items/candle/candle.png" id="11_14jow"]
 [ext_resource type="PackedScene" uid="uid://bq1mpoq7bqyfp" path="res://prefabs/grass.tscn" id="13_f31uk"]
 [ext_resource type="PackedScene" uid="uid://v4y3ogwd7mg7" path="res://prefabs/pedestal.tscn" id="13_gnai3"]
 [ext_resource type="PackedScene" uid="uid://ifncu6d54gsp" path="res://prefabs/trigger.tscn" id="15_dxn3v"]
@@ -108,6 +109,10 @@ shape = SubResource("SphereShape3D_gnai3")
 
 [node name="pedestal" parent="perimeter/pedestal" unique_id=1489384173 instance=ExtResource("13_gnai3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00016593933, 0, -0.0004043579)
+
+[node name="item" type="Sprite3D" parent="perimeter/pedestal" unique_id=874997419]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2674358, -0.01020813)
+texture = ExtResource("11_14jow")
 
 [node name="Fence10" parent="perimeter" unique_id=1573263111 instance=ExtResource("4_dwgg1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.585336, 0, -10.298305)
