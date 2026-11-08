@@ -25,10 +25,11 @@ var nearby_interactable: Node3D = null
 
 @onready var health_bar_progress: ProgressBar = $HealthBar/Panel/ProgressBar
 
+@export var can_move: bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$AnimationPlayer.play("init")
+	$AnimationPlayer.play("RESET")
 	staff = get_node_or_null("Staff") as Node3D
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -59,11 +60,12 @@ func _process(delta: float) -> void:
 	var delta_pos_x = Vector3(velocity.normalized().x, 0, 0) * movement_speed * delta
 	var delta_pos_z = Vector3(0, 0, velocity.normalized().z) * movement_speed * delta
 	
-	change_sprite(velocity)
-	
-	move_and_collide(delta_pos_x)
-	move_and_collide(delta_pos_z)
-	#update_healthbar_position()
+	if can_move:
+		change_sprite(velocity)
+
+		move_and_collide(delta_pos_x)
+		move_and_collide(delta_pos_z)
+		#update_healthbar_position()
 
 func change_sprite(direction : Vector3) -> void:
 	if direction != Vector3.ZERO:
@@ -87,6 +89,7 @@ func change_sprite(direction : Vector3) -> void:
 
 func take_damage(damage : float) -> void:
 	#print("Oh no im dying :(")
+	$AnimationPlayer.play("get_hit")
 	health -= damage
 	health_bar_progress.value = health
 	#print("\t current health: ", health)
@@ -115,6 +118,9 @@ func get_boinked():
 func death() -> void:
 	#TODO kill, i mean implement
 	return
+
+func trigger_pause():
+	HitStopManager.get_hit(0.25)
 
 func _on_area_3d_area_entered(area: Area3D) -> void:
 	if area.is_in_group("interactable"):
