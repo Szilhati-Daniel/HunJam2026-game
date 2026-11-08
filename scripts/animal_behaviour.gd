@@ -40,6 +40,8 @@ var can_attack : bool = true
 @onready var face_left: Sprite3D = $Sprites/Facing_Left
 @onready var face_right: Sprite3D = $Sprites/Facing_Right
 
+@onready var attack_sound: AudioStreamPlayer3D = $Sounds/Attack
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$AnimationPlayer.play("init")
@@ -172,6 +174,7 @@ func attack_player() -> void:
 	if not can_attack:
 		return
 	play_hit_animation()
+	attack_sound.play()
 	can_attack = false
 	player.take_damage(damage)
 	await get_tree().create_timer(attack_cooldown).timeout

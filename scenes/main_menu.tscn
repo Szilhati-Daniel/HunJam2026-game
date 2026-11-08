@@ -6,6 +6,7 @@
 [ext_resource type="Shader" uid="uid://yj5dns15m5u0" path="res://shaders/postprocessing.gdshader" id="2_bqqt6"]
 [ext_resource type="StyleBox" uid="uid://bd17yc7r6bfqv" path="res://assets/styles/button_style_normal.tres" id="3_8ln24"]
 [ext_resource type="StyleBox" uid="uid://xaph3sevb8be" path="res://assets/styles/button_style_hover.tres" id="4_rtw2f"]
+[ext_resource type="AudioStream" uid="uid://61ddy4e1y0tt" path="res://sounds/!final_menu.mp3" id="7_oa1go"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_g4v7s"]
 font = ExtResource("1_l6cm7")
@@ -16,6 +17,7 @@ shader = ExtResource("2_bqqt6")
 shader_parameter/brightColour = Vector4(1, 0.9843137, 0.83137256, 1)
 shader_parameter/darkColour = Vector4(0.16470589, 0.10980392, 0.05490196, 1)
 shader_parameter/treshold = 0.67
+shader_parameter/invert = false
 
 [node name="MainMenu" type="Control" unique_id=1107487279]
 layout_mode = 3
@@ -80,5 +82,12 @@ text = "Exit"
 [node name="CanvasLayer" parent="." unique_id=830739654 instance=ExtResource("1_ekxnf")]
 shader = SubResource("ShaderMaterial_wu84c")
 
+[node name="Sounds" type="Node" parent="." unique_id=1595195984]
+
+[node name="Menu" type="AudioStreamPlayer" parent="Sounds" unique_id=1278071603]
+stream = ExtResource("7_oa1go")
+
+[connection signal="mouse_entered" from="PlayButton" to="." method="_on_play_button_mouse_entered"]
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="mouse_entered" from="ExitButton" to="." method="_on_exit_button_mouse_entered"]
 [connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
