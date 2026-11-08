@@ -57,9 +57,6 @@ transform = Transform3D(27.58102, 0, 0, 0, 10, 0, 0, 0, 41.861763, 0, 0, 0)
 [node name="Player" parent="." unique_id=752145659 instance=ExtResource("3_ru4tf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.007088, 0, 6.9553547)
 movement_speed = 10.0
-target_scenes = Dictionary[String, PackedScene]({
-"toAltar": ExtResource("5_i8kv5")
-})
 
 [node name="Staff" parent="Player" unique_id=219690096 instance=ExtResource("5_conm7")]
 

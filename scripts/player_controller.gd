@@ -6,9 +6,6 @@ var health = 100.0
 var last_direction = Vector3(0,0,1) # so that it starts out facing camera
 
 @export
-var target_scenes: Dictionary[String, PackedScene]
-
-@export
 var textbox: Control
 @export
 var interaction_prompt: Control

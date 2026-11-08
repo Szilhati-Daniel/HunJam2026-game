@@ -64,11 +64,6 @@ transform = Transform3D(1, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.70710
 [node name="Player" parent="." unique_id=752145659 node_paths=PackedStringArray("textbox", "interaction_prompt") instance=ExtResource("4_v35yo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.031551123, 8)
 movement_speed = 10.0
-target_scenes = Dictionary[String, PackedScene]({
-"toLevel1": ExtResource("5_b42ur"),
-"toLevel2": ExtResource("6_8olkb"),
-"toLevel3": ExtResource("7_5h1p3")
-})
 textbox = NodePath("../CanvasLayer/TextBox")
 interaction_prompt = NodePath("../CanvasLayer/InteractionPrompt")
 
