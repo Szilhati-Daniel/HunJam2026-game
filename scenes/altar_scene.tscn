@@ -11,14 +11,21 @@
 [ext_resource type="PackedScene" uid="uid://d37dkjjugakgj" path="res://prefabs/postprocessing.tscn" id="7_8olkb"]
 [ext_resource type="Shader" uid="uid://yj5dns15m5u0" path="res://shaders/postprocessing.gdshader" id="8_5h1p3"]
 [ext_resource type="Texture2D" uid="uid://b6alwxys2dbiq" path="res://assets/graphics/testSprites/cave/cave.png" id="9_786bs"]
-[ext_resource type="Texture2D" uid="uid://vk36al1wjl0v" path="res://assets/graphics/testSprites/rock/rock.png" id="10_a840s"]
 [ext_resource type="Texture2D" uid="uid://bl4uw37f0jg4a" path="res://assets/graphics/testSprites/bush/bush.png" id="11_b8cub"]
-[ext_resource type="Texture2D" uid="uid://cuyv7vtjek285" path="res://assets/graphics/testSprites/fence/fence.png" id="12_rlco6"]
 [ext_resource type="PackedScene" uid="uid://b4cejqpifqcui" path="res://prefabs/scenery.tscn" id="13_ru16j"]
+[ext_resource type="PackedScene" uid="uid://bqrvaceax4pov" path="res://prefabs/fence.tscn" id="14_5h1p3"]
 [ext_resource type="Texture2D" uid="uid://dwefe45nfwkpg" path="res://assets/graphics/testSprites/mushroom/mushroom.png" id="14_v35yo"]
+[ext_resource type="PackedScene" uid="uid://bo37okb6sqbok" path="res://prefabs/tree.tscn" id="15_786bs"]
 [ext_resource type="PackedScene" uid="uid://ifncu6d54gsp" path="res://prefabs/trigger.tscn" id="15_v35yo"]
 [ext_resource type="Texture2D" uid="uid://cbimu51ak0may" path="res://assets/graphics/testSprites/mushroom/mushrooms.png" id="16_b42ur"]
+[ext_resource type="PackedScene" uid="uid://bqfeix08xvhi0" path="res://prefabs/pointy_rock.tscn" id="17_b8cub"]
 [ext_resource type="Texture2D" uid="uid://bbey4fmcomfo8" path="res://assets/graphics/testSprites/pedestal/pedestal.png" id="18_8olkb"]
+[ext_resource type="PackedScene" uid="uid://b47f7fjowlx02" path="res://prefabs/big_rock.tscn" id="18_rlco6"]
+[ext_resource type="PackedScene" uid="uid://b0d3k430w1vpu" path="res://prefabs/rock.tscn" id="19_xfrg3"]
+[ext_resource type="PackedScene" uid="uid://dc56pw7wjiak3" path="res://prefabs/broken_fence.tscn" id="22_8lpc5"]
+[ext_resource type="PackedScene" uid="uid://bo8se43ums6fj" path="res://prefabs/very_big_rock.tscn" id="22_ooqja"]
+[ext_resource type="PackedScene" uid="uid://bq1mpoq7bqyfp" path="res://prefabs/grass.tscn" id="22_rhp74"]
+[ext_resource type="PackedScene" uid="uid://ewd4a2hdbtk7" path="res://prefabs/oak_tree.tscn" id="23_miw16"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fs4dc"]
 shader = ExtResource("8_5h1p3")
@@ -59,31 +66,93 @@ shader = SubResource("ShaderMaterial_fs4dc")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.55692, -4.5626564)
 texture = ExtResource("9_786bs")
 
-[node name="rock" type="Sprite3D" parent="Scenery" unique_id=202205773]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.918356, 0.9635048, -4.226183)
-texture = ExtResource("10_a840s")
+[node name="rock3" parent="Scenery" unique_id=240688656 instance=ExtResource("19_xfrg3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9383965, 0, -4.280762)
 
 [node name="bush" type="Sprite3D" parent="Scenery" unique_id=1632721527]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.019477, 1.3601422, -4.434863)
 texture = ExtResource("11_b8cub")
 
-[node name="fence" type="Sprite3D" parent="Scenery" unique_id=293546019]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.509, 2, -10)
-texture = ExtResource("12_rlco6")
+[node name="Fence" parent="Scenery" unique_id=1573263111 instance=ExtResource("14_5h1p3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.483, 0, -10)
 
-[node name="fence2" type="Sprite3D" parent="Scenery" unique_id=2115247291]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.709, 2, -10.4)
-texture = ExtResource("12_rlco6")
+[node name="Fence2" parent="Scenery" unique_id=1650758249 instance=ExtResource("14_5h1p3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.08, 0, -10.2)
 
-[node name="fence3" type="Sprite3D" parent="Scenery" unique_id=2052341912]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.384712, 2, -10.2)
-texture = ExtResource("12_rlco6")
+[node name="Tree" parent="Scenery" unique_id=1385436313 instance=ExtResource("15_786bs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.597, 0, -12)
 
-[node name="fence4" type="Sprite3D" parent="Scenery" unique_id=1077000214]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.21756, 2, -10.3)
-texture = ExtResource("12_rlco6")
+[node name="bush2" type="Sprite3D" parent="Scenery" unique_id=133905552]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.443457, 1.0481539, -11.419669)
+texture = ExtResource("11_b8cub")
 
-[node name="Go to level 1" parent="." unique_id=195264165 instance=ExtResource("13_ru16j")]
+[node name="pointy rock2" parent="Scenery" unique_id=1072402386 instance=ExtResource("17_b8cub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6273937, 0, -6.4669743)
+
+[node name="big rock" parent="Scenery" unique_id=821766989 instance=ExtResource("18_rlco6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.245315, 0, -8.494219)
+
+[node name="very big rock" parent="Scenery" unique_id=1000508796 instance=ExtResource("22_ooqja")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6530657, 0, -9.72843)
+
+[node name="broken fence" parent="Scenery" unique_id=2028076470 instance=ExtResource("22_8lpc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.505203, 0, -3.3038688)
+
+[node name="Oak tree" parent="Scenery" unique_id=166263153 instance=ExtResource("23_miw16")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.082188, 0, -4.4200363)
+
+[node name="bush3" parent="Scenery" unique_id=195264165 instance=ExtResource("13_ru16j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.88525, 1.1316552, -3.6891618)
+flip_h = true
+texture = ExtResource("11_b8cub")
+
+[node name="Tree3" parent="Scenery" unique_id=1930772652 instance=ExtResource("15_786bs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.462541, 0, 0.19367504)
+
+[node name="Fence3" parent="Scenery" unique_id=1180805340 instance=ExtResource("14_5h1p3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.587251, 0, -4.048847)
+
+[node name="broken fence2" parent="Scenery" unique_id=1324553835 instance=ExtResource("22_8lpc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.385141, 0, -0.41960526)
+flip_H = true
+
+[node name="Grass" parent="Scenery" unique_id=257434752 instance=ExtResource("22_rhp74")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.0629487, 0, -3.9434996)
+
+[node name="Grass2" parent="Scenery" unique_id=939753990 instance=ExtResource("22_rhp74")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.574884, 0, 1.3047428)
+
+[node name="Grass3" parent="Scenery" unique_id=1901299129 instance=ExtResource("22_rhp74")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.2975187, 0, -0.8921423)
+
+[node name="pointy rock" parent="Scenery" unique_id=1085582968 instance=ExtResource("17_b8cub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.9123125, 0, 3.6269712)
+
+[node name="pointy rock3" parent="Scenery" unique_id=49198009 instance=ExtResource("17_b8cub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.765718, 0, 9.747212)
+
+[node name="pointy rock4" parent="Scenery" unique_id=1826902788 instance=ExtResource("17_b8cub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1345854, 0, 9.715802)
+
+[node name="big rock2" parent="Scenery" unique_id=158190341 instance=ExtResource("18_rlco6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.432911, 0, 5.5104923)
+
+[node name="big rock3" parent="Scenery" unique_id=1228529385 instance=ExtResource("18_rlco6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1047764, 0, 7.6874967)
+
+[node name="pointy rock5" parent="Scenery" unique_id=1972069026 instance=ExtResource("17_b8cub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.964435, 0, 6.796951)
+
+[node name="pointy rock6" parent="Scenery" unique_id=1341863392 instance=ExtResource("17_b8cub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.10336, 0, 8.78238)
+
+[node name="big rock4" parent="Scenery" unique_id=616841639 instance=ExtResource("18_rlco6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.499485, 0, 9.836348)
+
+[node name="big rock5" parent="Scenery" unique_id=901761272 instance=ExtResource("18_rlco6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.1277523, 0, 7.7215514)
+
+[node name="Go to level 1" parent="." unique_id=1915542780 instance=ExtResource("13_ru16j")]
 transform = Transform3D(1.9950302, 0, 0, 0, 1.9950302, 0, 0, 0, 1, -27.908512, 3.9986656, 0.05462742)
 texture = ExtResource("14_v35yo")
 

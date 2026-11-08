@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://b0d3k430w1vpu"]
+
+[ext_resource type="Script" uid="uid://h7aj2nxalwgh" path="res://scripts/scenery_prefab_controller.gd" id="1_hvyr3"]
+[ext_resource type="Texture2D" uid="uid://vk36al1wjl0v" path="res://assets/graphics/testSprites/rock/rock.png" id="1_is1tp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xrivr"]
+size = Vector3(3.113037, 1.1088867, 0.9748535)
+
+[node name="rock" type="StaticBody3D" unique_id=240688656]
+script = ExtResource("1_hvyr3")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=894285246]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95515656, 0)
+texture = ExtResource("1_is1tp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1352161202]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15881348, 0.55981445, -0.03479004)
+shape = SubResource("BoxShape3D_xrivr")

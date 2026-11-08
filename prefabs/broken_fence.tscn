@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dc56pw7wjiak3"]
+
+[ext_resource type="Texture2D" uid="uid://bn3svhwkksukb" path="res://assets/graphics/testSprites/fence/fence_half.png" id="1_5dqin"]
+[ext_resource type="Script" uid="uid://h7aj2nxalwgh" path="res://scripts/scenery_prefab_controller.gd" id="1_5ytxf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xrivr"]
+size = Vector3(1.5472412, 2.1842918, 0.73101807)
+
+[node name="broken fence" type="StaticBody3D" unique_id=2028076470]
+script = ExtResource("1_5ytxf")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=960334968]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.1048095, 0)
+texture = ExtResource("1_5dqin")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=597433490]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.014221191, 1.111124, -0.09487915)
+shape = SubResource("BoxShape3D_xrivr")
