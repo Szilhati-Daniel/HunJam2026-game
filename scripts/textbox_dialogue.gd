@@ -33,3 +33,8 @@ func advance_dialogue() -> void:
 		visible = false
 	else:
 		show_line()
+		
+func change_dialogue_lines(new_lines: Array) -> void:
+	dialogue_lines = new_lines
+	current_line = 0
+	show_line()
