@@ -6,8 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://ciwtxush3fuib" path="res://prefabs/player.tscn" id="3_ru4tf"]
 [ext_resource type="PackedScene" uid="uid://bqrvaceax4pov" path="res://prefabs/fence.tscn" id="4_dwgg1"]
 [ext_resource type="PackedScene" uid="uid://bo37okb6sqbok" path="res://prefabs/tree.tscn" id="4_ejswk"]
-[ext_resource type="PackedScene" uid="uid://c7tjk38uwtkay" path="res://prefabs/orbiting_staff_default.tscn" id="5_conm7"]
-[ext_resource type="PackedScene" uid="uid://d38oiseso0r5s" path="res://scenes/altar_scene.tscn" id="5_i8kv5"]
 [ext_resource type="PackedScene" uid="uid://d37dkjjugakgj" path="res://prefabs/postprocessing.tscn" id="5_ru4tf"]
 [ext_resource type="Shader" uid="uid://yj5dns15m5u0" path="res://shaders/postprocessing.gdshader" id="6_6sh32"]
 [ext_resource type="PackedScene" uid="uid://ewd4a2hdbtk7" path="res://prefabs/oak_tree.tscn" id="10_d3jkd"]
@@ -57,8 +55,6 @@ transform = Transform3D(27.58102, 0, 0, 0, 10, 0, 0, 0, 41.861763, 0, 0, 0)
 [node name="Player" parent="." unique_id=752145659 instance=ExtResource("3_ru4tf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.007088, 0, 6.9553547)
 movement_speed = 10.0
-
-[node name="Staff" parent="Player" unique_id=219690096 instance=ExtResource("5_conm7")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1835771992]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)

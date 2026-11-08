@@ -4,7 +4,7 @@ extends Node3D
 @export var orbit_speed : float = 1.5
 @export var base_height : float = 1.5
 @export var attack_cooldown : float = 0
-@export var damage : float = 0
+@export var damage : float = 25
 
 var angle : float = 0.0
 var target_rotation : float = 0.0
@@ -47,7 +47,7 @@ func boink(direction : Vector3) -> void:
 
 func start_attack() -> void:
 	can_damage = true
-	
+
 func end_attack() -> void:
 	can_damage = false
 
@@ -55,11 +55,8 @@ func _on_body_entered(body: Node3D) -> void:
 	if ! can_damage:
 		return
 	else:
+		end_attack()
 		if body.has_method("damaged_by_player"):
-			end_attack()
 			body.damaged_by_player(damage)
-		if body.has_method("take_damage"):
-			end_attack()
-			body.take_damage(damage)
 		if body.has_method("get_boinked"):
 			body.get_boinked()

@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dmdmy7qycyfap" path="res://assets/graphics/testSprites/player/idle/left_sketch/player_idle_left.png" id="5_1jxqw"]
 [ext_resource type="Texture2D" uid="uid://bl0i572k45xr6" path="res://assets/graphics/testSprites/player/idle/right_sketch/player_idle_right.png" id="6_dw050"]
 [ext_resource type="Texture2D" uid="uid://0v7vwnctjode" path="res://assets/graphics/testSprites/ui/stars.png" id="7_u51tk"]
+[ext_resource type="PackedScene" uid="uid://c7tjk38uwtkay" path="res://prefabs/orbiting_staff_default.tscn" id="8_kbsxf"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
 
@@ -188,5 +189,7 @@ shape = SubResource("CapsuleShape3D_57qmd")
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.083902836, 3.8973143, 0)
 visible = false
 texture = ExtResource("7_u51tk")
+
+[node name="Staff" parent="." unique_id=219690096 instance=ExtResource("8_kbsxf")]
 
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

@@ -180,6 +180,7 @@ func attack_player() -> void:
 func play_hit_animation():
 	var player_pos: Vector3 = player.get_global_position()
 	
+	$AnimationPlayer.play("RESET")
 	if facing == "down" or facing == "up":
 		if player_pos.x < global_position.x:
 			$AnimationPlayer.play("hit_" + facing + "_left")
@@ -200,6 +201,7 @@ func damaged_by_player(damage : float) -> void:
 		death()
 		
 func get_boinked():
+	$AnimationPlayer.play("RESET")
 	$AnimationPlayer.play("boink")
 
 func death() -> void:

@@ -31,9 +31,12 @@ var nearby_interactable: Node3D = null
 func _ready() -> void:
 	$AnimationPlayer.play("RESET")
 	staff = get_node_or_null("Staff") as Node3D
+	health = SceneDataManager.player_health
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	health_bar_progress.value = health
+	
 	var velocity = Vector3()
 	
 	if nearby_interactable != null:
@@ -126,21 +129,23 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 	if area.is_in_group("interactable"):
 		nearby_interactable = area.get_parent_node_3d()
 		interaction_prompt.show()
-	elif not area.is_in_group("trigger"):
-		return
-	
-	var scene_name = get_tree().current_scene.name
-	
-	var trigger_name = area.get_parent_node_3d().name
-	var new_scene = SceneLoader.load_scene(scene_name, trigger_name)
-	
-	if scene_name != "altar_scene":
-		new_scene.load_from_level = scene_name
-		new_scene.has_candle = SceneDataManager.has_candle
-		new_scene.has_rope = SceneDataManager.has_rope
-		new_scene.has_paint = SceneDataManager.has_paint
-	
-	SceneLoader.change_scene(new_scene)
+	elif area.is_in_group("trigger"):
+		
+		var scene_name = get_tree().current_scene.name
+		
+		var trigger_name = area.get_parent_node_3d().name
+		var new_scene = SceneLoader.load_scene(scene_name, trigger_name)
+		
+		print(health)
+		SceneDataManager.player_health = health
+		
+		if scene_name != "altar_scene":
+			new_scene.load_from_level = scene_name
+			new_scene.has_candle = SceneDataManager.has_candle
+			new_scene.has_rope = SceneDataManager.has_rope
+			new_scene.has_paint = SceneDataManager.has_paint
+		
+		SceneLoader.change_scene(new_scene)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
