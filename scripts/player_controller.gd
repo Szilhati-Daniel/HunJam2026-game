@@ -131,6 +131,9 @@ func take_damage(damage : float) -> void:
 		
 func get_boinked():
 	$AnimationPlayer.play("boink")
+	can_move = false
+	await get_tree().create_timer(0.7).timeout
+	can_move = true
 	
 """func update_healthbar_position() -> void:
 	var head_position = global_position + Vector3.UP * healthbar_height
