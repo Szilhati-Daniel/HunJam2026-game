@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://eoxpn8alaiw7"]
+
+[ext_resource type="Script" uid="uid://b228vtoegic0r" path="res://scripts/interactable.gd" id="1_ysexe"]
+[ext_resource type="Texture2D" uid="uid://bfx04ksh3np0" path="res://assets/graphics/testSprites/ui/textbox.png" id="2_56pfg"]
+[ext_resource type="FontFile" uid="uid://e5joy43k1hda" path="res://fonts/Searle.ttf" id="2_uujia"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_xrivr"]
+
+[node name="Interactable" type="Area3D" unique_id=81808595 groups=["interactable"]]
+script = ExtResource("1_ysexe")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1031507423]
+shape = SubResource("SphereShape3D_xrivr")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=619991880]
+
+[node name="prompt" type="Control" parent="CanvasLayer" unique_id=316999650]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 88.0
+offset_bottom = 28.0
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/prompt" unique_id=1446159483]
+position = Vector2(82, -15.999998)
+scale = Vector2(0.16088867, 0.24707031)
+texture = ExtResource("2_56pfg")
+
+[node name="Label" type="Label" parent="CanvasLayer/prompt" unique_id=1944100499]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 163.0
+offset_bottom = 52.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_uujia")
+theme_override_font_sizes/font_size = 30
+text = "Interact"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

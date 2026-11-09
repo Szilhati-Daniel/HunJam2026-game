@@ -19,7 +19,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 SceneLoader="*uid://c67okb4xpfumm"
-SceneDataManager="*uid://crrriglkep4bd"
+FlagManager="*uid://crrriglkep4bd"
 HitStopManager="*uid://cpkj4gh67otaa"
 
 [display]

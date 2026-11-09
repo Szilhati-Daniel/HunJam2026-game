@@ -187,6 +187,7 @@ func play_hit_animation():
 	var player_pos: Vector3 = player.get_global_position()
 	
 	#$AnimationPlayer.play("RESET")
+	reset_animation()
 	if facing == "down" or facing == "up":
 		if player_pos.x < global_position.x:
 			$AnimationPlayer.play("hit_" + facing + "_left")
@@ -207,10 +208,14 @@ func damaged_by_player(damage : float) -> void:
 		death()
 		
 func get_boinked():
-	#$AnimationPlayer.play("RESET")
+	reset_animation()
 	$AnimationPlayer.play("boink")
 
 func death() -> void:
 	#TODO: idk exactly but something needs to be done
 	queue_free()
 	return
+
+func reset_animation():
+	$AnimationPlayer.play("RESET")
+	await $AnimationPlayer.animation_finished

@@ -26,6 +26,9 @@ var actual_center: Vector3
 
 @onready var camera = $"Camera3D"
 
+func unproject_position(position):
+	camera.unproject_position(position)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if !player:

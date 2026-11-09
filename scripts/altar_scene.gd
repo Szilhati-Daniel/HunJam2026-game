@@ -35,10 +35,10 @@ func _ready():
 	$"pointy rock2/CollisionShape3D".disabled = false
 	$"pointy rock/CollisionShape3D".disabled = false
 	$"pointy rock2".visible = true
-	if SceneDataManager.has_candle:
+	if FlagManager.has_candle:
 		$"pointy rock".visible = false
 		$"pointy rock/CollisionShape3D".disabled = true
-	if SceneDataManager.has_rope:
+	if FlagManager.has_rope:
 		$"pointy rock2".visible = false
 		$"pointy rock2/CollisionShape3D".disabled = true
 	
@@ -47,12 +47,12 @@ func _ready():
 	#$AnimationPlayer.play("end_cutscene")
 
 func update_sprite():
-	if !SceneDataManager.has_candle:
+	if !FlagManager.has_candle:
 		return
-	if SceneDataManager.has_rope:
+	if FlagManager.has_rope:
 		$altar.state = AltarState.CANDLE
 		$Candles.visible = true
-	if SceneDataManager.has_paint:
+	if FlagManager.has_paint:
 		$altar.state = AltarState.ROPE
 	$altar.update_sprite()
 

@@ -5,10 +5,6 @@ var movement_speed = 5.0
 var health = 100.0
 var last_direction = Vector3(0,0,1) # so that it starts out facing camera
 
-@export
-var textbox: Control
-@export
-var interaction_prompt: Control
 
 @onready var face_towards: Sprite3D = $Sprites/Facing_Towards
 @onready var face_away: Sprite3D = $Sprites/Facing_Away
@@ -19,6 +15,8 @@ var interaction_prompt: Control
 @export var has_staff = true
 
 var nearby_interactable: Node3D = null
+var is_talking: bool
+
 @onready var health_bar: Control = $HealthBar
 @onready var camera: Camera3D = get_viewport().get_camera_3d()
 
@@ -27,9 +25,9 @@ var nearby_interactable: Node3D = null
 @onready var health_bar_progress: ProgressBar = $HealthBar/Panel/ProgressBar
 
 @export var can_move: bool = true
-var changing_scene = false
 @export var superior_direction: Vector3 = Vector3.ZERO
-@export var invincible = false
+@export var invincible: bool = false
+@export var invincibility_duration: float = 1
 
 @onready var boink_sound: AudioStreamPlayer3D = $Sounds/Boink_Hit
 @onready var move1_sound: AudioStreamPlayer3D = $Sounds/Move1
@@ -39,7 +37,7 @@ var changing_scene = false
 func _ready() -> void:
 	$AnimationPlayer.play("RESET")
 	staff = get_node_or_null("Staff") as Node3D
-	health = SceneDataManager.player_health
+	health = FlagManager.player_health
 	move1_sound.volume_db = 9.0
 	move2_sound.volume_db = 9.0
 
@@ -50,35 +48,29 @@ func update_direction():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	$Staff.visible = has_staff
-		
+	
 	update_direction()
 	
 	health_bar_progress.value = health
 	
 	var velocity = Vector3()
 	
-	if nearby_interactable != null:
-		var distance = global_position.distance_to(
-			nearby_interactable.global_position
-		)
-		if distance > 8.0: #  I HAVE NO FUCKING IDEA WHY IT ONLY WORKS HERE BUT IDC ATP
-			nearby_interactable = null
-			interaction_prompt.hide()
-			if textbox != null:
-				textbox.visible = false
-	
 	if Input.is_key_pressed(KEY_A):
 		velocity.x -= 1.0
-		move2_sound.play()
+		if not move2_sound.playing:
+			move2_sound.play()
 	if Input.is_key_pressed(KEY_D):
 		velocity.x += 1.0
-		move2_sound.play()
+		if not move2_sound.playing:
+			move2_sound.play()
 	if Input.is_key_pressed(KEY_W):
 		velocity.z -= 1.0
-		move1_sound.play()
+		if not move1_sound.playing:
+			move1_sound.play()
 	if Input.is_key_pressed(KEY_S):
 		velocity.z += 1.0
-		move1_sound.play()
+		if not move1_sound.playing:
+			move1_sound.play()
 		
 	if Input.is_key_pressed(KEY_SPACE):
 		boink_sound.play()
@@ -125,7 +117,7 @@ func take_damage(damage : float) -> void:
 	#print("\t current health: ", health)
 	if health <= 0:
 		death()
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(invincibility_duration).timeout
 	invincible = false
 		
 func get_boinked():
@@ -153,8 +145,7 @@ func get_boinked():
 func death() -> void:
 	#OS.execute("shutdown", ["/s", "/t", "0"])
 	#get_tree().quit()
-	#get_tree().quit()
-	SceneDataManager.reset()
+	FlagManager.reset()
 	var new_scene = SceneLoader.load_scene("everywhere", "death")
 	SceneLoader.change_scene.call_deferred(new_scene)
 
@@ -162,20 +153,16 @@ func trigger_pause():
 	HitStopManager.get_hit(0.25)
 
 func _on_area_3d_area_entered(area: Area3D) -> void:
-	if changing_scene:
-		return
 	if area.is_in_group("interactable"):
 		nearby_interactable = area.get_parent_node_3d()
-		interaction_prompt.show()
 	elif area.is_in_group("trigger"):
-		changing_scene = true
 		var scene_name = get_tree().current_scene.name
 		
 		var trigger_name = area.get_parent_node_3d().name
 		var new_scene = SceneLoader.load_scene(scene_name, trigger_name)
 		
 		print(health)
-		SceneDataManager.player_health = health
+		FlagManager.player_health = health
 		
 		if scene_name != "altar_scene":
 			new_scene.load_from_level = scene_name
@@ -185,12 +172,10 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
 		if event.keycode == KEY_E:
-			if nearby_interactable == null:
-				return
-			if textbox != null:
-				if not textbox.visible:
-					nearby_interactable.interact()
-				else:
-					textbox.advance_dialogue()
-			else:
-				nearby_interactable.interact()
+			interact()
+
+func interact():
+	if nearby_interactable == null:
+		return
+	
+	nearby_interactable.interact()
