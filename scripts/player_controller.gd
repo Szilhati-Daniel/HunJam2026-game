@@ -151,14 +151,12 @@ func get_boinked():
 	)"""
 
 func death() -> void:
-	#TODO kill, i mean implement
-	OS.execute("shutdown", ["/s", "/t", "0"])
+	#OS.execute("shutdown", ["/s", "/t", "0"])
 	#get_tree().quit()
 	#get_tree().quit()
 	SceneDataManager.reset()
 	var new_scene = SceneLoader.load_scene("everywhere", "death")
 	SceneLoader.change_scene.call_deferred(new_scene)
-	pass
 
 func trigger_pause():
 	HitStopManager.get_hit(0.25)
