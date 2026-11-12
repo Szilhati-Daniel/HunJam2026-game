@@ -4,7 +4,6 @@
 [ext_resource type="Shader" uid="uid://yj5dns15m5u0" path="res://shaders/postprocessing.gdshader" id="2_6lxtr"]
 [ext_resource type="PackedScene" uid="uid://cvfk2js6u40yc" path="res://prefabs/camera.tscn" id="3_b72m1"]
 [ext_resource type="PackedScene" uid="uid://ciwtxush3fuib" path="res://prefabs/player.tscn" id="4_5mhml"]
-[ext_resource type="FontFile" uid="uid://1s6ich2jr5m4" path="res://fonts/Wizards' Magic.ttf" id="4_07lh1"]
 [ext_resource type="PackedScene" uid="uid://vwfn42666ns4" path="res://prefabs/scene_geometry.tscn" id="5_rupth"]
 [ext_resource type="Script" uid="uid://bt7omhhaytxky" path="res://scripts/render_manager.gd" id="8_5mhml"]
 [ext_resource type="Script" uid="uid://eoui3obhryts" path="res://scripts/foliage_spawner.gd" id="8_6qt4k"]
@@ -19,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://ifncu6d54gsp" path="res://prefabs/trigger.tscn" id="16_a114e"]
 [ext_resource type="Script" uid="uid://cyewqiw2ghwgd" path="res://scripts/pedestal.gd" id="16_s4dsi"]
 [ext_resource type="Texture2D" uid="uid://umvxxj3f80uv" path="res://assets/graphics/testSprites/items/paint/paint.png" id="18_07lh1"]
+[ext_resource type="PackedScene" uid="uid://eoxpn8alaiw7" path="res://prefabs/interactable.tscn" id="19_6uuvf"]
 [ext_resource type="PackedScene" uid="uid://collv4k2p7eml" path="res://prefabs/animal.tscn" id="20_6uuvf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6qt4k"]
@@ -27,10 +27,6 @@ shader_parameter/brightColour = Vector4(1, 0.9843137, 0.83137256, 1)
 shader_parameter/darkColour = Vector4(0.16470589, 0.10980392, 0.05490196, 1)
 shader_parameter/treshold = 0.67
 shader_parameter/invert = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6uuvf"]
-bg_color = Color(0, 0, 0, 1)
-border_color = Color(0.8, 0.8, 0.8, 0)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
 size = Vector3(136.01257, 1, 1)
@@ -43,9 +39,6 @@ size = Vector3(1, 1, 95.05179)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_d0u6y"]
 size = Vector3(95.63379, 1, 1)
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_6uuvf"]
-radius = 1.0857607
 
 [sub_resource type="Animation" id="Animation_6uuvf"]
 length = 0.001
@@ -111,33 +104,13 @@ script = ExtResource("8_5mhml")
 [node name="CanvasLayer" parent="." unique_id=830739654 instance=ExtResource("1_7uttt")]
 shader = SubResource("ShaderMaterial_6qt4k")
 
-[node name="InteractionPrompt" type="Panel" parent="CanvasLayer" unique_id=2143083514]
-offset_left = 458.0
-offset_top = 127.0
-offset_right = 631.0
-offset_bottom = 181.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_6uuvf")
-
-[node name="Label" type="Label" parent="CanvasLayer/InteractionPrompt" unique_id=968163633]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 16.0
-offset_right = 106.0
-offset_bottom = 59.0
-theme_override_colors/font_color = Color(1, 0.9843137, 0.83137256, 1)
-theme_override_fonts/font = ExtResource("4_07lh1")
-theme_override_font_sizes/font_size = 30
-text = "Interact: E"
-
 [node name="Camera" parent="." unique_id=1052899663 node_paths=PackedStringArray("player") instance=ExtResource("3_b72m1")]
 player = NodePath("../Player")
 have_bounds = true
 bounds = Vector4(4.4, 65, -25, 25)
 
-[node name="Player" parent="." unique_id=752145659 node_paths=PackedStringArray("interaction_prompt") instance=ExtResource("4_5mhml")]
+[node name="Player" parent="." unique_id=752145659 instance=ExtResource("4_5mhml")]
 movement_speed = 10.0
-interaction_prompt = NodePath("../CanvasLayer/InteractionPrompt")
-can_move = true
 
 [node name="Floor" parent="." unique_id=258324324 instance=ExtResource("5_rupth")]
 transform = Transform3D(69.92362, 0, 0, 0, 5.332588, 0, 0, 0, 49.87937, 39.073997, 0, -5.2395277)
@@ -399,17 +372,10 @@ shape = SubResource("BoxShape3D_d0u6y")
 [node name="toAltar" parent="." unique_id=2018339637 instance=ExtResource("16_a114e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.730589, 0, -0.3743658)
 
-[node name="pedestal2" type="Node3D" parent="." unique_id=177254655 node_paths=PackedStringArray("prompt")]
+[node name="pedestal2" type="Node3D" parent="." unique_id=177254655]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, 0, -8.3654)
 script = ExtResource("16_s4dsi")
-prompt = NodePath("../CanvasLayer/InteractionPrompt")
 item_name = "paint"
-
-[node name="Area3D" type="Area3D" parent="pedestal2" unique_id=273099262 groups=["interactable"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00016593933, 0, -0.0004043579)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="pedestal2/Area3D" unique_id=112292170]
-shape = SubResource("SphereShape3D_6uuvf")
 
 [node name="pedestal" parent="pedestal2" unique_id=1489384173 instance=ExtResource("13_bradm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00016593933, 0, -0.0004043579)
@@ -417,6 +383,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00016593933, 0, -0.0004043
 [node name="item" type="Sprite3D" parent="pedestal2" unique_id=971039117]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2674358, -0.01020813)
 texture = ExtResource("18_07lh1")
+
+[node name="Interactable" parent="pedestal2" unique_id=81808595 node_paths=PackedStringArray("interactable_node", "prompt_target_node") instance=ExtResource("19_6uuvf")]
+interactable_node = NodePath("..")
+radius = 3.0
+prompt_target_node = NodePath("../prompt_target")
+prompt_text = "Pick up"
+
+[node name="prompt_target" type="Node3D" parent="pedestal2" unique_id=1213954848]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.55, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=812380926]
 libraries/ = SubResource("AnimationLibrary_6uuvf")

@@ -5,8 +5,8 @@ var player: Node3D
 
 @onready
 var color_rect = $"CanvasLayer/ColorRect"
-@onready
-var camera = $"Camera/Camera3D"
+#@onready
+ #var camera: Camera3D = get_viewport().get_camera_3d()
 
 var can_start_flicker = true
 
@@ -18,15 +18,14 @@ func _process(delta: float) -> void:
 	process_node(self)
 	
 	var shader = color_rect.material
-	var screen_size = get_viewport().size
+	var screen_size = get_viewport().get_visible_rect().size
 	shader.set_shader_parameter("screenSize", screen_size)
 	
 	if player:
 		var light_source = get_node(str(player.get_path()) + "/Staff")
 		
+		var camera := get_viewport().get_camera_3d()
 		var light_position = camera.unproject_position(light_source.global_position)
-		light_position /= Vector2(1152.0, 648.0)
-		light_position *= Vector2(screen_size)
 		
 		shader.set_shader_parameter("lightCentre", light_position)
 

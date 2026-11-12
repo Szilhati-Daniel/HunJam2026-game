@@ -153,9 +153,7 @@ func trigger_pause():
 	HitStopManager.get_hit(0.25)
 
 func _on_area_3d_area_entered(area: Area3D) -> void:
-	if area.is_in_group("interactable"):
-		nearby_interactable = area.get_parent_node_3d()
-	elif area.is_in_group("trigger"):
+	if area.is_in_group("trigger"):
 		var scene_name = get_tree().current_scene.name
 		
 		var trigger_name = area.get_parent_node_3d().name
@@ -168,6 +166,7 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 			new_scene.load_from_level = scene_name
 		
 		SceneLoader.change_scene.call_deferred(new_scene)
+
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:

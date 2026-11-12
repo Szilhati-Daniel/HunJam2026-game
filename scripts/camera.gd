@@ -37,7 +37,7 @@ func _process(delta: float) -> void:
 	center_target = player.position + center_offset
 	actual_center = center_target
 	
-	var min_dst = 10000000.0
+	var min_dst = INF
 	
 	for focus_point in camera_focus_points:
 		if !focus_point:
@@ -46,7 +46,7 @@ func _process(delta: float) -> void:
 		var projected_focus = Vector2(focus_point.global_position.x, focus_point.global_position.z)
 		var projected_center = Vector2(center_target.x, center_target.z)
 		var dst = projected_focus.distance_squared_to(projected_center)
-		if dst < focus_treshold * focus_treshold && dst < min_dst:
+		if dst < focus_treshold * focus_treshold and dst < min_dst:
 			actual_center = focus_point.global_position
 			min_dst = dst
 	

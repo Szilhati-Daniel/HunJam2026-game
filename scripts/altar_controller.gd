@@ -47,6 +47,10 @@ func update_sprite():
 			$Sprites/face.visible = true
 
 func interact():
+	print()
+	print(FlagManager.has_candle)
+	print(FlagManager.has_paint)
+	print(FlagManager.has_rope)
 	if FlagManager.has_candle and FlagManager.has_paint and FlagManager.has_rope:
 		$Interactable.hide_prompt()
 		$Interactable.disable()

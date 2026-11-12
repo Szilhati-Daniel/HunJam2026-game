@@ -19,8 +19,8 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ejswk"]
 shader = ExtResource("6_6sh32")
-shader_parameter/brightColour = Vector4(1, 0.984, 0.831, 1)
-shader_parameter/darkColour = Vector4(0.165, 0.11, 0.055, 1)
+shader_parameter/brightColour = Vector4(1, 0.9843137, 0.83137256, 1)
+shader_parameter/darkColour = Vector4(0.16470589, 0.10980392, 0.05490196, 1)
 shader_parameter/treshold = 0.67
 shader_parameter/invert = false
 
@@ -113,14 +113,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2674358, -0.01020813)
 texture = ExtResource("11_14jow")
 
 [node name="Interactable" parent="pedestal" unique_id=81808595 node_paths=PackedStringArray("interactable_node", "prompt_target_node") instance=ExtResource("8_dxn3v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3236904, 0, 0)
 interactable_node = NodePath("..")
-radius = 2.0
+radius = 3.0
 prompt_target_node = NodePath("../prompt_target")
 prompt_text = "Pick up"
 
 [node name="prompt_target" type="Node3D" parent="pedestal" unique_id=2098918488]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, 3.556, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.556, 0)
 
 [node name="CanvasLayer" parent="." unique_id=830739654 instance=ExtResource("5_ru4tf")]
 shader = SubResource("ShaderMaterial_ejswk")

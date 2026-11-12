@@ -6,7 +6,7 @@ extends Area3D
 @export var prompt_target_node: Node3D
 @export var prompt_text: String = "interact"
 
-@onready var camera: Camera3D = get_viewport().get_camera_3d()
+#@onready var camera: Camera3D = get_viewport().get_camera_3d()
 
 func _ready():
 	update_radius()
@@ -22,10 +22,12 @@ func update_radius():
 	$CollisionShape3D.shape.radius = radius
 
 func update_prompt_position():
-	if camera == null:
-		return
 	
 	if prompt_target_node == null:
+		return
+	
+	var camera := get_viewport().get_camera_3d()
+	if camera == null:
 		return
 	
 	var screen_position = camera.unproject_position(prompt_target_node.global_position)
@@ -53,7 +55,10 @@ func hide_prompt():
 func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		show_prompt()
+		body.nearby_interactable = self
 
 func _on_body_exited(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		hide_prompt()
+		if (body.nearby_interactable == self):
+			body.nearby_interactable = null

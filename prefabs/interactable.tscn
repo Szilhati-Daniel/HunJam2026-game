@@ -17,12 +17,12 @@ shape = SubResource("SphereShape3D_xrivr")
 [node name="prompt" type="Control" parent="CanvasLayer" unique_id=316999650]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 88.0
-offset_bottom = 28.0
+offset_right = 164.0
+offset_bottom = 44.0
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/prompt" unique_id=1446159483]
-position = Vector2(82, -15.999998)
-scale = Vector2(0.16088867, 0.24707031)
+position = Vector2(81.5, -16.87499)
+scale = Vector2(0.16308594, 0.25048828)
 texture = ExtResource("2_56pfg")
 
 [node name="Label" type="Label" parent="CanvasLayer/prompt" unique_id=1944100499]
